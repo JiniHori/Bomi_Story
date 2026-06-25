@@ -3,480 +3,172 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>봄이스토리</title>
-  <meta name="theme-color" content="#fff7f1" />
+  <meta name="theme-color" content="#fff4f1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="봄이스토리" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>봄이스토리</title>
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="icon" href="/apple-touch-icon.png" />
-  <style>
-    :root {
-      --bg: #fff7f1;
-      --card: #ffffff;
-      --ink: #4c3b3b;
-      --muted: #8b7474;
-      --line: #f1ded8;
-      --pink: #f2a6b3;
-      --pink-dark: #d97a8b;
-      --cream: #fff0e6;
-      --mint: #eaf7ef;
-      --blue: #eff5ff;
-      --shadow: 0 14px 34px rgba(139, 91, 91, .12);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
-      background: radial-gradient(circle at top, #fffdf9 0%, var(--bg) 42%, #fff4f6 100%);
-      color: var(--ink);
-      min-height: 100vh;
-    }
-
-    .app {
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 18px 16px 96px;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 24px 20px;
-      border-radius: 30px;
-      background: linear-gradient(145deg, #ffffff 0%, #fff3ec 54%, #ffeef3 100%);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.7);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      right: -56px;
-      top: -46px;
-      background: rgba(242,166,179,.24);
-      border-radius: 50%;
-    }
-
-    .eyebrow {
-      font-size: 13px;
-      color: var(--pink-dark);
-      font-weight: 700;
-      letter-spacing: .02em;
-    }
-
-    h1 {
-      margin: 8px 0 4px;
-      font-size: 30px;
-      line-height: 1.15;
-      letter-spacing: -.03em;
-    }
-
-    .sub {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .status-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 10px;
-      margin-top: 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .status {
-      padding: 14px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(241,222,216,.75);
-    }
-
-    .status strong {
-      display: block;
-      font-size: 24px;
-      letter-spacing: -.03em;
-    }
-
-    .status span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin: 18px 0 12px;
-      position: sticky;
-      top: 8px;
-      z-index: 10;
-    }
-
-    .menu button {
-      border: 1px solid rgba(241,222,216,.9);
-      background: rgba(255,255,255,.82);
-      backdrop-filter: blur(14px);
-      border-radius: 18px;
-      padding: 11px 6px;
-      color: var(--ink);
-      font-size: 12px;
-      font-weight: 700;
-      box-shadow: 0 8px 22px rgba(139,91,91,.08);
-    }
-
-    .menu button.active {
-      color: white;
-      border-color: var(--pink);
-      background: linear-gradient(135deg, var(--pink), #e8909f);
-    }
-
-    .section { display: none; }
-    .section.active { display: block; }
-
-    .card {
-      background: rgba(255,255,255,.86);
-      border: 1px solid rgba(241,222,216,.86);
-      border-radius: 26px;
-      padding: 18px;
-      margin-top: 14px;
-      box-shadow: 0 10px 26px rgba(139,91,91,.08);
-    }
-
-    .card h2 {
-      margin: 0 0 12px;
-      font-size: 18px;
-      letter-spacing: -.02em;
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 14px;
-    }
-
-    .row:last-child { border-bottom: 0; }
-    .row b { white-space: nowrap; }
-    .row span { color: var(--muted); text-align: right; }
-
-    textarea, input[type="date"], select {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 13px 14px;
-      background: #fffdfb;
-      color: var(--ink);
-      font-size: 15px;
-      outline: none;
-    }
-
-    textarea {
-      min-height: 116px;
-      resize: vertical;
-      line-height: 1.55;
-    }
-
-    label {
-      display: block;
-      margin: 14px 0 8px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .primary {
-      width: 100%;
-      margin-top: 14px;
-      border: 0;
-      border-radius: 18px;
-      padding: 14px;
-      background: linear-gradient(135deg, var(--pink), #e38c9a);
-      color: white;
-      font-size: 16px;
-      font-weight: 800;
-      box-shadow: 0 10px 22px rgba(217,122,139,.22);
-    }
-
-    .secondary {
-      width: 100%;
-      margin-top: 10px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 13px;
-      background: #fffdfb;
-      color: var(--ink);
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    .note-item {
-      padding: 14px;
-      border-radius: 20px;
-      background: #fffaf7;
-      border: 1px solid var(--line);
-      margin-top: 10px;
-    }
-
-    .note-meta {
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 8px;
-      gap: 10px;
-    }
-
-    .note-text {
-      white-space: pre-wrap;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--cream);
-      color: var(--pink-dark);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .empty, .hint, .msg {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .quick {
-      padding: 14px;
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: #fffdfb;
-      font-weight: 800;
-      font-size: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <main class="app">
-    <section class="hero">
-      <div class="eyebrow">BOMI STORY · V3.1</div>
-      <h1>봄이스토리</h1>
-      <p class="sub">오늘 기준 임신 주수와 진료 기록을 자동으로 정리합니다.</p>
-
-      <div class="status-grid">
-        <div class="status">
-          <strong><span id="weekDayText">계산 중</span></strong>
-          <span>오늘 기준 주수</span>
+  <div class="app-shell">
+    <header class="hero-card">
+      <div class="top-row">
+        <div>
+          <p class="eyebrow">Bomi Story</p>
+          <h1>봄이스토리</h1>
         </div>
-        <div class="status">
-          <strong id="dDayText">D-</strong>
-          <span>출산예정일까지</span>
-        </div>
-      </div>
-    </section>
-
-    <nav class="menu" aria-label="봄이스토리 메뉴">
-      <button class="active" data-tab="home">홈</button>
-      <button data-tab="visit">진료</button>
-      <button data-tab="letter">한마디</button>
-      <button data-tab="archive">기록</button>
-    </nav>
-
-    <section id="home" class="section active">
-      <div class="card">
-        <h2>👶 오늘의 봄이</h2>
-        <div class="row"><b>출산예정일</b><span>2027.01.06</span></div>
-        <div class="row"><b>임신 경과</b><span id="progressText">계산 중</span></div>
-        <div class="row"><b>오늘 날짜</b><span id="todayText">-</span></div>
+        <div class="baby-badge" aria-label="baby icon">👣</div>
       </div>
 
-      <div class="card">
-        <h2>바로가기</h2>
-        <div class="quick-grid">
-          <button class="quick" onclick="openTab('visit')">🩺 진료 기록</button>
-          <button class="quick" onclick="openTab('letter')">💌 한마디 쓰기</button>
-          <button class="quick" onclick="loadNotes(); openTab('archive')">📖 저장 기록</button>
-          <button class="quick" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️ 상단으로</button>
+      <div class="gestation">
+        <div>
+          <span id="weekValue">--</span><small>주</small>
+          <span id="dayValue">--</span><small>일</small>
+        </div>
+        <p id="todayLabel">오늘 기준 자동 계산</p>
+      </div>
+
+      <div class="hero-grid">
+        <div class="mini-card">
+          <span>예정일</span>
+          <strong>2027.01.06</strong>
+        </div>
+        <div class="mini-card">
+          <span>만남까지</span>
+          <strong id="ddayValue">D---</strong>
         </div>
       </div>
-    </section>
 
-    <section id="visit" class="section">
-      <div class="card">
-        <h2>🩺 진료일 설정</h2>
-        <label for="visitDate">진료일</label>
-        <input id="visitDate" type="date" />
-        <p class="hint">진료일을 기준으로 엄마/아빠 한마디가 함께 저장됩니다.</p>
+      <div class="today-card">
+        <span id="sizeIcon">🌱</span>
+        <div>
+          <p>오늘의 봄이</p>
+          <strong id="babySize">주수에 맞춰 자동 업데이트됩니다.</strong>
+          <small id="babyMessage">하루하루 기록을 쌓아가요.</small>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <section id="letter" class="section">
-      <div class="card">
-        <h2>💌 오늘의 한마디</h2>
-        <label for="author">작성자</label>
-        <select id="author">
-          <option value="엄마">엄마</option>
-          <option value="아빠">아빠</option>
-          <option value="봄이에게">봄이에게</option>
-        </select>
+    <main>
+      <section class="section-block">
+        <div class="section-title">
+          <h2>메뉴</h2>
+          <p>자주 쓰는 기록을 카드로 정리했습니다.</p>
+        </div>
+        <div class="menu-grid">
+          <a href="#visits" class="menu-card"><span>🩺</span><strong>진료기록</strong><small>상담·측정값</small></a>
+          <a href="#album" class="menu-card"><span>📷</span><strong>초음파 앨범</strong><small>사진 모아보기</small></a>
+          <a href="#videos" class="menu-card"><span>🎥</span><strong>초음파 영상</strong><small>영상 링크</small></a>
+          <a href="#growth" class="menu-card"><span>📈</span><strong>성장기록</strong><small>CRL·주수</small></a>
+          <a href="#letters" class="menu-card"><span>💌</span><strong>엄마·아빠 편지</strong><small>한마디 기록</small></a>
+          <a href="#settings" class="menu-card"><span>⚙️</span><strong>설정</strong><small>앱 정보</small></a>
+        </div>
+      </section>
 
-        <label for="message">남기고 싶은 말</label>
-        <textarea id="message" placeholder="오늘 진료에서 느낀 마음을 남겨주세요."></textarea>
-
-        <button class="primary" onclick="saveNote()">D1에 저장하기</button>
-        <button class="secondary" onclick="loadNotes(); openTab('archive')">저장 기록 보기</button>
-        <p id="saveMsg" class="msg"></p>
-      </div>
-    </section>
-
-    <section id="archive" class="section">
-      <div class="card">
-        <h2>📖 저장된 기록</h2>
-        <div class="pill" id="archiveVisitDate">진료일 기준</div>
-        <div id="notesList" style="margin-top:12px;"></div>
-        <button class="secondary" onclick="loadNotes()">새로고침</button>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const DUE_DATE = new Date("2027-01-06T00:00:00+09:00");
-    const PREGNANCY_DAYS = 280;
-    const conceptionDate = new Date(DUE_DATE);
-    conceptionDate.setDate(conceptionDate.getDate() - PREGNANCY_DAYS);
-
-    function pad(n) { return String(n).padStart(2, "0"); }
-    function toDateInputValue(date) {
-      return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
-    }
-    function formatKoDate(date) {
-      return `${date.getFullYear()}.${pad(date.getMonth()+1)}.${pad(date.getDate())}`;
-    }
-
-    function updatePregnancyStatus() {
-      const now = new Date();
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const conception = new Date(conceptionDate.getFullYear(), conceptionDate.getMonth(), conceptionDate.getDate());
-      const due = new Date(DUE_DATE.getFullYear(), DUE_DATE.getMonth(), DUE_DATE.getDate());
-      const diffDays = Math.max(0, Math.floor((today - conception) / 86400000));
-      const week = Math.floor(diffDays / 7);
-      const day = diffDays % 7;
-      const dday = Math.ceil((due - today) / 86400000);
-
-      document.getElementById("weekDayText").textContent = `${week}주 ${day}일`;
-      document.getElementById("dDayText").textContent = dday >= 0 ? `D-${dday}` : `D+${Math.abs(dday)}`;
-      document.getElementById("progressText").textContent = `${diffDays}일 경과 / 280일 기준`;
-      document.getElementById("todayText").textContent = formatKoDate(today);
-
-      const visitDate = document.getElementById("visitDate");
-      if (!visitDate.value) visitDate.value = toDateInputValue(today);
-    }
-
-    function openTab(tabId) {
-      document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-      document.querySelectorAll(".menu button").forEach(b => b.classList.remove("active"));
-      document.getElementById(tabId).classList.add("active");
-      document.querySelector(`.menu button[data-tab="${tabId}"]`).classList.add("active");
-      if (tabId === "archive") loadNotes();
-    }
-
-    document.querySelectorAll(".menu button").forEach(button => {
-      button.addEventListener("click", () => openTab(button.dataset.tab));
-    });
-
-    async function saveNote() {
-      const visitDate = document.getElementById("visitDate").value;
-      const author = document.getElementById("author").value;
-      const message = document.getElementById("message").value.trim();
-      const saveMsg = document.getElementById("saveMsg");
-
-      if (!visitDate) {
-        saveMsg.textContent = "진료일을 먼저 선택해 주세요.";
-        return;
-      }
-      if (!message) {
-        saveMsg.textContent = "한마디 내용을 입력해 주세요.";
-        return;
-      }
-
-      saveMsg.textContent = "저장 중입니다.";
-      try {
-        const res = await fetch("/api/notes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ visit_date: visitDate, author, message })
-        });
-        if (!res.ok) throw new Error("save failed");
-        document.getElementById("message").value = "";
-        saveMsg.textContent = "저장되었습니다.";
-        await loadNotes();
-      } catch (err) {
-        saveMsg.textContent = "저장 실패: Cloudflare D1 연결 상태를 확인해 주세요.";
-      }
-    }
-
-    async function loadNotes() {
-      const visitDate = document.getElementById("visitDate").value;
-      const list = document.getElementById("notesList");
-      document.getElementById("archiveVisitDate").textContent = `진료일 ${visitDate || "전체"}`;
-      list.innerHTML = `<p class="empty">불러오는 중입니다.</p>`;
-      try {
-        const url = visitDate ? `/api/notes?visit_date=${encodeURIComponent(visitDate)}` : "/api/notes";
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("load failed");
-        const data = await res.json();
-        const notes = data.notes || [];
-        if (!notes.length) {
-          list.innerHTML = `<p class="empty">아직 저장된 한마디가 없습니다.</p>`;
-          return;
-        }
-        list.innerHTML = notes.map(note => `
-          <article class="note-item">
-            <div class="note-meta">
-              <strong>${escapeHtml(note.author)}</strong>
-              <span>${escapeHtml(note.visit_date)}</span>
-            </div>
-            <div class="note-text">${escapeHtml(note.message)}</div>
+      <section id="visits" class="section-block">
+        <div class="section-title">
+          <h2>진료기록</h2>
+          <p>중요 진료일을 타임라인으로 관리합니다.</p>
+        </div>
+        <div class="timeline">
+          <article class="visit-card featured">
+            <div class="visit-date"><strong>2026.06.25</strong><span>최근 진료</span></div>
+            <h3>강남차병원 진료</h3>
+            <p>상담 내용, 초음파 사진·영상, 측정값을 이곳에 정리할 수 있습니다.</p>
+            <button type="button" class="ghost-button" onclick="openPanel('visitPanel')">상세보기</button>
           </article>
-        `).join("");
-      } catch (err) {
-        list.innerHTML = `<p class="empty">기록을 불러오지 못했습니다. Worker API와 D1 설정을 확인해 주세요.</p>`;
-      }
-    }
+          <article class="visit-card">
+            <div class="visit-date"><strong>2026.06.08</strong><span>이전 진료</span></div>
+            <h3>초기 진료 기록</h3>
+            <p>기존 기록을 여기에 이어 붙이면 진료 히스토리가 완성됩니다.</p>
+          </article>
+        </div>
+      </section>
 
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
+      <section id="album" class="section-block">
+        <div class="section-title">
+          <h2>초음파 앨범</h2>
+          <p>GitHub에 이미지를 올리고 아래 카드에 연결하면 됩니다.</p>
+        </div>
+        <div class="album-grid">
+          <div class="photo-tile"><span>👶</span><small>12주 초음파</small></div>
+          <div class="photo-tile muted"><span>＋</span><small>사진 추가</small></div>
+          <div class="photo-tile muted"><span>＋</span><small>사진 추가</small></div>
+        </div>
+      </section>
 
-    updatePregnancyStatus();
-    loadNotes();
-  </script>
+      <section id="videos" class="section-block">
+        <div class="section-title">
+          <h2>초음파 영상</h2>
+          <p>25MB 이상 영상은 GitHub 대신 Cloudflare R2 또는 외부 링크 권장입니다.</p>
+        </div>
+        <div class="video-card">
+          <span>▶</span>
+          <div>
+            <strong>영상 링크 준비 영역</strong>
+            <p>영상 파일 또는 공유 링크를 연결할 수 있도록 구성했습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="growth" class="section-block">
+        <div class="section-title">
+          <h2>성장기록</h2>
+          <p>정적 버전에서는 예시 그래프로 표시합니다.</p>
+        </div>
+        <div class="growth-card">
+          <div class="bar-row"><span>9주</span><div><i style="width:38%"></i></div><b>초기</b></div>
+          <div class="bar-row"><span>12주</span><div><i style="width:62%"></i></div><b>현재</b></div>
+          <div class="bar-row"><span>20주</span><div><i style="width:100%"></i></div><b>예정</b></div>
+        </div>
+      </section>
+
+      <section id="letters" class="section-block">
+        <div class="section-title">
+          <h2>엄마·아빠 편지</h2>
+          <p>현재는 기기 임시저장입니다. 추후 D1 연동 시 가족 공용 저장으로 전환합니다.</p>
+        </div>
+        <div class="letter-card">
+          <label for="momNote">엄마의 한마디</label>
+          <textarea id="momNote" placeholder="오늘 봄이에게 남기고 싶은 말"></textarea>
+          <label for="dadNote">아빠의 한마디</label>
+          <textarea id="dadNote" placeholder="오늘 봄이에게 남기고 싶은 말"></textarea>
+          <button type="button" onclick="saveLetters()">임시저장</button>
+          <p id="letterStatus" class="status-text"></p>
+        </div>
+      </section>
+
+      <section id="settings" class="section-block settings-card">
+        <h2>설정</h2>
+        <p>V4 Static · Cloudflare Pages 배포용</p>
+        <p class="hint">DB 파일 없이 배포되므로 기존 D1 binding 오류가 발생하지 않습니다.</p>
+      </section>
+    </main>
+
+    <nav class="tab-bar" aria-label="main navigation">
+      <a href="#top" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">홈</a>
+      <a href="#visits">기록</a>
+      <a href="#album">앨범</a>
+      <a href="#letters">편지</a>
+    </nav>
+  </div>
+
+  <div id="visitPanel" class="panel" aria-hidden="true">
+    <div class="panel-card">
+      <button class="close" onclick="closePanel('visitPanel')">×</button>
+      <h2>2026.06.25 진료 상세</h2>
+      <p>여기에 상담 요약, 측정값, 초음파 사진, 영상 링크를 순차적으로 추가하면 됩니다.</p>
+      <ul>
+        <li>진료기관: 강남차병원</li>
+        <li>기록 상태: V4 기본 템플릿</li>
+        <li>다음 단계: 실제 진료 텍스트 반영</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
 </body>
 </html>
