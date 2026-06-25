@@ -1,247 +1,482 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<link rel="icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BOMI Pregnancy Journal</title>
-<style>
-:root{
-  --bg:#f6fbfb; --card:#fff; --ink:#183233; --muted:#6c7d80;
-  --mint:#73d6c9; --mint2:#dff8f5; --blue:#9fd5ff; --green:#26a269;
-  --yellow:#f5b84b; --line:#e3eeee; --shadow:0 12px 30px rgba(24,50,51,.08);
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;
-  background:linear-gradient(180deg,#eafafa 0%,var(--bg) 42%,#fff 100%);
-  color:var(--ink);
-}
-.wrap{max-width:540px;margin:0 auto;padding:22px 16px 48px}
-.hero{
-  border-radius:32px;padding:30px 22px;
-  background:
-    radial-gradient(circle at 88% 4%,rgba(159,213,255,.75),transparent 34%),
-    radial-gradient(circle at 5% 0%,rgba(115,214,201,.55),transparent 40%),
-    linear-gradient(145deg,#fff,#effcfb);
-  box-shadow:var(--shadow);
-}
-.badge{
-  display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.78);
-  border:1px solid rgba(255,255,255,.9);font-size:12px;font-weight:800;color:#275759;
-}
-h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
-.sub{color:var(--muted);font-size:14px;line-height:1.55}
-.statusCard{
-  margin-top:20px;background:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.9);
-  border-radius:24px;padding:18px;
-}
-.row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
-.label{color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
-.overall{font-size:30px;font-weight:950;letter-spacing:-.055em;color:var(--green);margin-top:3px}
-.statusText{font-size:13px;color:var(--muted);line-height:1.55;margin-top:10px}
-.signal{
-  display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;
-  background:var(--mint2);color:#14776f;font-size:13px;font-weight:900;
-}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.card{
-  background:var(--card);border:1px solid var(--line);border-radius:24px;
-  padding:18px;box-shadow:0 8px 22px rgba(24,50,51,.055);
-}
-.full{grid-column:1/-1}
-.card h2{margin:0 0 14px;font-size:20px;letter-spacing:-.035em}
-.metric .icon{font-size:25px;margin-bottom:8px}
-.value{font-size:24px;font-weight:900;letter-spacing:-.045em;margin-top:4px}
-.note{font-size:13px;color:var(--muted);line-height:1.45;margin-top:7px}
-.todayLine{
-  margin-top:14px;padding:14px 15px;border-radius:18px;background:#f7fcfc;
-  border:1px solid var(--line);line-height:1.55;font-size:14px;font-weight:750;color:#315456;
-}
-.timeline{position:relative;padding-left:22px}
-.timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:#d8eaea}
-.event{
-  position:relative;margin-bottom:15px;padding:14px 14px;border:1px solid var(--line);
-  border-radius:18px;background:#fbffff;
-}
-.event:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--mint);border:3px solid white;box-shadow:0 0 0 1px #bce9e4}
-.event.future:before{background:#d8eaea}
-.date{font-size:13px;color:var(--muted);font-weight:900}
-.event strong{display:block;margin-top:2px;font-size:17px;letter-spacing:-.02em}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
-.tag{padding:6px 9px;border-radius:999px;background:var(--mint2);color:#14776f;font-size:12px;font-weight:900}
-.tag.yellow{background:#fff4d8;color:#91620a}
-.linkBtn{
-  display:inline-flex;align-items:center;justify-content:center;width:100%;margin-top:12px;
-  text-decoration:none;color:#143d3f;background:#e9fbf8;border:1px solid #c9f1eb;
-  border-radius:16px;padding:12px;font-weight:900;
-}
-.status{
-  display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);
-  padding:12px 0;font-size:14px;gap:14px;
-}
-.status:last-child{border-bottom:0}
-.pill{white-space:nowrap;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;background:var(--mint2);color:#14776f}
-.pill.yellow{background:#fff4d8;color:#91620a}
-.footer{margin-top:22px;text-align:center;color:#8aa0a2;font-size:12px;line-height:1.55}
-@media(max-width:380px){.grid{grid-template-columns:1fr}.full{grid-column:auto}h1{font-size:30px}}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>봄이스토리</title>
+  <meta name="theme-color" content="#fff7f1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="봄이스토리" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="/apple-touch-icon.png" />
+  <style>
+    :root {
+      --bg: #fff7f1;
+      --card: #ffffff;
+      --ink: #4c3b3b;
+      --muted: #8b7474;
+      --line: #f1ded8;
+      --pink: #f2a6b3;
+      --pink-dark: #d97a8b;
+      --cream: #fff0e6;
+      --mint: #eaf7ef;
+      --blue: #eff5ff;
+      --shadow: 0 14px 34px rgba(139, 91, 91, .12);
+    }
 
-  .videoCard{
-    padding:0;
-    overflow:hidden;
-  }
-  .videoFrame{
-    position:relative;
-    background:#102f31;
-    border-radius:24px 24px 0 0;
-    overflow:hidden;
-  }
-  .videoFrame video{
-    display:block;
-    width:100%;
-    height:auto;
-    max-height:360px;
-    background:#102f31;
-  }
-  .videoCaption{
-    padding:16px 18px 18px;
-    background:linear-gradient(180deg,#ffffff,#f8fffe);
-  }
-  .videoCaption .eyebrow{
-    font-size:12px;
-    color:var(--muted);
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.05em;
-  }
-  .videoCaption strong{
-    display:block;
-    margin-top:4px;
-    font-size:21px;
-    letter-spacing:-.035em;
-  }
-  .videoCaption p{
-    margin:8px 0 0;
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.5;
-  }
+    * { box-sizing: border-box; }
 
-</style>
-<link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#dff8f5">
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+      background: radial-gradient(circle at top, #fffdf9 0%, var(--bg) 42%, #fff4f6 100%);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px 16px 96px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 24px 20px;
+      border-radius: 30px;
+      background: linear-gradient(145deg, #ffffff 0%, #fff3ec 54%, #ffeef3 100%);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.7);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -56px;
+      top: -46px;
+      background: rgba(242,166,179,.24);
+      border-radius: 50%;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      color: var(--pink-dark);
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    h1 {
+      margin: 8px 0 4px;
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .status {
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(241,222,216,.75);
+    }
+
+    .status strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -.03em;
+    }
+
+    .status span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 18px 0 12px;
+      position: sticky;
+      top: 8px;
+      z-index: 10;
+    }
+
+    .menu button {
+      border: 1px solid rgba(241,222,216,.9);
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(14px);
+      border-radius: 18px;
+      padding: 11px 6px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(139,91,91,.08);
+    }
+
+    .menu button.active {
+      color: white;
+      border-color: var(--pink);
+      background: linear-gradient(135deg, var(--pink), #e8909f);
+    }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    .card {
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(241,222,216,.86);
+      border-radius: 26px;
+      padding: 18px;
+      margin-top: 14px;
+      box-shadow: 0 10px 26px rgba(139,91,91,.08);
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .row:last-child { border-bottom: 0; }
+    .row b { white-space: nowrap; }
+    .row span { color: var(--muted); text-align: right; }
+
+    textarea, input[type="date"], select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 13px 14px;
+      background: #fffdfb;
+      color: var(--ink);
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 116px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .primary {
+      width: 100%;
+      margin-top: 14px;
+      border: 0;
+      border-radius: 18px;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--pink), #e38c9a);
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(217,122,139,.22);
+    }
+
+    .secondary {
+      width: 100%;
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 13px;
+      background: #fffdfb;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .note-item {
+      padding: 14px;
+      border-radius: 20px;
+      background: #fffaf7;
+      border: 1px solid var(--line);
+      margin-top: 10px;
+    }
+
+    .note-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+
+    .note-text {
+      white-space: pre-wrap;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--cream);
+      color: var(--pink-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .empty, .hint, .msg {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .quick {
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: #fffdfb;
+      font-weight: 800;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-<main class="wrap">
-  <section class="hero">
-    <div class="badge">🌱 BOMI PREGNANCY JOURNAL</div>
-    <h1>봄이<br>성장기록 홈</h1>
-    <div class="sub">출산예정일 2027.01.06<br>진료기록 · 검사결과 · 복용약 · 성장 타임라인</div>
-    <div class="statusCard">
-      <div class="row">
-        <div>
-          <div class="label">Overall status</div>
-          <div class="overall">매우 양호</div>
-        </div>
-        <div class="signal">🟢 정상</div>
-      </div>
-      <div class="statusText">
-        현재까지 확인된 초음파와 혈액검사 결과가 전반적으로 정상 범위입니다.
-      </div>
-      <div class="todayLine">
-        오늘의 한 줄: 12주 초기 선별검사에서 NT와 코뼈가 정상적으로 확인되어, 현재까지 매우 안정적인 임신 경과를 보였습니다.
-      </div>
-    </div>
-  </section>
+  <main class="app">
+    <section class="hero">
+      <div class="eyebrow">BOMI STORY · V3.1</div>
+      <h1>봄이스토리</h1>
+      <p class="sub">오늘 기준 임신 주수와 진료 기록을 자동으로 정리합니다.</p>
 
-  <section class="grid">
-    <article class="card metric">
-      <div class="icon">👶</div><div class="label">Current week</div>
-      <div class="value">12w 1d</div><div class="note">2026.06.25 기준</div>
-    </article>
-    <article class="card metric">
-      <div class="icon">📏</div><div class="label">Latest CRL</div>
-      <div class="value">약 6 cm</div><div class="note">주수에 맞는 성장</div>
-    </article>
-    <article class="card metric">
-      <div class="icon">📐</div><div class="label">NT</div>
-      <div class="value">1.0 mm</div><div class="note">정상 범위</div>
-    </article>
-    <article class="card metric">
-      <div class="icon">💊</div><div class="label">Medication</div>
-      <div class="value">Aspirin</div><div class="note">6/25부터 1일 1정</div>
-    </article>
-
-
-      <article class="card full videoCard">
-        <div class="videoFrame">
-          <video controls playsinline preload="metadata" src="./assets/video/bomi_ultrasound_260625.mp4"></video>
+      <div class="status-grid">
+        <div class="status">
+          <strong><span id="weekDayText">계산 중</span></strong>
+          <span>오늘 기준 주수</span>
         </div>
-        <div class="videoCaption">
-          <div class="eyebrow">Ultrasound video</div>
-          <strong>2026.06.25 초음파 영상</strong>
-          <p>12주 1일 봄이 초음파 영상. 진료 리포트와 함께 장기 보관합니다.</p>
-        </div>
-      </article>
-
-
-    <article class="card full">
-      <h2>진료 상태 대시보드</h2>
-      <div class="status"><span>성장</span><span class="pill">🟢 정상</span></div>
-      <div class="status"><span>NT</span><span class="pill">🟢 정상</span></div>
-      <div class="status"><span>코뼈</span><span class="pill">🟢 확인</span></div>
-      <div class="status"><span>심박동</span><span class="pill">🟢 정상</span></div>
-      <div class="status"><span>혈액검사</span><span class="pill">🟢 정상</span></div>
-      <div class="status"><span>양수검사</span><span class="pill yellow">🟡 예정</span></div>
-      <div class="status"><span>철분제</span><span class="pill yellow">🟡 다음 진료</span></div>
-    </article>
-
-    <article class="card full">
-      <h2>진료 타임라인</h2>
-      <div class="timeline">
-        <div class="event">
-          <div class="date">2026.06.08 · 9주 5일</div>
-          <strong>첫 강남차병원 진료</strong>
-          <div class="note">CRL 약 3.3cm. 심박 확인. 모자이크 배아 관련 16주 양수검사 안내.</div>
-          <div class="tags"><span class="tag">심박 확인</span><span class="tag">CRL 3.3cm</span><span class="tag yellow">양수검사 설명</span></div>
-        </div>
-        <div class="event">
-          <div class="date">2026.06.25 · 12주 1일</div>
-          <strong>초기 정밀 초음파</strong>
-          <div class="note">NT 1.0mm, 코뼈 확인, CRL 약 6cm, 혈액검사 정상. 베이비 아스피린 시작.</div>
-          <div class="tags"><span class="tag">NT 정상</span><span class="tag">코뼈 확인</span><span class="tag">혈액검사 정상</span></div>
-          <a class="linkBtn" href="./reports/2026-06-25.html">260625 리포트 열기</a>
-        </div>
-        <div class="event future">
-          <div class="date">2026.07.22 예정</div>
-          <strong>양수검사</strong>
-          <div class="note">오전 8시 15분 도착. QF-PCR 신속검사 추가 가능.</div>
-          <div class="tags"><span class="tag yellow">예정</span><span class="tag yellow">QF-PCR 선택</span></div>
-        </div>
-        <div class="event future">
-          <div class="date">2026.08.06 예정</div>
-          <strong>양수검사 결과 상담</strong>
-          <div class="note">결과 설명 및 간단 초음파 예정.</div>
-        </div>
-        <div class="event future">
-          <div class="date">2026.08.21 예정</div>
-          <strong>20주 정밀초음파</strong>
-          <div class="note">장기 구조를 더 자세히 확인하는 주요 검사.</div>
+        <div class="status">
+          <strong id="dDayText">D-</strong>
+          <span>출산예정일까지</span>
         </div>
       </div>
-    </article>
+    </section>
 
-    <article class="card full">
-      <h2>다음 체크포인트</h2>
-      <div class="status"><span>양수검사 당일 휴식 일정 확보</span><span class="pill yellow">중요</span></div>
-      <div class="status"><span>QF-PCR 추가 여부 결정</span><span class="pill yellow">선택</span></div>
-      <div class="status"><span>철분제 시작 시기 확인</span><span class="pill">다음 진료</span></div>
-    </article>
-  </section>
+    <nav class="menu" aria-label="봄이스토리 메뉴">
+      <button class="active" data-tab="home">홈</button>
+      <button data-tab="visit">진료</button>
+      <button data-tab="letter">한마디</button>
+      <button data-tab="archive">기록</button>
+    </nav>
 
-  <div class="footer">BOMI Pregnancy Journal · Family medical archive<br>HTML-first archive · PDF export ready</div>
-</main>
+    <section id="home" class="section active">
+      <div class="card">
+        <h2>👶 오늘의 봄이</h2>
+        <div class="row"><b>출산예정일</b><span>2027.01.06</span></div>
+        <div class="row"><b>임신 경과</b><span id="progressText">계산 중</span></div>
+        <div class="row"><b>오늘 날짜</b><span id="todayText">-</span></div>
+      </div>
+
+      <div class="card">
+        <h2>바로가기</h2>
+        <div class="quick-grid">
+          <button class="quick" onclick="openTab('visit')">🩺 진료 기록</button>
+          <button class="quick" onclick="openTab('letter')">💌 한마디 쓰기</button>
+          <button class="quick" onclick="loadNotes(); openTab('archive')">📖 저장 기록</button>
+          <button class="quick" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️ 상단으로</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" class="section">
+      <div class="card">
+        <h2>🩺 진료일 설정</h2>
+        <label for="visitDate">진료일</label>
+        <input id="visitDate" type="date" />
+        <p class="hint">진료일을 기준으로 엄마/아빠 한마디가 함께 저장됩니다.</p>
+      </div>
+    </section>
+
+    <section id="letter" class="section">
+      <div class="card">
+        <h2>💌 오늘의 한마디</h2>
+        <label for="author">작성자</label>
+        <select id="author">
+          <option value="엄마">엄마</option>
+          <option value="아빠">아빠</option>
+          <option value="봄이에게">봄이에게</option>
+        </select>
+
+        <label for="message">남기고 싶은 말</label>
+        <textarea id="message" placeholder="오늘 진료에서 느낀 마음을 남겨주세요."></textarea>
+
+        <button class="primary" onclick="saveNote()">D1에 저장하기</button>
+        <button class="secondary" onclick="loadNotes(); openTab('archive')">저장 기록 보기</button>
+        <p id="saveMsg" class="msg"></p>
+      </div>
+    </section>
+
+    <section id="archive" class="section">
+      <div class="card">
+        <h2>📖 저장된 기록</h2>
+        <div class="pill" id="archiveVisitDate">진료일 기준</div>
+        <div id="notesList" style="margin-top:12px;"></div>
+        <button class="secondary" onclick="loadNotes()">새로고침</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const DUE_DATE = new Date("2027-01-06T00:00:00+09:00");
+    const PREGNANCY_DAYS = 280;
+    const conceptionDate = new Date(DUE_DATE);
+    conceptionDate.setDate(conceptionDate.getDate() - PREGNANCY_DAYS);
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function toDateInputValue(date) {
+      return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
+    }
+    function formatKoDate(date) {
+      return `${date.getFullYear()}.${pad(date.getMonth()+1)}.${pad(date.getDate())}`;
+    }
+
+    function updatePregnancyStatus() {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const conception = new Date(conceptionDate.getFullYear(), conceptionDate.getMonth(), conceptionDate.getDate());
+      const due = new Date(DUE_DATE.getFullYear(), DUE_DATE.getMonth(), DUE_DATE.getDate());
+      const diffDays = Math.max(0, Math.floor((today - conception) / 86400000));
+      const week = Math.floor(diffDays / 7);
+      const day = diffDays % 7;
+      const dday = Math.ceil((due - today) / 86400000);
+
+      document.getElementById("weekDayText").textContent = `${week}주 ${day}일`;
+      document.getElementById("dDayText").textContent = dday >= 0 ? `D-${dday}` : `D+${Math.abs(dday)}`;
+      document.getElementById("progressText").textContent = `${diffDays}일 경과 / 280일 기준`;
+      document.getElementById("todayText").textContent = formatKoDate(today);
+
+      const visitDate = document.getElementById("visitDate");
+      if (!visitDate.value) visitDate.value = toDateInputValue(today);
+    }
+
+    function openTab(tabId) {
+      document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+      document.querySelectorAll(".menu button").forEach(b => b.classList.remove("active"));
+      document.getElementById(tabId).classList.add("active");
+      document.querySelector(`.menu button[data-tab="${tabId}"]`).classList.add("active");
+      if (tabId === "archive") loadNotes();
+    }
+
+    document.querySelectorAll(".menu button").forEach(button => {
+      button.addEventListener("click", () => openTab(button.dataset.tab));
+    });
+
+    async function saveNote() {
+      const visitDate = document.getElementById("visitDate").value;
+      const author = document.getElementById("author").value;
+      const message = document.getElementById("message").value.trim();
+      const saveMsg = document.getElementById("saveMsg");
+
+      if (!visitDate) {
+        saveMsg.textContent = "진료일을 먼저 선택해 주세요.";
+        return;
+      }
+      if (!message) {
+        saveMsg.textContent = "한마디 내용을 입력해 주세요.";
+        return;
+      }
+
+      saveMsg.textContent = "저장 중입니다.";
+      try {
+        const res = await fetch("/api/notes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ visit_date: visitDate, author, message })
+        });
+        if (!res.ok) throw new Error("save failed");
+        document.getElementById("message").value = "";
+        saveMsg.textContent = "저장되었습니다.";
+        await loadNotes();
+      } catch (err) {
+        saveMsg.textContent = "저장 실패: Cloudflare D1 연결 상태를 확인해 주세요.";
+      }
+    }
+
+    async function loadNotes() {
+      const visitDate = document.getElementById("visitDate").value;
+      const list = document.getElementById("notesList");
+      document.getElementById("archiveVisitDate").textContent = `진료일 ${visitDate || "전체"}`;
+      list.innerHTML = `<p class="empty">불러오는 중입니다.</p>`;
+      try {
+        const url = visitDate ? `/api/notes?visit_date=${encodeURIComponent(visitDate)}` : "/api/notes";
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("load failed");
+        const data = await res.json();
+        const notes = data.notes || [];
+        if (!notes.length) {
+          list.innerHTML = `<p class="empty">아직 저장된 한마디가 없습니다.</p>`;
+          return;
+        }
+        list.innerHTML = notes.map(note => `
+          <article class="note-item">
+            <div class="note-meta">
+              <strong>${escapeHtml(note.author)}</strong>
+              <span>${escapeHtml(note.visit_date)}</span>
+            </div>
+            <div class="note-text">${escapeHtml(note.message)}</div>
+          </article>
+        `).join("");
+      } catch (err) {
+        list.innerHTML = `<p class="empty">기록을 불러오지 못했습니다. Worker API와 D1 설정을 확인해 주세요.</p>`;
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    updatePregnancyStatus();
+    loadNotes();
+  </script>
 </body>
 </html>

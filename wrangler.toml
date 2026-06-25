@@ -1,0 +1,10 @@
+name = "bomistory"
+main = "worker.js"
+compatibility_date = "2026-06-25"
+
+assets = { directory = "./", binding = "ASSETS" }
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bomistory-db"
+database_id = "YOUR_D1_DATABASE_ID"
