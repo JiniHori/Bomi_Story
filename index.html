@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BOMI Pregnancy Journal</title>
+<style>
+:root{
+  --bg:#f6fbfb; --card:#fff; --ink:#183233; --muted:#6c7d80;
+  --mint:#73d6c9; --mint2:#dff8f5; --blue:#9fd5ff; --green:#26a269;
+  --yellow:#f5b84b; --line:#e3eeee; --shadow:0 12px 30px rgba(24,50,51,.08);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;
+  background:linear-gradient(180deg,#eafafa 0%,var(--bg) 42%,#fff 100%);
+  color:var(--ink);
+}
+.wrap{max-width:540px;margin:0 auto;padding:22px 16px 48px}
+.hero{
+  border-radius:32px;padding:30px 22px;
+  background:
+    radial-gradient(circle at 88% 4%,rgba(159,213,255,.75),transparent 34%),
+    radial-gradient(circle at 5% 0%,rgba(115,214,201,.55),transparent 40%),
+    linear-gradient(145deg,#fff,#effcfb);
+  box-shadow:var(--shadow);
+}
+.badge{
+  display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.9);font-size:12px;font-weight:800;color:#275759;
+}
+h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
+.sub{color:var(--muted);font-size:14px;line-height:1.55}
+.statusCard{
+  margin-top:20px;background:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.9);
+  border-radius:24px;padding:18px;
+}
+.row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.label{color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.overall{font-size:30px;font-weight:950;letter-spacing:-.055em;color:var(--green);margin-top:3px}
+.statusText{font-size:13px;color:var(--muted);line-height:1.55;margin-top:10px}
+.signal{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;
+  background:var(--mint2);color:#14776f;font-size:13px;font-weight:900;
+}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:24px;
+  padding:18px;box-shadow:0 8px 22px rgba(24,50,51,.055);
+}
+.full{grid-column:1/-1}
+.card h2{margin:0 0 14px;font-size:20px;letter-spacing:-.035em}
+.metric .icon{font-size:25px;margin-bottom:8px}
+.value{font-size:24px;font-weight:900;letter-spacing:-.045em;margin-top:4px}
+.note{font-size:13px;color:var(--muted);line-height:1.45;margin-top:7px}
+.todayLine{
+  margin-top:14px;padding:14px 15px;border-radius:18px;background:#f7fcfc;
+  border:1px solid var(--line);line-height:1.55;font-size:14px;font-weight:750;color:#315456;
+}
+.timeline{position:relative;padding-left:22px}
+.timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:#d8eaea}
+.event{
+  position:relative;margin-bottom:15px;padding:14px 14px;border:1px solid var(--line);
+  border-radius:18px;background:#fbffff;
+}
+.event:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--mint);border:3px solid white;box-shadow:0 0 0 1px #bce9e4}
+.event.future:before{background:#d8eaea}
+.date{font-size:13px;color:var(--muted);font-weight:900}
+.event strong{display:block;margin-top:2px;font-size:17px;letter-spacing:-.02em}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.tag{padding:6px 9px;border-radius:999px;background:var(--mint2);color:#14776f;font-size:12px;font-weight:900}
+.tag.yellow{background:#fff4d8;color:#91620a}
+.linkBtn{
+  display:inline-flex;align-items:center;justify-content:center;width:100%;margin-top:12px;
+  text-decoration:none;color:#143d3f;background:#e9fbf8;border:1px solid #c9f1eb;
+  border-radius:16px;padding:12px;font-weight:900;
+}
+.status{
+  display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);
+  padding:12px 0;font-size:14px;gap:14px;
+}
+.status:last-child{border-bottom:0}
+.pill{white-space:nowrap;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;background:var(--mint2);color:#14776f}
+.pill.yellow{background:#fff4d8;color:#91620a}
+.footer{margin-top:22px;text-align:center;color:#8aa0a2;font-size:12px;line-height:1.55}
+@media(max-width:380px){.grid{grid-template-columns:1fr}.full{grid-column:auto}h1{font-size:30px}}
+
+  .videoCard{
+    padding:0;
+    overflow:hidden;
+  }
+  .videoFrame{
+    position:relative;
+    background:#102f31;
+    border-radius:24px 24px 0 0;
+    overflow:hidden;
+  }
+  .videoFrame video{
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:360px;
+    background:#102f31;
+  }
+  .videoCaption{
+    padding:16px 18px 18px;
+    background:linear-gradient(180deg,#ffffff,#f8fffe);
+  }
+  .videoCaption .eyebrow{
+    font-size:12px;
+    color:var(--muted);
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .videoCaption strong{
+    display:block;
+    margin-top:4px;
+    font-size:21px;
+    letter-spacing:-.035em;
+  }
+  .videoCaption p{
+    margin:8px 0 0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.5;
+  }
+
+</style>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#dff8f5">
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="badge">🌱 BOMI PREGNANCY JOURNAL</div>
+    <h1>봄이<br>성장기록 홈</h1>
+    <div class="sub">출산예정일 2027.01.06<br>진료기록 · 검사결과 · 복용약 · 성장 타임라인</div>
+    <div class="statusCard">
+      <div class="row">
+        <div>
+          <div class="label">Overall status</div>
+          <div class="overall">매우 양호</div>
+        </div>
+        <div class="signal">🟢 정상</div>
+      </div>
+      <div class="statusText">
+        현재까지 확인된 초음파와 혈액검사 결과가 전반적으로 정상 범위입니다.
+      </div>
+      <div class="todayLine">
+        오늘의 한 줄: 12주 초기 선별검사에서 NT와 코뼈가 정상적으로 확인되어, 현재까지 매우 안정적인 임신 경과를 보였습니다.
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <article class="card metric">
+      <div class="icon">👶</div><div class="label">Current week</div>
+      <div class="value">12w 1d</div><div class="note">2026.06.25 기준</div>
+    </article>
+    <article class="card metric">
+      <div class="icon">📏</div><div class="label">Latest CRL</div>
+      <div class="value">약 6 cm</div><div class="note">주수에 맞는 성장</div>
+    </article>
+    <article class="card metric">
+      <div class="icon">📐</div><div class="label">NT</div>
+      <div class="value">1.0 mm</div><div class="note">정상 범위</div>
+    </article>
+    <article class="card metric">
+      <div class="icon">💊</div><div class="label">Medication</div>
+      <div class="value">Aspirin</div><div class="note">6/25부터 1일 1정</div>
+    </article>
+
+
+      <article class="card full videoCard">
+        <div class="videoFrame">
+          <video controls playsinline preload="metadata" src="./assets/video/bomi_ultrasound_260625.mp4"></video>
+        </div>
+        <div class="videoCaption">
+          <div class="eyebrow">Ultrasound video</div>
+          <strong>2026.06.25 초음파 영상</strong>
+          <p>12주 1일 봄이 초음파 영상. 진료 리포트와 함께 장기 보관합니다.</p>
+        </div>
+      </article>
+
+
+    <article class="card full">
+      <h2>진료 상태 대시보드</h2>
+      <div class="status"><span>성장</span><span class="pill">🟢 정상</span></div>
+      <div class="status"><span>NT</span><span class="pill">🟢 정상</span></div>
+      <div class="status"><span>코뼈</span><span class="pill">🟢 확인</span></div>
+      <div class="status"><span>심박동</span><span class="pill">🟢 정상</span></div>
+      <div class="status"><span>혈액검사</span><span class="pill">🟢 정상</span></div>
+      <div class="status"><span>양수검사</span><span class="pill yellow">🟡 예정</span></div>
+      <div class="status"><span>철분제</span><span class="pill yellow">🟡 다음 진료</span></div>
+    </article>
+
+    <article class="card full">
+      <h2>진료 타임라인</h2>
+      <div class="timeline">
+        <div class="event">
+          <div class="date">2026.06.08 · 9주 5일</div>
+          <strong>첫 강남차병원 진료</strong>
+          <div class="note">CRL 약 3.3cm. 심박 확인. 모자이크 배아 관련 16주 양수검사 안내.</div>
+          <div class="tags"><span class="tag">심박 확인</span><span class="tag">CRL 3.3cm</span><span class="tag yellow">양수검사 설명</span></div>
+        </div>
+        <div class="event">
+          <div class="date">2026.06.25 · 12주 1일</div>
+          <strong>초기 정밀 초음파</strong>
+          <div class="note">NT 1.0mm, 코뼈 확인, CRL 약 6cm, 혈액검사 정상. 베이비 아스피린 시작.</div>
+          <div class="tags"><span class="tag">NT 정상</span><span class="tag">코뼈 확인</span><span class="tag">혈액검사 정상</span></div>
+          <a class="linkBtn" href="./reports/2026-06-25.html">260625 리포트 열기</a>
+        </div>
+        <div class="event future">
+          <div class="date">2026.07.22 예정</div>
+          <strong>양수검사</strong>
+          <div class="note">오전 8시 15분 도착. QF-PCR 신속검사 추가 가능.</div>
+          <div class="tags"><span class="tag yellow">예정</span><span class="tag yellow">QF-PCR 선택</span></div>
+        </div>
+        <div class="event future">
+          <div class="date">2026.08.06 예정</div>
+          <strong>양수검사 결과 상담</strong>
+          <div class="note">결과 설명 및 간단 초음파 예정.</div>
+        </div>
+        <div class="event future">
+          <div class="date">2026.08.21 예정</div>
+          <strong>20주 정밀초음파</strong>
+          <div class="note">장기 구조를 더 자세히 확인하는 주요 검사.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>다음 체크포인트</h2>
+      <div class="status"><span>양수검사 당일 휴식 일정 확보</span><span class="pill yellow">중요</span></div>
+      <div class="status"><span>QF-PCR 추가 여부 결정</span><span class="pill yellow">선택</span></div>
+      <div class="status"><span>철분제 시작 시기 확인</span><span class="pill">다음 진료</span></div>
+    </article>
+  </section>
+
+  <div class="footer">BOMI Pregnancy Journal · Family medical archive<br>HTML-first archive · PDF export ready</div>
+</main>
+</body>
+</html>

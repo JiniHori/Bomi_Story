@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2026.06.25 BOMI Report</title>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#dff8f5">
+<style>
+:root{
+  --bg:#f6fbfb;
+  --card:#ffffff;
+  --ink:#183233;
+  --muted:#6c7d80;
+  --mint:#73d6c9;
+  --mint2:#dff8f5;
+  --blue:#9fd5ff;
+  --green:#26a269;
+  --yellow:#f5b84b;
+  --line:#e3eeee;
+  --shadow:0 12px 30px rgba(24,50,51,.08);
+  --radius:22px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  padding-bottom:86px;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;
+  background:linear-gradient(180deg,#eafafa 0%,var(--bg) 34%,#fff 100%);
+  color:var(--ink);
+}
+a{color:inherit}
+.wrap{max-width:520px;margin:0 auto;padding:22px 16px 46px}
+.hero{
+  border-radius:30px;
+  padding:28px 22px;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(159,213,255,.65),transparent 34%),
+    radial-gradient(circle at 10% 0%,rgba(115,214,201,.55),transparent 38%),
+    linear-gradient(145deg,#ffffff,#eefcfb);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  position:relative;
+}
+.badge{
+  display:inline-flex;gap:7px;align-items:center;
+  padding:8px 12px;border-radius:999px;
+  background:rgba(255,255,255,.72);
+  color:#275759;font-size:12px;font-weight:800;
+  border:1px solid rgba(255,255,255,.8);
+}
+h1{margin:18px 0 4px;font-size:34px;letter-spacing:-.04em;line-height:1.05}
+.sub{color:var(--muted);font-size:14px;line-height:1.5}
+.panel{
+  margin-top:22px;padding:18px;border-radius:24px;background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.9);
+}
+.panelTop{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.label{color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.overall{font-size:30px;font-weight:900;letter-spacing:-.055em;color:var(--green);margin-top:3px}
+.signal{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;
+  background:var(--mint2);color:#14776f;font-size:13px;font-weight:900;white-space:nowrap;
+}
+.oneLine{
+  margin-top:14px;padding:14px 15px;border-radius:18px;background:#f7fcfc;
+  border:1px solid var(--line);line-height:1.55;font-size:14px;font-weight:750;color:#315456;
+}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px;box-shadow:0 8px 22px rgba(24,50,51,.055);
+}
+.full{grid-column:1/-1}
+.card h2{margin:0 0 14px;font-size:20px;letter-spacing:-.035em}
+.card h3{margin:14px 0 8px;font-size:16px;letter-spacing:-.025em}
+.metric{min-height:108px}
+.icon{font-size:24px;margin-bottom:8px}
+.value{font-size:24px;font-weight:900;margin-top:4px;letter-spacing:-.04em}
+.note{font-size:13px;color:var(--muted);line-height:1.45;margin-top:7px}
+.status{
+  display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);
+  padding:12px 0;font-size:14px;gap:14px;
+}
+.status:last-child{border-bottom:0}
+.pill{white-space:nowrap;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;background:var(--mint2);color:#14776f}
+.pill.yellow{background:#fff4d8;color:#91620a}
+.videoCard{padding:0;overflow:hidden}
+.videoFrame{margin:0;background:#102f31}
+.videoFrame video{display:block;width:100%;height:auto;background:#102f31}
+.videoCaption{padding:16px 18px 18px;background:linear-gradient(180deg,#ffffff,#f8fffe)}
+.videoCaption .eyebrow{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.videoCaption strong{display:block;margin-top:4px;font-size:21px;letter-spacing:-.035em}
+.videoCaption p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+.quote{
+  border-left:4px solid var(--mint);padding:10px 0 10px 14px;
+  color:#315456;line-height:1.58;font-weight:650;background:#f7fcfc;border-radius:0 14px 14px 0;
+}
+.summaryBlock{
+  padding:14px;border-radius:18px;background:#f7fcfc;border:1px solid var(--line);
+  color:#315456;line-height:1.65;font-size:14px;
+}
+.timeline{position:relative;padding-left:22px}
+.timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:#d8eaea}
+.event{position:relative;margin-bottom:15px;padding:14px 14px;border:1px solid var(--line);border-radius:18px;background:#fbffff}
+.event:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--mint);border:3px solid white;box-shadow:0 0 0 1px #bce9e4}
+.event.future:before{background:#d8eaea}
+.date{font-size:13px;color:var(--muted);font-weight:900}
+.event strong{display:block;margin-top:2px;font-size:17px;letter-spacing:-.02em}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.tag{padding:6px 9px;border-radius:999px;background:var(--mint2);color:#14776f;font-size:12px;font-weight:900}
+.tag.yellow{background:#fff4d8;color:#91620a}
+.qa{border-top:1px solid var(--line);padding:12px 0}
+.qa:first-of-type{border-top:0;padding-top:0}
+.q{font-size:13px;color:#14776f;font-weight:900;margin-bottom:4px}
+.a{font-size:14px;color:#315456;line-height:1.55}
+.nav{
+  position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:10;
+  width:min(500px,calc(100% - 28px));display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+  padding:8px;border-radius:24px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px);
+  border:1px solid rgba(227,238,238,.9);box-shadow:0 14px 34px rgba(24,50,51,.14);
+}
+.nav a{text-decoration:none;text-align:center;border-radius:18px;padding:9px 4px;font-size:11px;font-weight:850;color:#4f696c}
+.nav a.active{background:var(--mint2);color:#14776f}
+.nav span{display:block;font-size:18px;margin-bottom:2px}
+.footer{margin-top:22px;text-align:center;color:#8aa0a2;font-size:12px;line-height:1.55}
+@media(max-width:380px){
+  .grid{grid-template-columns:1fr 1fr}
+  h1{font-size:30px}
+  .overall{font-size:27px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="badge">📖 BOMI REPORT · Vol.02</div>
+    <h1>12주 1일<br>상세 리포트</h1>
+    <div class="sub">강남차병원 · 한유정 교수<br>2026.06.25 · 초기 정밀초음파</div>
+    <div class="panel">
+      <div class="panelTop">
+        <div>
+          <div class="label">Overall status</div>
+          <div class="overall">매우 양호</div>
+        </div>
+        <div class="signal">🟢 정상</div>
+      </div>
+      <div class="oneLine">오늘의 한 줄: NT와 코뼈가 정상적으로 확인되어, 현재까지 매우 안정적인 임신 경과를 보였습니다.</div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <article class="card full">
+      <h2>Executive Summary</h2>
+      <div class="summaryBlock">
+        이번 진료는 임신 12주 초기 선별검사로, NT·코뼈·CRL·심박동 및 주요 구조를 확인했습니다. 초음파상 특이 이상 소견은 없었고, 초기 혈액검사도 전반적으로 정상으로 설명받았습니다. 오늘부터 임신중독증 예방 목적의 베이비 아스피린을 시작하며, 7월 22일 양수검사가 예정되어 있습니다.
+      </div>
+    </article>
+
+    <article class="card full videoCard" id="video">
+      <div class="videoFrame">
+        <video controls playsinline preload="metadata" src="../assets/video/bomi_ultrasound_260625.mp4"></video>
+      </div>
+      <div class="videoCaption">
+        <div class="eyebrow">Ultrasound video</div>
+        <strong>2026.06.25 초음파 영상</strong>
+        <p>12주 1일 봄이 초음파 영상입니다. 추후 장면별 타임스탬프를 추가할 수 있습니다.</p>
+      </div>
+    </article>
+
+    <article class="card metric">
+      <div class="icon">📏</div><div class="label">CRL</div>
+      <div class="value">약 6 cm</div><div class="note">머리-엉덩이 길이</div>
+    </article>
+    <article class="card metric">
+      <div class="icon">📐</div><div class="label">NT</div>
+      <div class="value">1.0 mm</div><div class="note">정상 범위</div>
+    </article>
+    <article class="card metric">
+      <div class="icon">🦴</div><div class="label">코뼈</div>
+      <div class="value">확인</div><div class="note">정상 확인</div>
+    </article>
+    <article class="card metric">
+      <div class="icon">❤️</div><div class="label">심박동</div>
+      <div class="value">정상</div><div class="note">이상 소견 없음</div>
+    </article>
+
+    <article class="card full" id="ultrasound">
+      <h2>초음파 판독 요약</h2>
+      <div class="status"><span>NT 목투명대</span><span class="pill">🟢 약 1.0mm</span></div>
+      <div class="status"><span>코뼈</span><span class="pill">🟢 확인</span></div>
+      <div class="status"><span>CRL</span><span class="pill">🟢 약 6cm</span></div>
+      <div class="status"><span>뇌 구조</span><span class="pill">🟢 좌우 대칭</span></div>
+      <div class="status"><span>팔·손가락</span><span class="pill">🟢 확인</span></div>
+      <div class="status"><span>다리·발바닥</span><span class="pill">🟢 확인</span></div>
+      <div class="status"><span>흉부·복부·탯줄</span><span class="pill">🟢 정상 설명</span></div>
+    </article>
+
+    <article class="card full" id="blood">
+      <h2>혈액검사 및 면역상태</h2>
+      <div class="status"><span>비타민 D</span><span class="pill">🟢 정상</span></div>
+      <div class="status"><span>빈혈</span><span class="pill">🟢 정상</span></div>
+      <div class="status"><span>갑상선</span><span class="pill">🟢 정상</span></div>
+      <div class="status"><span>매독 검사</span><span class="pill">🟢 이상 없음</span></div>
+      <div class="status"><span>풍진·수두·A형간염 항체</span><span class="pill">🟢 보유</span></div>
+      <div class="status"><span>추가 예방접종</span><span class="pill">🟢 필요 없음</span></div>
+    </article>
+
+    <article class="card full" id="meds">
+      <h2>복용 및 관리</h2>
+      <div class="status"><span>베이비 아스피린</span><span class="pill yellow">오늘부터 시작</span></div>
+      <div class="status"><span>복용법</span><span class="pill yellow">1일 1정</span></div>
+      <div class="status"><span>복용 기간</span><span class="pill yellow">36주까지</span></div>
+      <div class="status"><span>철분제</span><span class="pill">다음 진료부터</span></div>
+      <div class="status"><span>산모용 종합비타민</span><span class="pill">계속</span></div>
+    </article>
+
+    <article class="card full" id="qa">
+      <h2>질문 & 답변</h2>
+      <div class="qa">
+        <div class="q">Q. 배가 당기거나 콕콕 쑤시는 느낌은 괜찮은가?</div>
+        <div class="a">자궁이 빠르게 커지는 시기라 묵직함, 생리통 같은 느낌, 콕콕 쑤시는 느낌이 나타날 수 있으며 문제 되는 증상은 아니라고 설명받았습니다.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q. 입덧은 언제 좋아질까?</div>
+        <div class="a">정점을 지난 시기로 보이며, 다음 진료 즈음에는 많이 호전될 가능성이 높다고 설명받았습니다.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q. 양수검사 결과를 빨리 확인할 수 있나?</div>
+        <div class="a">QF-PCR 신속검사를 추가하면 다운증후군·에드워드증후군·파타우증후군 등 주요 항목은 빠르게 확인 가능하다고 안내받았습니다.</div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>교수님 코멘트 요지</h2>
+      <div class="quote">“현재 초음파는 전체적으로 깨끗하고, 큰 이상이 있었다면 이렇게 정상적으로 나오기 어렵습니다. 양수검사는 확인 절차로 진행하면 됩니다.”</div>
+    </article>
+
+    <article class="card full" id="schedule">
+      <h2>다음 일정</h2>
+      <div class="timeline">
+        <div class="event future"><div class="date">2026.07.22</div><strong>양수검사</strong><div class="note">오전 8시 15분 도착. 검사 후 당일 휴식 권장.</div><div class="tags"><span class="tag yellow">QF-PCR 선택 가능</span></div></div>
+        <div class="event future"><div class="date">2026.08.06</div><strong>양수검사 결과 상담</strong><div class="note">결과 설명 및 간단 초음파 예정.</div></div>
+        <div class="event future"><div class="date">2026.08.21</div><strong>20주 정밀초음파</strong><div class="note">장기 구조 정밀 확인 예정.</div></div>
+      </div>
+    </article>
+  </section>
+
+  <div class="footer">BOMI Pregnancy Journal · Detailed medical record</div>
+</main>
+<nav class="nav">
+  <a href="../index.html"><span>🏠</span>Home</a>
+  <a class="active" href="#video"><span>🎥</span>Video</a>
+  <a href="#ultrasound"><span>🩺</span>Check</a>
+  <a href="#schedule"><span>📅</span>Next</a>
+</nav>
+</body>
+</html>
