@@ -156,8 +156,8 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
 
   <section class="grid">
     <article class="card metric">
-      <div class="icon">👶</div><div class="label">Current week</div>
-      <div class="value">12w 1d</div><div class="note">2026.06.25 기준</div>
+      <div class="icon">👶</div><div class="label">오늘의 주수</div>
+      <div class="value" id="gestationToday">계산 중</div><div class="note" id="gestationNote">오늘 날짜 기준 자동 계산</div>
     </article>
     <article class="card metric">
       <div class="icon">📏</div><div class="label">Latest CRL</div>
@@ -242,5 +242,42 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
 
   <div class="footer">BOMI Pregnancy Journal · Family medical archive<br>HTML-first archive · PDF export ready</div>
 </main>
+
+<script>
+(function(){
+  const dueDate = new Date("2027-01-06T00:00:00+09:00");
+  const pregnancyDays = 280;
+
+  function startOfDay(date){
+    const d = new Date(date);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+
+  function diffDays(from, to){
+    return Math.floor((startOfDay(to) - startOfDay(from)) / 86400000);
+  }
+
+  function updateGestation(){
+    const baseDate = new Date(dueDate);
+    baseDate.setDate(baseDate.getDate() - pregnancyDays);
+
+    const today = new Date();
+    const elapsed = Math.max(0, diffDays(baseDate, today));
+    const week = Math.floor(elapsed / 7);
+    const day = elapsed % 7;
+    const dDay = Math.max(0, diffDays(today, dueDate));
+
+    const gestationEl = document.getElementById("gestationToday");
+    const noteEl = document.getElementById("gestationNote");
+
+    if (gestationEl) gestationEl.textContent = `${week}주 ${day}일`;
+    if (noteEl) noteEl.textContent = `출산까지 D-${dDay}`;
+  }
+
+  updateGestation();
+})();
+</script>
+
 </body>
 </html>

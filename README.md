@@ -1,9 +1,11 @@
-# BOMI Story Baseline + 260608 Report
+# BOMI Story + Girl Emoji + Weekly Fruit Size
 
-기준 버전에서 추가한 내용:
-- reports/2026-06-08.html 생성
-- index.html의 2026.06.08 타임라인에 `260608 리포트 열기` 버튼 추가
-- service-worker.js 캐시 목록에 2026-06-08 리포트 추가
+변경사항:
+- 홈 화면 오늘의 주수 카드 이모티콘을 👧로 변경
+- 오늘의 주수 / Latest CRL 위에 한 줄 크기 비교 추가
+- 출산예정일 2027-01-06 기준으로 접속일의 주수를 계산하고, 주수별 과일/채소 크기 비교 표시
+- service-worker.js 캐시명 변경
 
-GitHub 업로드:
-ZIP을 압축 해제한 뒤 안의 파일/폴더를 기존 저장소에 덮어쓰기 업로드하세요.
+최소 업데이트 파일:
+- index.html
+- service-worker.js

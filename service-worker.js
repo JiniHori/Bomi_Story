@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bomi-baseline-260608-report';
+const CACHE_NAME = 'bomi-girl-fruit-size';
 const ASSETS = [
   './',
   './index.html',
