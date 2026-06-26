@@ -1,9 +1,10 @@
-const CACHE_NAME = 'bomi-v2-2-report';
+const CACHE_NAME = 'bomi-baseline-260608-report';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './reports/2026-06-25.html'
+  './reports/2026-06-25.html',
+  './reports/2026-06-08.html'
 ];
 
 self.addEventListener('install', event => {
