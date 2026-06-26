@@ -1,0 +1,9 @@
+{
+  "name": "BOMI Pregnancy Journal",
+  "short_name": "BOMI",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6fbfb",
+  "theme_color": "#dff8f5",
+  "icons": []
+}
