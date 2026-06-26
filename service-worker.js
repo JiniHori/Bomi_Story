@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bomi-girl-fruit-size';
+const CACHE_NAME = 'bomi-compact-fruit-week';
 const ASSETS = [
   './',
   './index.html',

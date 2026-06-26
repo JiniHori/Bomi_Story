@@ -127,6 +127,14 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
     line-height:1.5;
   }
 
+
+
+.fruitInline{
+  color:#14776f;
+  font-weight:900;
+  white-space:nowrap;
+}
+
 </style>
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#dff8f5">
@@ -156,7 +164,7 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
 
   <section class="grid">
     <article class="card metric">
-      <div class="icon">👶</div><div class="label">오늘의 주수</div>
+      <div class="icon">👧</div><div class="label">오늘의 주수</div>
       <div class="value" id="gestationToday">계산 중</div><div class="note" id="gestationNote">오늘 날짜 기준 자동 계산</div>
     </article>
     <article class="card metric">
@@ -243,10 +251,47 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
   <div class="footer">BOMI Pregnancy Journal · Family medical archive<br>HTML-first archive · PDF export ready</div>
 </main>
 
+
 <script>
 (function(){
   const dueDate = new Date("2027-01-06T00:00:00+09:00");
   const pregnancyDays = 280;
+
+  const weeklyFruitSize = [
+    { week: 8, fruit: "라즈베리", emoji: "🍓" },
+    { week: 9, fruit: "체리", emoji: "🍒" },
+    { week: 10, fruit: "딸기", emoji: "🍓" },
+    { week: 11, fruit: "무화과", emoji: "🟣" },
+    { week: 12, fruit: "라임", emoji: "🍋" },
+    { week: 13, fruit: "레몬", emoji: "🍋" },
+    { week: 14, fruit: "복숭아", emoji: "🍑" },
+    { week: 15, fruit: "사과", emoji: "🍎" },
+    { week: 16, fruit: "아보카도", emoji: "🥑" },
+    { week: 17, fruit: "배", emoji: "🍐" },
+    { week: 18, fruit: "피망", emoji: "🫑" },
+    { week: 19, fruit: "망고", emoji: "🥭" },
+    { week: 20, fruit: "바나나", emoji: "🍌" },
+    { week: 21, fruit: "당근", emoji: "🥕" },
+    { week: 22, fruit: "파파야", emoji: "🧡" },
+    { week: 23, fruit: "자몽", emoji: "🍊" },
+    { week: 24, fruit: "옥수수", emoji: "🌽" },
+    { week: 25, fruit: "콜리플라워", emoji: "🥦" },
+    { week: 26, fruit: "상추 한 포기", emoji: "🥬" },
+    { week: 27, fruit: "양배추", emoji: "🥬" },
+    { week: 28, fruit: "가지", emoji: "🍆" },
+    { week: 29, fruit: "버터넛호박", emoji: "🎃" },
+    { week: 30, fruit: "오이", emoji: "🥒" },
+    { week: 31, fruit: "코코넛", emoji: "🥥" },
+    { week: 32, fruit: "단호박", emoji: "🎃" },
+    { week: 33, fruit: "파인애플", emoji: "🍍" },
+    { week: 34, fruit: "멜론", emoji: "🍈" },
+    { week: 35, fruit: "허니듀 멜론", emoji: "🍈" },
+    { week: 36, fruit: "로메인 상추", emoji: "🥬" },
+    { week: 37, fruit: "근대 한 단", emoji: "🥬" },
+    { week: 38, fruit: "대파 한 단", emoji: "🌿" },
+    { week: 39, fruit: "작은 수박", emoji: "🍉" },
+    { week: 40, fruit: "수박", emoji: "🍉" }
+  ];
 
   function startOfDay(date){
     const d = new Date(date);
@@ -258,6 +303,11 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
     return Math.floor((startOfDay(to) - startOfDay(from)) / 86400000);
   }
 
+  function fruitForWeek(week){
+    return weeklyFruitSize.find(item => item.week === week)
+      || weeklyFruitSize.reduce((prev, curr) => Math.abs(curr.week - week) < Math.abs(prev.week - week) ? curr : prev);
+  }
+
   function updateGestation(){
     const baseDate = new Date(dueDate);
     baseDate.setDate(baseDate.getDate() - pregnancyDays);
@@ -267,12 +317,17 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
     const week = Math.floor(elapsed / 7);
     const day = elapsed % 7;
     const dDay = Math.max(0, diffDays(today, dueDate));
+    const sizeInfo = fruitForWeek(week);
 
     const gestationEl = document.getElementById("gestationToday");
     const noteEl = document.getElementById("gestationNote");
 
     if (gestationEl) gestationEl.textContent = `${week}주 ${day}일`;
-    if (noteEl) noteEl.textContent = `출산까지 D-${dDay}`;
+    if (noteEl && sizeInfo) {
+      noteEl.innerHTML = `출산까지 D-${dDay} · <span class="fruitInline">${sizeInfo.emoji} ${sizeInfo.fruit} 크기예요</span>`;
+    } else if (noteEl) {
+      noteEl.textContent = `출산까지 D-${dDay}`;
+    }
   }
 
   updateGestation();
