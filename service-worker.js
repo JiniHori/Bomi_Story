@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'bomi-';
-const CACHE_NAME = 'bomi-260722-blossom-macaron-v2';
+const CACHE_NAME = 'bomi-260722-blossom-macaron-v3';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
