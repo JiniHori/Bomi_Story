@@ -1,9 +1,0 @@
-{
-  "name": "봄이의 성장기록",
-  "short_name": "BOMI",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#fff8fb",
-  "theme_color": "#f8d7e3",
-  "icons": []
-}
