@@ -1,10 +1,11 @@
-const CACHE_NAME = 'bomi-compact-fruit-week';
+const CACHE_NAME = 'bomi-260722-v1';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './reports/2026-06-25.html',
-  './reports/2026-06-08.html'
+  './reports/2026-06-08.html',
+  './reports/2026-07-22.html'
 ];
 
 self.addEventListener('install', event => {
