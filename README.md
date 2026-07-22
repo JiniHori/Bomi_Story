@@ -1,4 +1,6 @@
-# BOMI Story · 2026-07-22 Update
+# BOMI Story · 벚꽃 마카롱 테마
+
+7월 22일 업데이트본에 핑크·민트 기반의 벚꽃 마카롱 테마를 적용한 배포 버전입니다.
 
 기준 버전: `bomistory_current_compact_fruit_week`
 

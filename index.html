@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BOMI Pregnancy Journal</title>
+<title>봄이의 성장기록</title>
 <style>
 :root{
   --bg:#f6fbfb; --card:#fff; --ink:#183233; --muted:#6c7d80;
@@ -136,14 +136,28 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
 }
 
 </style>
+<style>
+:root{--bg:#fff8fb;--card:#fffefe;--ink:#523b46;--muted:#927783;--mint:#8edfd2;--mint2:#e5faf5;--green:#bd6685;--yellow:#f3b968;--line:#f1dfe6;--shadow:0 16px 38px rgba(176,99,129,.14)}
+body{background:radial-gradient(circle at 8% 8%,rgba(255,205,224,.55),transparent 23%),radial-gradient(circle at 92% 25%,rgba(194,241,230,.6),transparent 25%),linear-gradient(180deg,#fff7fa 0%,#f7fffc 52%,#fff 100%)}
+.wrap:before,.wrap:after{position:fixed;z-index:-1;opacity:.28;filter:blur(.2px)}
+.wrap:before{content:"🌸";font-size:70px;left:-18px;top:130px;transform:rotate(-16deg)}
+.wrap:after{content:"🌷";font-size:66px;right:-15px;top:440px;transform:rotate(12deg)}
+.hero{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.95);background:radial-gradient(circle at 88% 4%,rgba(255,205,224,.8),transparent 34%),radial-gradient(circle at 5% 0%,rgba(142,223,210,.55),transparent 40%),linear-gradient(145deg,#fff,#fff3f7);box-shadow:var(--shadow)}
+.hero:after{content:"✿";position:absolute;right:18px;top:18px;color:#fff;font-size:44px;opacity:.72;transform:rotate(14deg)}
+.badge{color:#a95876;background:rgba(255,255,255,.82);box-shadow:0 5px 16px rgba(171,91,122,.09)}
+h1{color:#62404d}.overall{color:#bd5d81}.signal,.pill,.tag{background:#e5faf5;color:#29786d}.statusCard{background:rgba(255,255,255,.82);border-color:#fff}.todayLine{background:linear-gradient(135deg,#fff7fa,#f3fffc);border-color:#f1dfe6;color:#674b57}.card{border-color:#f1dfe6;border-radius:26px;box-shadow:0 10px 26px rgba(143,88,114,.075)}
+.card:nth-child(4n+1){background:linear-gradient(145deg,#fff,#fff9fb)}.card:nth-child(4n+2){background:linear-gradient(145deg,#fff,#f8fffd)}
+.event{background:linear-gradient(135deg,#fffafd,#fbfffe);border-color:#efdce4}.event:before{background:#f3a9c2;box-shadow:0 0 0 1px #f1c4d4}.timeline:before{background:linear-gradient(#f3bfd1,#bcebe2)}
+.linkBtn{color:#8d4964;background:linear-gradient(135deg,#ffeaf2,#e9fbf7);border-color:#f0ccda}.pill.yellow,.tag.yellow{background:#fff0d8;color:#98611b}.videoFrame{background:#3f3038}.footer{color:#ae8e9b}.fruitInline{color:#b35c7d}
+</style>
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#dff8f5">
 </head>
 <body>
 <main class="wrap">
   <section class="hero">
-    <div class="badge">🌱 BOMI PREGNANCY JOURNAL</div>
-    <h1>봄이<br>성장기록 홈</h1>
+    <div class="badge">🌸 BOMI PREGNANCY JOURNAL</div>
+    <h1>봄이의<br>성장기록</h1>
     <div class="sub">출산예정일 2027.01.06<br>진료기록 · 검사결과 · 복용약 · 성장 타임라인</div>
     <div class="statusCard">
       <div class="row">
