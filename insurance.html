@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff8f3" />
+  <title>봄이 태아보험 의사결정 도우미</title>
+  <style>
+    :root{
+      --bg:#fff8f3;
+      --surface:#ffffff;
+      --surface-2:#fff2ea;
+      --text:#24313a;
+      --muted:#6d7a83;
+      --line:#eadfd8;
+      --accent:#d86f55;
+      --accent-2:#7da489;
+      --accent-3:#c69b4c;
+      --danger:#b34f4f;
+      --shadow:0 10px 28px rgba(57,45,38,.08);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(216,111,85,.10), transparent 30%),
+        radial-gradient(circle at 0% 20%, rgba(125,164,137,.09), transparent 26%),
+        var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;
+      line-height:1.55;
+    }
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .app{max-width:980px;margin:0 auto;padding:18px 14px 70px}
+    .hero{
+      background:linear-gradient(135deg,#fff,#fff3eb);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:26px 22px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      right:-50px; top:-55px;
+      width:180px; height:180px;
+      border-radius:50%;
+      background:rgba(216,111,85,.08);
+    }
+    .eyebrow{font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.04em}
+    h1{font-size:clamp(26px,6vw,42px);margin:6px 0 8px;line-height:1.15}
+    .hero p{margin:0;color:var(--muted);max-width:760px}
+    .privacy{
+      margin-top:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      padding:8px 11px;
+      border-radius:999px;
+      background:#f4f8f5;
+      color:#4e7259;
+      border:1px solid #dce9df;
+    }
+    .toolbar{
+      position:sticky;top:0;z-index:20;
+      margin:14px 0;
+      background:rgba(255,248,243,.92);
+      backdrop-filter:blur(14px);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:10px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .tab{
+      border:1px solid var(--line);
+      background:var(--surface);
+      color:var(--muted);
+      border-radius:12px;
+      padding:10px 14px;
+      font-weight:800;
+    }
+    .tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .spacer{flex:1}
+    .ghost{
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--text);
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:700;
+    }
+    .primary{
+      border:0;
+      background:var(--text);
+      color:#fff;
+      border-radius:12px;
+      padding:11px 15px;
+      font-weight:800;
+    }
+    .progress-wrap{margin:16px 2px 6px}
+    .progress-head{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:7px}
+    .progress{height:10px;border-radius:999px;background:#eadfd8;overflow:hidden}
+    .progress > div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#e9a06f);transition:.25s}
+    .section-title{margin:28px 4px 12px}
+    .section-title h2{font-size:22px;margin:0 0 5px}
+    .section-title p{margin:0;color:var(--muted);font-size:14px}
+    .question{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:0 5px 18px rgba(57,45,38,.05);
+      padding:20px;
+      margin:12px 0;
+    }
+    .q-head{display:flex;gap:12px;align-items:flex-start}
+    .q-num{
+      min-width:34px;height:34px;border-radius:11px;
+      display:grid;place-items:center;
+      background:var(--surface-2);
+      color:var(--accent);
+      font-weight:900;
+    }
+    .q-title{font-size:18px;font-weight:900;margin:2px 0 4px}
+    .q-help{font-size:13px;color:var(--muted)}
+    .options{display:grid;gap:9px;margin-top:16px}
+    .option{
+      width:100%;
+      display:flex;align-items:flex-start;gap:10px;
+      text-align:left;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:14px;
+      padding:13px 14px;
+      color:var(--text);
+      transition:.18s;
+    }
+    .option:hover{border-color:#d6b6a8;transform:translateY(-1px)}
+    .option.selected{
+      border-color:var(--accent);
+      background:#fff5ef;
+      box-shadow:0 0 0 3px rgba(216,111,85,.08);
+    }
+    .letter{
+      display:grid;place-items:center;
+      min-width:26px;height:26px;border-radius:8px;
+      background:#f2eee9;
+      font-weight:900;font-size:13px;color:var(--muted)
+    }
+    .option.selected .letter{background:var(--accent);color:#fff}
+    .compare-box,.result-box{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      margin-top:18px;
+    }
+    .compare-box h2,.result-box h2{margin:0 0 8px}
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .person-card{
+      border:1px solid var(--line);
+      border-radius:18px;padding:16px;background:#fffdfb
+    }
+    .person-card strong{display:block;font-size:18px}
+    .metric{display:flex;justify-content:space-between;gap:12px;margin-top:8px;color:var(--muted)}
+    .metric b{color:var(--text)}
+    .disagreements{margin-top:14px}
+    .pill{
+      display:inline-block;
+      border-radius:999px;padding:7px 10px;margin:4px 4px 0 0;
+      font-size:13px;font-weight:800;
+      background:#fff0ea;color:#9a513e;border:1px solid #f0d5ca
+    }
+    .result-hero{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    .score-card,.recommend-card{
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      background:#fffdfb;
+    }
+    .profile{font-size:28px;font-weight:950;margin:3px 0}
+    .sub{color:var(--muted);font-size:14px}
+    .score-line{margin-top:14px}
+    .score-row{display:grid;grid-template-columns:110px 1fr 34px;gap:10px;align-items:center;margin:9px 0;font-size:14px}
+    .mini-bar{height:9px;border-radius:999px;background:#ece4df;overflow:hidden}
+    .mini-bar div{height:100%;background:linear-gradient(90deg,var(--accent-2),#acc5b2)}
+    .spec-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+    .spec{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:#fff;
+    }
+    .spec small{color:var(--muted)}
+    .spec strong{display:block;font-size:19px;margin-top:3px}
+    table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+    th,td{border-bottom:1px solid var(--line);padding:11px 8px;text-align:left;vertical-align:top}
+    th{color:var(--muted);font-size:13px}
+    .level{
+      display:inline-block;border-radius:999px;padding:5px 9px;font-weight:900;font-size:12px
+    }
+    .lv-high{background:#e8f3eb;color:#4f7559}
+    .lv-mid{background:#fff4de;color:#8a6a2c}
+    .lv-low{background:#f2f2f2;color:#666}
+    .request{
+      width:100%;min-height:260px;
+      margin-top:12px;padding:15px;
+      border-radius:16px;border:1px solid var(--line);
+      background:#fbfaf8;color:var(--text);
+      resize:vertical;
+    }
+    .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .notice{
+      border-left:4px solid var(--accent-3);
+      background:#fff8e9;
+      padding:13px 15px;
+      border-radius:10px;
+      color:#6f5a2f;
+      font-size:13px;
+      margin-top:16px;
+    }
+    .hidden{display:none!important}
+    footer{margin-top:30px;color:var(--muted);font-size:12px;text-align:center;padding:10px}
+    @media(max-width:720px){
+      .app{padding-left:10px;padding-right:10px}
+      .hero{padding:22px 18px}
+      .toolbar{top:4px}
+      .compare-grid,.result-hero,.spec-grid{grid-template-columns:1fr}
+      .spacer{display:none}
+      .toolbar .ghost{font-size:13px;padding:9px}
+      .question{padding:17px 14px}
+      .q-title{font-size:16px}
+      .score-row{grid-template-columns:92px 1fr 30px}
+    }
+    @media print{
+      body{background:#fff}
+      .toolbar,.options,.progress-wrap,.actions,.privacy{display:none!important}
+      .hero,.question,.compare-box,.result-box{box-shadow:none}
+      .app{max-width:none;padding:0}
+      .hidden{display:block!important}
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="eyebrow">봄이 출산 및 육아 프로젝트</div>
+      <h1>태아보험 의사결정 도우미</h1>
+      <p>Jake님과 지니님이 각각 답한 뒤, 의견이 다른 항목을 확인하고 우리 가족에게 맞는 보장 수준과 설계 요청안을 정리합니다.</p>
+      <div class="privacy">🔒 답변은 가능한 경우 이 기기의 브라우저에만 저장됩니다.</div>
+      <div class="actions" style="margin-top:16px">
+        <button class="primary" id="startBtn">검토 시작하기</button>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <button class="tab active" data-person="jake">Jake 답변</button>
+      <button class="tab" data-person="jini">지니 답변</button>
+      <div class="spacer"></div>
+      <button class="ghost" id="compareBtn">부부 답변 비교</button>
+      <button class="primary" id="resultBtn">결과 보기</button>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-head"><span id="progressLabel">Jake 답변 진행률</span><b id="progressText">0 / 14</b></div>
+      <div class="progress"><div id="progressBar"></div></div>
+    </div>
+
+    <section id="questionArea"></section>
+
+    <section id="compareSection" class="compare-box hidden">
+      <h2>부부 답변 비교</h2>
+      <p class="sub">같은 답변보다 서로 다른 답변이 더 중요합니다. 보험료와 보장 범위를 정할 때 반드시 합의할 쟁점입니다.</p>
+      <div class="compare-grid" id="compareGrid"></div>
+      <div class="disagreements" id="disagreements"></div>
+    </section>
+
+    <section id="resultSection" class="result-box hidden">
+      <h2>우리 가족 권장 보장 수준</h2>
+      <p class="sub">두 사람의 답변을 평균하되, 태아·신생아와 중대질환 항목은 보수적으로 반영합니다.</p>
+
+      <div class="result-hero">
+        <div class="score-card">
+          <small>의사결정 유형</small>
+          <div class="profile" id="profileName">-</div>
+          <div class="sub" id="profileDesc"></div>
+          <div class="score-line" id="scoreLines"></div>
+        </div>
+        <div class="recommend-card">
+          <small>핵심 설계 방향</small>
+          <div class="spec-grid" id="specGrid"></div>
+        </div>
+      </div>
+
+      <h3>영역별 보장 강도</h3>
+      <table>
+        <thead><tr><th>영역</th><th>권장 수준</th><th>설계 원칙</th></tr></thead>
+        <tbody id="coverageTable"></tbody>
+      </table>
+
+      <h3>설계사에게 보낼 요청서</h3>
+      <textarea id="requestText" class="request" readonly></textarea>
+      <div class="actions">
+        <button class="primary" id="copyBtn">요청서 복사</button>
+        <button class="ghost" onclick="window.print()">인쇄 또는 PDF 저장</button>
+        <button class="ghost" id="exportBtn">답변 백업</button>
+        <label class="ghost" style="cursor:pointer">답변 불러오기
+          <input type="file" id="importInput" accept=".json" hidden />
+        </label>
+        <button class="ghost" id="resetBtn">전체 초기화</button>
+      </div>
+
+      <div class="notice">
+        이 결과는 부부의 선호를 구조화한 의사결정 보조자료입니다. 실제 가입 전에는 각 특약의 보장개시일, 면책·감액, 지급 횟수, 갱신 여부, 중복 지급 가능 여부와 고지사항을 약관 및 설계사 확인을 통해 검증해야 합니다.
+      </div>
+    </section>
+
+    <footer>봄이 태아보험 의사결정 도우미 · 단일 HTML · 외부 서버 전송 없음</footer>
+  </main>
+
+<script>
+const questions = [
+  {
+    id:1, group:"예산", title:"출생 후 매월 보험료의 심리적 상한선은 얼마인가요?",
+    help:"보험료는 보장 강도보다 먼저 정해야 하는 제약조건입니다.",
+    options:["4만원 이하","5만원대","6만원대","7만-8만원","보험료보다 보장이 중요"]
+  },
+  {
+    id:2, group:"납입", title:"보험료 납입기간은 어느 쪽이 더 편한가요?",
+    help:"월 부담, 총 납입액, 납입 종료 시점을 함께 고려합니다.",
+    options:["월 보험료가 조금 높아도 10년 안에 끝내고 싶다","월 부담을 낮추기 위해 20년납도 괜찮다","총 납입보험료가 적은 쪽을 선택한다","아직 판단하기 어렵다"]
+  },
+  {
+    id:3, group:"만기", title:"30세 이후 보험은 어떻게 생각하나요?",
+    help:"30세 만기 이후 재가입 리스크에 대한 태도입니다.",
+    options:["성인이 된 후 본인이 새로 가입하면 된다","건강 문제로 재가입이 어려울 가능성이 걱정된다","일부 핵심 담보만 장기 보장하고 싶다","아직 생각해보지 않았다"]
+  },
+  {
+    id:4, group:"철학", title:"보험에서 가장 기대하는 역할은 무엇인가요?",
+    help:"중증 목돈, 입원 생활비, 소액 다빈도 중 무엇을 우선할지 정합니다.",
+    options:["드문 중증질환 발생 시 큰 목돈","입원이나 수술 시 생활비 보전","실제 자주 발생하는 소액 보험금","세 가지 모두 균형 있게"]
+  },
+  {
+    id:5, group:"자기부담", title:"치료비가 20만-50만원 정도 발생하면 어떻게 대응할 수 있나요?",
+    help:"소액 특약을 얼마나 줄일 수 있는지 판단하는 질문입니다.",
+    options:["가계에서 충분히 부담 가능하다","다소 부담되지만 감당 가능하다","보험금이 있어야 부담이 줄어든다","가능한 비용을 보험으로 보완하고 싶다"]
+  },
+  {
+    id:6, group:"신생아", title:"NICU와 저체중아 보장은 어느 수준을 원하나요?",
+    help:"태아보험 고유 영역입니다.",
+    options:["가능한 강하게 구성","기본적인 입원비 정도","선천이상 수술 중심이면 충분","보험료가 비싸면 최소화"]
+  },
+  {
+    id:7, group:"선천", title:"선천이상 관련 보장은 어떻게 생각하나요?",
+    help:"진단비보다 실제 치료와 연결되는 수술비를 우선할지 결정합니다.",
+    options:["진단비와 수술비 모두 최대한 확보","실제 치료와 연결되는 수술비 중심","기본 수준만 구성","보험료를 보고 판단"]
+  },
+  {
+    id:8, group:"인수", title:"현재까지 보험 심사에 영향을 줄 수 있는 특이 소견이 있었나요?",
+    help:"선호와 별개로 실제 인수 가능성 및 고지 범위를 점검합니다.",
+    options:["없었다","경미한 소견이 있었으나 정상으로 확인됐다","추적관찰 중인 소견이 있다","어떤 내용을 고지해야 하는지 잘 모르겠다"]
+  },
+  {
+    id:9, group:"입원", title:"아이가 입원할 경우 부모의 소득 감소 부담은 어느 정도인가요?",
+    help:"입원일당의 실질적 필요도를 판단합니다.",
+    options:["휴가와 회사 복지로 대응 가능","단기 입원은 가능하지만 장기 입원은 부담","입원 시 소득 감소가 크다","입원일당을 충분히 받고 싶다"]
+  },
+  {
+    id:10, group:"수술", title:"수술 보장은 어떤 방식을 선호하나요?",
+    help:"단순한 수술비 구조와 중복 보장 구조 중 선택합니다.",
+    options:["질병·상해수술비 하나를 단순하게 구성","기본수술비와 종수술비를 중복 구성","선천이상 및 어린이 특정수술만 강화","수술 가능성이 있는 담보는 가능한 많이 구성"]
+  },
+  {
+    id:11, group:"암", title:"암 진단비 1억원 수준에 대해 어떻게 생각하나요?",
+    help:"중대질환 진단비의 기준점입니다.",
+    options:["반드시 유지","5천만원 정도면 충분","소아암을 별도로 강화하는 편이 낫다","판단이 어렵다"]
+  },
+  {
+    id:12, group:"생활", title:"수족구, 아토피, ADHD, 성조숙증 같은 특약은 어느 쪽인가요?",
+    help:"소액 다빈도 담보에 대한 선호입니다.",
+    options:["보험료가 조금 올라가도 넣고 싶다","가성비가 좋은 것만 넣고 싶다","핵심 보장이 충분하면 제외해도 된다","각각 지급 조건을 본 후 판단한다"]
+  },
+  {
+    id:13, group:"갱신", title:"갱신형 특약에 대한 생각은 어떤가요?",
+    help:"장기 보험료 상승과 보장 공백 가능성을 고려합니다.",
+    options:["가급적 모두 제외","필요한 담보라면 일부 허용","보험료가 저렴하면 허용","갱신형과 비갱신형 차이를 잘 모르겠다"]
+  },
+  {
+    id:14, group:"배상", title:"가족 일상생활배상책임보험이 이미 있나요?",
+    help:"중복 가입 여부를 확인하기 위한 질문입니다.",
+    options:["가족 중 한 명 이상 가입돼 있다","둘 다 없는 것 같다","가입 여부를 확인해야 한다"]
+  }
+];
+
+const letters = ["A","B","C","D","E"];
+const storeKey = "bomi-insurance-tool-v011";
+const defaultState = {current:"jake",answers:{jake:{},jini:{}}};
+let storageAvailable = true;
+let state = defaultState;
+
+try{
+  const saved = window.localStorage.getItem(storeKey);
+  state = saved ? JSON.parse(saved) : defaultState;
+}catch(e){
+  storageAvailable = false;
+  state = defaultState;
+  console.warn("브라우저 저장소를 사용할 수 없어 현재 화면에서만 답변을 유지합니다.", e);
+}
+
+function save(){
+  if(storageAvailable){
+    try{
+      window.localStorage.setItem(storeKey, JSON.stringify(state));
+    }catch(e){
+      storageAvailable = false;
+      console.warn("답변 자동 저장을 중단합니다.", e);
+    }
+  }
+  updateProgress();
+}
+function renderQuestions(){
+  const area = document.getElementById("questionArea");
+  area.innerHTML = "";
+  let currentGroup = "";
+  questions.forEach(q=>{
+    if(q.group !== currentGroup){
+      currentGroup = q.group;
+      const t = document.createElement("div");
+      t.className = "section-title";
+      t.innerHTML = `<h2>${q.group}</h2><p>${groupDesc(q.group)}</p>`;
+      area.appendChild(t);
+    }
+    const card = document.createElement("article");
+    card.className = "question";
+    const selected = state.answers[state.current][q.id];
+    card.innerHTML = `
+      <div class="q-head">
+        <div class="q-num">${q.id}</div>
+        <div>
+          <div class="q-title">${q.title}</div>
+          <div class="q-help">${q.help}</div>
+        </div>
+      </div>
+      <div class="options">
+        ${q.options.map((o,i)=>`
+          <button class="option ${selected===i ? "selected":""}" data-q="${q.id}" data-a="${i}">
+            <span class="letter">${letters[i]}</span>
+            <span>${o}</span>
+          </button>
+        `).join("")}
+      </div>`;
+    area.appendChild(card);
+  });
+  document.querySelectorAll(".option").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      state.answers[state.current][btn.dataset.q] = Number(btn.dataset.a);
+      save(); renderQuestions();
+    });
+  });
+  updateTabs();
+  updateProgress();
+}
+function groupDesc(g){
+  const m={
+    "예산":"월 보험료 상한선을 먼저 확정합니다.",
+    "납입":"10년납과 20년납의 우선순위를 정합니다.",
+    "만기":"30세 이후 재가입 리스크를 어떻게 볼지 확인합니다.",
+    "철학":"보험의 핵심 역할을 합의합니다.",
+    "자기부담":"소액 특약을 줄일 수 있는 여력을 확인합니다.",
+    "신생아":"NICU와 저체중아 보장의 강도를 정합니다.",
+    "선천":"선천이상 진단비와 수술비의 우선순위를 정합니다.",
+    "인수":"고지 및 심사 이슈를 점검합니다.",
+    "입원":"입원일당의 실질적 필요도를 판단합니다.",
+    "수술":"수술비 구조의 단순성 또는 중복성을 선택합니다.",
+    "암":"중대질환 진단비 수준을 정합니다.",
+    "생활":"생활질환 특약을 어디까지 포함할지 결정합니다.",
+    "갱신":"갱신형 담보의 허용 범위를 정합니다.",
+    "배상":"기존 가족보험과의 중복 여부를 확인합니다."
+  };
+  return m[g] || "";
+}
+function updateTabs(){
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.person===state.current));
+}
+function updateProgress(){
+  const count = Object.keys(state.answers[state.current]).length;
+  document.getElementById("progressText").textContent = `${count} / ${questions.length}`;
+  document.getElementById("progressBar").style.width = `${count/questions.length*100}%`;
+  document.getElementById("progressLabel").textContent = `${state.current==="jake"?"Jake":"지니"} 답변 진행률`;
+}
+document.querySelectorAll(".tab").forEach(b=>{
+  b.addEventListener("click",()=>{
+    state.current=b.dataset.person;save();renderQuestions();window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+
+function answered(person){return Object.keys(state.answers[person]).length}
+function compare(){
+  const sec=document.getElementById("compareSection");
+  sec.classList.remove("hidden");
+  document.getElementById("compareGrid").innerHTML=`
+    <div class="person-card"><strong>Jake</strong><div class="metric"><span>완료 문항</span><b>${answered("jake")} / 14</b></div></div>
+    <div class="person-card"><strong>지니</strong><div class="metric"><span>완료 문항</span><b>${answered("jini")} / 14</b></div></div>`;
+  const diffs=questions.filter(q=>{
+    const a=state.answers.jake[q.id], b=state.answers.jini[q.id];
+    return a!==undefined && b!==undefined && a!==b;
+  });
+  document.getElementById("disagreements").innerHTML = diffs.length
+    ? `<b>의견이 다른 항목 ${diffs.length}개</b><div>${diffs.map(q=>`<span class="pill">${q.id}. ${q.group}</span>`).join("")}</div>`
+    : `<b>현재까지 의견이 다른 항목이 없습니다.</b>`;
+  sec.scrollIntoView({behavior:"smooth",block:"start"});
+}
+document.getElementById("compareBtn").onclick=compare;
+
+function getCombined(qid){
+  const vals=["jake","jini"].map(p=>state.answers[p][qid]).filter(v=>v!==undefined);
+  if(!vals.length) return null;
+  return vals.reduce((a,b)=>a+b,0)/vals.length;
+}
+function calcScores(){
+  const g = id => getCombined(id);
+  const risk = clamp(avg([
+    map(g(4),[5,3,2,4]), map(g(11),[5,3,4,3]), map(g(3),[2,5,4,3])
+  ]));
+  const neonatal = clamp(avg([
+    map(g(6),[5,3,3,1]), map(g(7),[5,4,2,3])
+  ]));
+  const daily = clamp(avg([
+    map(g(5),[1,2,4,5]), map(g(9),[1,3,4,5]), map(g(12),[5,3,1,3])
+  ]));
+  const surgery = clamp(avg([
+    map(g(10),[2,4,3,5]), map(g(7),[5,4,2,3])
+  ]));
+  const efficiency = clamp(avg([
+    map(g(1),[5,4,3,2,1]), map(g(13),[5,4,3,3]), map(g(5),[5,4,2,1])
+  ]));
+  return {risk,neonatal,daily,surgery,efficiency};
+}
+function map(v, arr){ return v===null ? null : arr[Math.round(v)] }
+function avg(arr){ const v=arr.filter(x=>x!==null && !Number.isNaN(x)); return v.length ? v.reduce((a,b)=>a+b,0)/v.length : 0 }
+function clamp(v){return Math.max(0,Math.min(5,v))}
+function completeness(){
+  return answered("jake")===14 && answered("jini")===14;
+}
+function budgetBand(){
+  const b=getCombined(1);
+  if(b===null) return "답변 필요";
+  if(b<.5) return "출생 후 4만원 이하";
+  if(b<1.5) return "출생 후 5만원대";
+  if(b<2.5) return "출생 후 6만원대";
+  if(b<3.5) return "출생 후 7만-8만원";
+  return "보장 우선, 상한 별도 합의";
+}
+function payTerm(){
+  const v=getCombined(2);
+  if(v===null) return "답변 필요";
+  if(v<.75) return "10년납 우선";
+  if(v<1.75) return "20년납 우선";
+  if(v<2.75) return "10년납 총액 비교";
+  return "두 안 동시 견적";
+}
+function profile(scores){
+  const breadth=(scores.risk+scores.neonatal+scores.daily+scores.surgery)/4;
+  if(scores.efficiency>=4 && scores.daily<3) return ["핵심위험 집중형","NICU, 선천이상, 후유장해, 암과 중대질환에 집중하고 소액 다빈도 특약은 줄이는 유형입니다."];
+  if(breadth>=4.1) return ["최대보장형","보장 공백 최소화를 우선하는 유형입니다. 보험료 상한과 갱신형 관리 기준을 별도로 정해야 합니다."];
+  if(scores.daily>=3.8) return ["실생활 보장형","입원, 수술, 감염병 등 실제 청구 가능성이 높은 담보를 상대적으로 중시하는 유형입니다."];
+  return ["균형형","핵심위험을 중심에 두고 입원, 수술, 생활질환을 예산 범위에서 조합하는 유형입니다."];
+}
+function level(score){
+  if(score>=3.8) return ["강화","lv-high"];
+  if(score>=2.4) return ["표준","lv-mid"];
+  return ["축소","lv-low"];
+}
+function result(){
+  const sec=document.getElementById("resultSection");
+  sec.classList.remove("hidden");
+  const scores=calcScores();
+  const [name,desc]=profile(scores);
+  document.getElementById("profileName").textContent=name;
+  document.getElementById("profileDesc").textContent=desc;
+
+  const labels=[
+    ["중대질환",scores.risk],
+    ["태아·신생아",scores.neonatal],
+    ["입원·생활",scores.daily],
+    ["수술",scores.surgery],
+    ["가성비",scores.efficiency]
+  ];
+  document.getElementById("scoreLines").innerHTML=labels.map(([n,s])=>`
+    <div class="score-row">
+      <span>${n}</span>
+      <div class="mini-bar"><div style="width:${s/5*100}%"></div></div>
+      <b>${s.toFixed(1)}</b>
+    </div>`).join("");
+
+  const cancer=getCombined(11);
+  const cancerText=cancer===null?"답변 필요":cancer<.75?"1억원 유지":cancer<1.75?"5천만원 검토":cancer<2.75?"일반암 5천만-1억원 + 소아암 강화":"두 안 비교";
+  document.getElementById("specGrid").innerHTML=`
+    <div class="spec"><small>목표 보험료</small><strong>${budgetBand()}</strong></div>
+    <div class="spec"><small>납입 구조</small><strong>${payTerm()}</strong></div>
+    <div class="spec"><small>암 진단비</small><strong>${cancerText}</strong></div>
+    <div class="spec"><small>갱신형</small><strong>${getCombined(13)!==null && getCombined(13)<1.5 ? "최소화" : "필요 담보만 제한 허용"}</strong></div>`;
+
+  const rows=[
+    ["태아·신생아",scores.neonatal,"저체중아, 신생아질병입원, 신생아 중환자실, 선천이상 수술을 한 묶음으로 검토"],
+    ["암·중대질환",scores.risk,"일반암, 소아암, 뇌·심장, 질병후유장해를 우선 확보"],
+    ["수술비",scores.surgery,"기본 수술비와 종수술비의 중복 구조를 단순화 또는 선택적으로 유지"],
+    ["입원일당",scores.daily,"부모의 소득 감소 위험이 크면 강화하고, 가계 대응이 가능하면 축소"],
+    ["생활질환",Math.min(scores.daily,5-scores.efficiency+2),"수족구, 아토피, ADHD, 성조숙증은 핵심 보장 확보 후 예산 잔여분으로 판단"],
+    ["갱신형·부가",5-scores.efficiency+1,"표적항암, 로봇수술, 배상책임 등은 갱신 여부와 기존 계약 중복 확인"]
+  ];
+  document.getElementById("coverageTable").innerHTML=rows.map(([n,s,rule])=>{
+    const [lv,cls]=level(clamp(s));
+    return `<tr><td><b>${n}</b></td><td><span class="level ${cls}">${lv}</span></td><td>${rule}</td></tr>`;
+  }).join("");
+
+  document.getElementById("requestText").value=buildRequest(name,scores,cancerText);
+  sec.scrollIntoView({behavior:"smooth",block:"start"});
+  if(!completeness()){
+    alert("두 분의 14개 문항을 모두 답하면 결과 정확도가 높아집니다. 현재 답변 기준으로 임시 결과를 표시합니다.");
+  }
+}
+function buildRequest(name,s,cancerText){
+  const nicu=level(s.neonatal)[0];
+  const daily=level(s.daily)[0];
+  const surg=level(s.surgery)[0];
+  const lifestyle=s.efficiency>=3.7?"최소화":"가성비 선별";
+  const pay=payTerm();
+  return `[봄이 태아보험 재설계 요청]
+
+1. 기본 방향
+- 가족 성향: ${name}
+- 목표 보험료: ${budgetBand()}
+- 납입 구조: ${pay}
+- 만기: 30세 만기 기준
+- 무해지형 또는 순수보장형 우선
+- 갱신형 특약은 최소화하고, 포함 시 별도 표시 요청
+
+2. 우선 보장
+- 태아·신생아 보장: ${nicu}
+- 저체중아 입원, 신생아 질병입원, 신생아 중환자실, 선천이상 수술의 가입금액과 지급 조건을 한 표로 정리
+- 암 진단비: ${cancerText}
+- 뇌혈관 및 심장질환: 진단 범위가 넓은 담보 중심
+- 질병후유장해: 핵심 담보로 유지 검토
+- 수술비: ${surg}, 기본수술비와 종수술비의 중복 지급 여부 명시
+- 입원일당: ${daily}, 일반 입원일당과 중환자실 특약을 분리하여 보험료 표시
+
+3. 축소 또는 삭제 검토
+- 수족구, 감염병, 아토피, ADHD, 성조숙증 등 생활질환 특약: ${lifestyle}
+- 로봇수술, 특정 치료, 소액 진단비, 갱신형 특약은 각 특약별 월 보험료와 총 납입보험료를 별도 표시
+- 가족 일상생활배상책임은 기존 가입 여부 확인 후 중복 제외
+
+4. 비교 요청
+- 동일 보장 기준으로 10년납과 20년납 두 안 제시
+- 출생 전 보험료, 출생 후 보험료, 총 납입보험료를 모두 표시
+- 태아 전용 특약의 보장기간, 지급개시일, 최대 지급일수, 중복 지급 가능 여부 표시
+- 보장개시일, 면책기간, 감액기간, 연간 지급횟수, 갱신 여부를 특약별로 표시
+
+5. 심사 및 고지
+- 산전검사, 초음파, 추적관찰, 처방 및 투약 관련 고지사항을 사전 확인
+- 인수 제한 또는 부담보 가능성이 있는 항목은 청약 전에 서면 안내 요청`;
+}
+document.getElementById("resultBtn").onclick=result;
+document.getElementById("copyBtn").onclick=async()=>{
+  const t=document.getElementById("requestText");
+  await navigator.clipboard.writeText(t.value);
+  alert("설계 요청서를 복사했습니다.");
+};
+document.getElementById("exportBtn").onclick=()=>{
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="bomi_insurance_answers.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+document.getElementById("importInput").onchange=(e)=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const d=JSON.parse(r.result);
+      if(!d.answers || !d.answers.jake || !d.answers.jini) throw new Error();
+      state=d; save(); renderQuestions(); alert("답변을 불러왔습니다.");
+    }catch{ alert("올바른 백업 파일이 아닙니다.");}
+  };
+  r.readAsText(f);
+};
+document.getElementById("resetBtn").onclick=()=>{
+  if(confirm("Jake님과 지니님의 모든 답변을 삭제할까요?")){
+    state={current:"jake",answers:{jake:{},jini:{}}};
+    save(); renderQuestions();
+    document.getElementById("compareSection").classList.add("hidden");
+    document.getElementById("resultSection").classList.add("hidden");
+  }
+};
+
+document.getElementById("startBtn").onclick=()=>{
+  const firstQuestion = document.querySelector(".question");
+  if(firstQuestion) firstQuestion.scrollIntoView({behavior:"smooth",block:"start"});
+};
+
+renderQuestions();
+
+if(!storageAvailable){
+  const privacy = document.querySelector(".privacy");
+  if(privacy) privacy.textContent = "🔒 현재 미리보기에서는 자동 저장이 제한될 수 있습니다. 답변은 이 화면에서 정상 작동합니다.";
+}
+</script>
+</body>
+</html>
