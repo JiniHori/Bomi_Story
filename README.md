@@ -1,22 +1,45 @@
-# BOMI Story · 벚꽃 마카롱 테마
+# BOMI 태아보험 의사결정 도우미
 
-7월 22일 업데이트본에 핑크·민트 기반의 벚꽃 마카롱 테마를 적용한 배포 버전입니다.
+이 폴더를 기존 BOMI GitHub 저장소의 루트에 그대로 업로드하면 됩니다.
 
-기준 버전: `bomistory_current_compact_fruit_week`
+## 최종 구조
 
-## 업데이트 내용
+```text
+기존 저장소/
+├─ index.html
+├─ manifest.json
+├─ service-worker.js
+├─ 2026-06-25.html
+├─ bomi_ultrasound_260625.mp4
+└─ insurance/
+   └─ index.html
+```
 
-- 2026-07-22 16주 진료 및 양수검사 기록 반영
-- 홈 화면 최신 성장값(약 156g), 여아 확인, 검사 상태 갱신
-- `reports/2026-07-22.html` 상세 리포트 추가
-- 서비스 워커 등록 및 새 리포트 오프라인 캐시 추가
+## GitHub 웹에서 업로드하는 방법
 
-## 영상 안내
+1. 기존 BOMI GitHub 저장소를 엽니다.
+2. `Add file` → `Upload files`를 선택합니다.
+3. 이 ZIP을 먼저 PC에서 압축 해제합니다.
+4. 압축 해제된 `insurance` 폴더를 저장소 화면으로 끌어다 놓습니다.
+5. 아래쪽 `Commit changes`를 누릅니다.
+6. Cloudflare 자동 배포가 끝난 뒤 아래 주소로 접속합니다.
 
-- 2026-07-22 초음파 원본은 별도로 보존합니다.
-- 배포본에는 720p H.264/AAC로 최적화한 `assets/video/bomi_ultrasound_260722.mp4`를 포함합니다.
-- 향후 영상도 Cloudflare Pages의 단일 파일 제한보다 여유 있게 23MiB 이하를 목표로 최적화합니다.
+```text
+https://bomistory.jinihori.workers.dev/insurance/
+```
 
-## 배포
+## 기능
 
-이 폴더의 내용 전체를 GitHub 저장소 루트에 업로드하면 Cloudflare Pages에서 기존과 같은 정적 사이트로 배포할 수 있습니다.
+- Jake / 지니 답변 분리
+- 답변 자동 저장
+- 부부 의견 차이 표시
+- 보장 성향 및 권장 수준 산출
+- 설계사 전달용 재설계 요청서 생성
+- JSON 백업 및 복원
+- 인쇄 / PDF 저장
+
+## 주의
+
+- 사이트 주소 끝에 `/insurance/`를 붙여 접속하세요.
+- Cloudflare 캐시 때문에 바로 반영되지 않으면 1-2분 뒤 새로고침하세요.
+- 기존 BOMI 파일은 덮어쓰지 않습니다.
