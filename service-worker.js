@@ -1,8 +1,9 @@
 const CACHE_PREFIX = 'bomi-';
-const CACHE_NAME = 'bomi-260722-blossom-macaron-v3';
+const CACHE_NAME = 'bomi-live-v5';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
+  './bomi-live.js',
   './manifest.json',
   './reports/2026-06-08.html',
   './reports/2026-06-25.html',
