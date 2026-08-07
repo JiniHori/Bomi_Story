@@ -2,7 +2,6 @@
   "use strict";
 
   const API_URL = "https://bomi-v4.jinihori.workers.dev/api/public/state";
-  const BACKEND_ORIGIN = "https://bomi-v4.jinihori.workers.dev";
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -28,8 +27,7 @@
     const known = new Set([
       "2026-06-08",
       "2026-06-25",
-      "2026-07-22",
-      "2026-08-06"
+      "2026-07-22"
     ]);
     return known.has(visitDate) ? `./reports/${visitDate}.html` : "";
   }
@@ -128,17 +126,12 @@
         }
 
         const localReport = knownReportUrl(record.visit_date);
-        const detailUrl = localReport || (record.id ? `${BACKEND_ORIGIN}/record/${record.id}` : "");
+        const detailUrl = localReport ||
+          `./reports/live.html?date=${encodeURIComponent(record.visit_date)}`;
 
-        if (detailUrl) {
-          const link = make("a", "linkBtn", "진료기록 자세히 보기");
-          link.href = detailUrl;
-          if (!localReport) {
-            link.target = "_blank";
-            link.rel = "noopener";
-          }
-          event.append(link);
-        }
+        const link = make("a", "linkBtn", "진료기록 자세히 보기");
+        link.href = detailUrl;
+        event.append(link);
 
         timeline.append(event);
       });
@@ -201,7 +194,7 @@
     const footer = $(".footer");
     if (!footer) return;
 
-    const badge = make("div", "", "● 실시간 기록 연결");
+    const badge = make("div", "", "● 기존 디자인 · 실시간 기록 연결");
     badge.id = "bomiLiveStatus";
     badge.style.marginTop = "8px";
     badge.style.fontWeight = "800";
