@@ -12,8 +12,9 @@
   --line:#f1dfe6;--shadow:0 16px 38px rgba(176,99,129,.14)
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
 body{
-  margin:0;padding-bottom:34px;
+  margin:0;padding-bottom:86px;
   font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;
   color:var(--ink);
   background:
@@ -39,11 +40,17 @@ body{
 h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
 .sub{color:var(--muted);font-size:14px;line-height:1.6}
 .panel{
-  margin-top:18px;padding:15px;border-radius:19px;
+  margin-top:18px;padding:16px;border-radius:21px;
   background:linear-gradient(135deg,#fff8fb,#f5fffc);
   border:1px solid var(--line)
 }
-.panel strong{display:block;color:var(--pink);font-size:23px;margin-bottom:5px}
+.panelTop{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.panel strong{display:block;color:var(--pink);font-size:25px;margin-bottom:5px;letter-spacing:-.035em}
+.signal{
+  display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--mint2);
+  color:#29786d;font-size:12px;font-weight:900;white-space:nowrap
+}
+.oneLine{font-size:14px;color:#674b57;line-height:1.65;margin-top:8px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
 .card{
   background:var(--card);border:1px solid var(--line);border-radius:25px;
@@ -55,6 +62,11 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
 .value{font-size:22px;font-weight:900;margin-top:5px;letter-spacing:-.03em}
 .note,.bodyText{font-size:14px;color:#674b57;line-height:1.68;white-space:pre-line}
 .metricNote{font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px}
+.summaryBlock{
+  padding:14px 15px;border-radius:18px;background:linear-gradient(135deg,#fff8fb,#f5fffc);
+  border:1px solid var(--line);font-size:14px;line-height:1.7;color:#674b57;white-space:pre-line
+}
+.metricCard .icon{font-size:24px;margin-bottom:8px}
 .metricRow,.statusRow{
   display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
   padding:11px 0;border-bottom:1px solid var(--line);font-size:14px
@@ -65,90 +77,93 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
   white-space:nowrap;padding:6px 9px;border-radius:999px;
   background:var(--mint2);color:#29786d;font-size:12px;font-weight:900
 }
-.check{
-  display:flex;gap:9px;align-items:flex-start;padding:10px 0;
-  border-bottom:1px solid var(--line);font-size:14px;line-height:1.55
-}
+.pill.yellow{background:#fff0d8;color:#98611b}
+.pill.pink{background:#ffe6ef;color:#a55271}
+.qa{border-top:1px solid var(--line);padding:12px 0}
+.qa:first-child{border-top:0;padding-top:0}
+.q{font-size:13px;color:#a55271;font-weight:900;margin-bottom:4px}
+.a{font-size:14px;color:#674b57;line-height:1.65;white-space:pre-line}
+.timeline{position:relative;padding-left:22px}
+.timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(#f3bfd1,#bcebe2)}
+.step{position:relative;margin-bottom:15px;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fffafd}
+.step:last-child{margin-bottom:0}
+.step:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:#f3a9c2;border:3px solid #fff;box-shadow:0 0 0 1px #f1c4d4}
+.stepDate{font-size:13px;color:var(--muted);font-weight:900}
+.step strong{display:block;margin-top:3px;font-size:16px}
+.check{display:flex;gap:9px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.55}
 .check:last-child{border-bottom:0}
-.box{
-  width:20px;height:20px;flex:0 0 20px;border:2px solid #e3b8c8;
-  border-radius:7px;background:#fff;margin-top:1px
-}
-.video{
-  width:100%;display:block;border-radius:18px;background:#3f3038;max-height:380px
-}
+.box{width:20px;height:20px;flex:0 0 20px;border:2px solid #e3b8c8;border-radius:7px;background:#fff;margin-top:1px}
+.check.done .box{display:grid;place-items:center;background:#e5faf5;border-color:#8edfd2;color:#29786d;font-size:12px;font-weight:900}
+.notice{background:#fff5df;color:#855b19;border-radius:16px;padding:13px;font-size:13px;line-height:1.65;white-space:pre-line}
+.notice.info{background:#eefbf8;color:#29786d}
+.video{width:100%;display:block;border-radius:18px;background:#3f3038;max-height:420px}
 .linkBtn{
   display:flex;align-items:center;justify-content:center;margin-top:16px;
   padding:13px;border-radius:17px;text-decoration:none;
   background:linear-gradient(135deg,#ffe8f0,#e6faf6);
   color:#8d4964;font-weight:900
 }
-.warning{
-  background:#fff5df;color:#855b19;border-radius:16px;padding:13px;
-  font-size:13px;line-height:1.6
-}
 .footer{text-align:center;color:#ae8e9b;font-size:12px;line-height:1.55;margin-top:20px}
 .hidden{display:none!important}
-@media(max-width:390px){.grid{grid-template-columns:1fr}.full{grid-column:auto}h1{font-size:30px}}
+.nav{
+  position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:10;
+  width:min(510px,calc(100% - 28px));display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+  padding:8px;border-radius:24px;background:rgba(255,250,252,.92);backdrop-filter:blur(18px);
+  border:1px solid #f0dce4;box-shadow:0 14px 34px rgba(24,50,51,.14)
+}
+.nav a{text-decoration:none;text-align:center;border-radius:18px;padding:9px 4px;font-size:11px;font-weight:850;color:#745d67}
+.nav a.active{background:linear-gradient(135deg,#ffe5ee,#e4faf5);color:#a55271}
+.nav span{display:block;font-size:18px;margin-bottom:2px}
+@media(max-width:390px){
+  .grid{grid-template-columns:1fr 1fr}
+  h1{font-size:30px}
+  .panelTop{align-items:flex-start;flex-direction:column}
+}
 </style>
 </head>
 <body>
 <main class="wrap">
   <section class="hero">
-    <div class="badge">🌸 BOMI PREGNANCY JOURNAL</div>
+    <div class="badge" id="badge">🌸 BOMI PREGNANCY JOURNAL</div>
     <h1 id="title">진료기록을 불러오는 중</h1>
     <div class="sub" id="subtitle">잠시만 기다려 주세요.</div>
     <div class="panel">
-      <strong id="focus">실시간 기록 연결</strong>
-      <div class="note" id="summary">V4 데이터베이스의 기록을 기존 봄이스토리 디자인으로 표시합니다.</div>
+      <div class="panelTop">
+        <div>
+          <div class="label">Overall status</div>
+          <strong id="focus">실시간 기록 연결</strong>
+        </div>
+        <div class="signal" id="signal">● LIVE</div>
+      </div>
+      <div class="oneLine" id="summary">V4 데이터베이스의 기록을 기존 봄이스토리 디자인으로 표시합니다.</div>
     </div>
   </section>
 
   <section class="grid" id="content">
-    <article class="card">
-      <div class="label">임신 주수</div>
+    <article class="card metricCard">
+      <div class="icon">🤰</div>
+      <div class="label">Gestation</div>
       <div class="value" id="gestation">-</div>
       <div class="metricNote">진료일 기준</div>
     </article>
-    <article class="card">
-      <div class="label">병원</div>
+    <article class="card metricCard">
+      <div class="icon">🏥</div>
+      <div class="label">Hospital</div>
       <div class="value" id="hospital">-</div>
       <div class="metricNote" id="status">진료기록</div>
-    </article>
-
-    <article class="card full hidden" id="metricsCard">
-      <h2>핵심 정보</h2>
-      <div id="metrics"></div>
-    </article>
-
-    <article class="card full hidden" id="detailsCard">
-      <h2>상세 기록</h2>
-      <div class="bodyText" id="details"></div>
-    </article>
-
-    <article class="card full hidden" id="scheduleCard">
-      <h2>다음 일정</h2>
-      <div class="bodyText" id="schedule"></div>
-    </article>
-
-    <article class="card full hidden" id="checklistCard">
-      <h2>체크리스트</h2>
-      <div id="checklist"></div>
-    </article>
-
-    <article class="card full hidden" id="videoCard">
-      <h2>관련 영상</h2>
-      <video id="video" class="video" controls playsinline preload="metadata"></video>
-    </article>
-
-    <article class="card full hidden" id="errorCard">
-      <div class="warning" id="errorMessage"></div>
     </article>
   </section>
 
   <a class="linkBtn" href="../index.html">← 봄이스토리 홈으로</a>
-  <div class="footer">기존 봄이스토리 디자인 · V4 실시간 데이터 연결</div>
+  <div class="footer">BOMI Pregnancy Journal · 기존 디자인 자동 상세리포트</div>
 </main>
+
+<nav class="nav">
+  <a href="../index.html"><span>🏠</span>Home</a>
+  <a class="active" href="#content"><span>📋</span>Report</a>
+  <a href="#schedule-auto"><span>📅</span>Next</a>
+  <a href="#checklist-auto"><span>✅</span>Check</a>
+</nav>
 
 <script>
 (() => {
@@ -159,115 +174,272 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
   const targetDate = params.get("date");
 
   const $ = (id) => document.getElementById(id);
-  const show = (id) => $(id).classList.remove("hidden");
+  const content = $("content");
 
   function formatDateKo(value) {
     if (!value) return "";
-    const parts = value.split("-");
-    return parts.length === 3
-      ? `${parts[0]}.${parts[1]}.${parts[2]}`
-      : value;
+    const parts = String(value).split("-");
+    return parts.length === 3 ? `${parts[0]}.${parts[1]}.${parts[2]}` : String(value);
+  }
+
+  function text(value, fallback = "") {
+    return value == null || value === "" ? fallback : String(value);
   }
 
   function setText(id, value, fallback = "-") {
-    $(id).textContent = value == null || value === "" ? fallback : String(value);
+    $(id).textContent = text(value, fallback);
   }
 
-  function appendMetric(metric) {
-    const row = document.createElement("div");
-    row.className = "metricRow";
+  function el(tag, className, value) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (value !== undefined) node.textContent = text(value);
+    return node;
+  }
 
-    const left = document.createElement("div");
-    const label = document.createElement("div");
-    label.textContent = metric.label || "항목";
-    left.append(label);
+  function card(title, id) {
+    const article = el("article", "card full");
+    if (id) article.id = id;
+    if (title) article.append(el("h2", "", title));
+    return article;
+  }
 
-    if (metric.note) {
-      const note = document.createElement("div");
-      note.className = "metricNote";
-      note.textContent = metric.note;
-      left.append(note);
+  function renderMetricCards(metrics) {
+    if (!Array.isArray(metrics)) return;
+    metrics.slice(0, 8).forEach((metric) => {
+      const article = el("article", "card metricCard");
+      article.append(
+        el("div", "icon", metric.icon || "📌"),
+        el("div", "label", metric.label || "Metric"),
+        el("div", "value", metric.value || "-")
+      );
+      if (metric.note) article.append(el("div", "metricNote", metric.note));
+      content.append(article);
+    });
+  }
+
+  function renderStatusSection(section, index) {
+    const article = card(section.title || "확인 사항", section.id || `status-${index}`);
+    const items = Array.isArray(section.items) ? section.items : [];
+    items.forEach((item) => {
+      const row = el("div", "statusRow");
+      row.append(el("span", "", item.label || "항목"));
+      const tone = item.tone === "yellow" ? "pill yellow" : item.tone === "pink" ? "pill pink" : "pill";
+      row.append(el("span", tone, item.value || "-"));
+      article.append(row);
+    });
+    if (section.note) {
+      const note = el("div", "summaryBlock", section.note);
+      article.append(note);
+    }
+    content.append(article);
+  }
+
+  function renderQaSection(section, index) {
+    const article = card(section.title || "상담 메모", section.id || `qa-${index}`);
+    const items = Array.isArray(section.items) ? section.items : [];
+    items.forEach((item) => {
+      const qa = el("div", "qa");
+      qa.append(el("div", "q", item.question || item.q || "질문"));
+      qa.append(el("div", "a", item.answer || item.a || ""));
+      article.append(qa);
+    });
+    content.append(article);
+  }
+
+  function renderTextSection(section, index) {
+    const article = card(section.title || "상세 기록", section.id || `text-${index}`);
+    const paragraphs = Array.isArray(section.paragraphs)
+      ? section.paragraphs
+      : section.text
+        ? [section.text]
+        : [];
+    paragraphs.forEach((paragraph) => {
+      const p = el("div", "bodyText", paragraph);
+      p.style.marginTop = "9px";
+      article.append(p);
+    });
+    content.append(article);
+  }
+
+  function renderTimelineSection(section, index) {
+    const article = card(section.title || "향후 일정", section.id || `timeline-${index}`);
+    if (!article.id.includes("schedule")) article.id = article.id || `timeline-${index}`;
+    const timeline = el("div", "timeline");
+    const items = Array.isArray(section.items) ? section.items : [];
+    items.forEach((item) => {
+      const step = el("div", "step");
+      step.append(el("div", "stepDate", item.date || item.when || ""));
+      step.append(el("strong", "", item.title || item.label || "일정"));
+      if (item.note || item.description) step.append(el("div", "note", item.note || item.description));
+      timeline.append(step);
+    });
+    article.append(timeline);
+    content.append(article);
+  }
+
+  function renderChecklistSection(section, index) {
+    const article = card(section.title || "체크리스트", section.id || `checklist-${index}`);
+    const items = Array.isArray(section.items) ? section.items : [];
+    items.forEach((item) => {
+      const normalized = typeof item === "string" ? { text: item } : item;
+      const row = el("div", normalized.done ? "check done" : "check");
+      const box = el("div", "box", normalized.done ? "✓" : "");
+      const body = el("div", "");
+      body.append(el("strong", "", normalized.text || normalized.label || "확인"));
+      if (normalized.note) body.append(el("div", "metricNote", normalized.note));
+      row.append(box, body);
+      article.append(row);
+    });
+    content.append(article);
+  }
+
+  function renderNoticeSection(section, index) {
+    const article = card(section.title || "주의사항", section.id || `notice-${index}`);
+    const tone = section.tone === "info" ? "notice info" : "notice";
+    article.append(el("div", tone, section.text || section.note || ""));
+    content.append(article);
+  }
+
+  function renderSection(section, index) {
+    if (!section || typeof section !== "object") return;
+    switch (section.type) {
+      case "status":
+        renderStatusSection(section, index); break;
+      case "qa":
+        renderQaSection(section, index); break;
+      case "timeline":
+        renderTimelineSection(section, index); break;
+      case "checklist":
+        renderChecklistSection(section, index); break;
+      case "notice":
+        renderNoticeSection(section, index); break;
+      case "text":
+      default:
+        renderTextSection(section, index); break;
+    }
+  }
+
+  function renderLegacy(record) {
+    if (Array.isArray(record.metrics) && record.metrics.length) {
+      const article = card("핵심 정보", "legacy-metrics");
+      record.metrics.forEach((metric) => {
+        const row = el("div", "metricRow");
+        const left = el("div", "");
+        left.append(el("div", "", metric.label || "항목"));
+        if (metric.note) left.append(el("div", "metricNote", metric.note));
+        row.append(left, el("div", "metricValue", metric.value || "-"));
+        article.append(row);
+      });
+      content.append(article);
     }
 
-    const value = document.createElement("div");
-    value.className = "metricValue";
-    value.textContent = metric.value || "-";
+    if (record.details) {
+      const article = card("상세 기록", "legacy-details");
+      article.append(el("div", "bodyText", record.details));
+      content.append(article);
+    }
 
-    row.append(left, value);
-    $("metrics").append(row);
+    if (record.next_schedule) {
+      const article = card("다음 일정", "schedule-auto");
+      article.append(el("div", "bodyText", record.next_schedule));
+      content.append(article);
+    }
+
+    if (Array.isArray(record.checklist) && record.checklist.length) {
+      renderChecklistSection({
+        title: "체크리스트",
+        id: "checklist-auto",
+        items: record.checklist.map((item) => ({ text: item, done: false }))
+      }, 0);
+    }
   }
 
-  function appendCheck(item) {
-    const row = document.createElement("div");
-    row.className = "check";
-
-    const box = document.createElement("div");
-    box.className = "box";
-
-    const text = document.createElement("div");
-    text.textContent = item;
-
-    row.append(box, text);
-    $("checklist").append(row);
+  function renderVideo(record) {
+    if (!record.video_url) return;
+    const article = card("관련 영상", "video-auto");
+    const video = document.createElement("video");
+    video.className = "video";
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.src = record.video_url;
+    article.append(video);
+    content.append(article);
   }
 
   function render(record) {
+    const report = record.report && typeof record.report === "object" && !Array.isArray(record.report)
+      ? record.report
+      : {};
+    const hasReport = Object.keys(report).length > 0;
+
     document.title = `${record.visit_date || ""} ${record.title || "봄이 진료기록"}`;
 
-    setText("title", record.title, "봄이 진료기록");
+    setText("badge", report.badge || (report.volume ? `📖 BOMI REPORT · ${report.volume}` : "🌸 BOMI PREGNANCY JOURNAL"));
+    setText("title", report.title || record.title, "봄이 진료기록");
     setText(
       "subtitle",
-      [
+      report.subtitle || [
         record.hospital,
         formatDateKo(record.visit_date),
         `${record.gestation_week}주 ${record.gestation_day || 0}일`
       ].filter(Boolean).join(" · ")
     );
-    setText("focus", record.status === "planned" ? "예정된 진료" : "진료기록");
-    setText("summary", record.summary);
+    setText("focus", report.overall_status || (record.status === "planned" ? "예정된 진료" : "진료기록"));
+    setText("signal", report.signal || (record.status === "planned" ? "📅 예정" : "● LIVE"));
+    setText("summary", report.one_line || record.summary);
     setText("gestation", `${record.gestation_week}주 ${record.gestation_day || 0}일`);
     setText("hospital", record.hospital, "병원 미입력");
     setText("status", record.status === "planned" ? "예정" : "진료 완료");
 
-    if (Array.isArray(record.metrics) && record.metrics.length) {
-      record.metrics.forEach(appendMetric);
-      show("metricsCard");
+    if (hasReport) {
+      if (report.executive_summary) {
+        const article = card("Executive Summary", "executive-summary");
+        article.append(el("div", "summaryBlock", report.executive_summary));
+        content.append(article);
+      }
+
+      renderMetricCards(report.metrics);
+
+      const sections = Array.isArray(report.sections) ? report.sections : [];
+      sections.forEach(renderSection);
+
+      if (!sections.some((s) => s && s.type === "timeline") && record.next_schedule) {
+        const article = card("다음 일정", "schedule-auto");
+        article.append(el("div", "bodyText", record.next_schedule));
+        content.append(article);
+      }
+
+      if (!sections.some((s) => s && s.type === "checklist") &&
+          Array.isArray(record.checklist) && record.checklist.length) {
+        renderChecklistSection({
+          title: "체크리스트",
+          id: "checklist-auto",
+          items: record.checklist.map((item) => ({ text: item, done: false }))
+        }, 0);
+      }
+    } else {
+      renderLegacy(record);
     }
 
-    if (record.details) {
-      setText("details", record.details);
-      show("detailsCard");
-    }
-
-    if (record.next_schedule) {
-      setText("schedule", record.next_schedule);
-      show("scheduleCard");
-    }
-
-    if (Array.isArray(record.checklist) && record.checklist.length) {
-      record.checklist.forEach(appendCheck);
-      show("checklistCard");
-    }
-
-    if (record.video_url) {
-      $("video").src = record.video_url;
-      show("videoCard");
-    }
+    renderVideo(record);
   }
 
   function showError(message) {
     setText("title", "기록을 불러오지 못했습니다");
     setText("subtitle", targetDate || "날짜 정보 없음");
     setText("focus", "연결 확인 필요");
+    setText("signal", "⚠️ 확인");
     setText("summary", "기존 홈 화면으로 돌아가 다시 시도해 주세요.");
-    setText("errorMessage", message);
-    show("errorCard");
+
+    const article = card("오류", "error-card");
+    article.append(el("div", "notice", message));
+    content.append(article);
   }
 
   async function load() {
-    if (!targetDate) {
-      throw new Error("진료일이 지정되지 않았습니다.");
-    }
+    if (!targetDate) throw new Error("진료일이 지정되지 않았습니다.");
 
     const response = await fetch(`${API_URL}?t=${Date.now()}`, {
       cache: "no-store",
@@ -275,18 +447,13 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
       headers: { Accept: "application/json" }
     });
 
-    if (!response.ok) {
-      throw new Error(`진료기록 API 오류: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`진료기록 API 오류: ${response.status}`);
 
     const state = await response.json();
     const records = Array.isArray(state.records) ? state.records : [];
     const record = records.find((item) => item.visit_date === targetDate);
 
-    if (!record) {
-      throw new Error(`${targetDate} 진료기록을 찾을 수 없습니다.`);
-    }
-
+    if (!record) throw new Error(`${targetDate} 진료기록을 찾을 수 없습니다.`);
     render(record);
   }
 
