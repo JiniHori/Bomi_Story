@@ -86,55 +86,15 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em}
 .footer{margin-top:22px;text-align:center;color:#8aa0a2;font-size:12px;line-height:1.55}
 @media(max-width:380px){.grid{grid-template-columns:1fr}.full{grid-column:auto}h1{font-size:30px}}
 
-  .videoCard{
-    padding:0;
-    overflow:hidden;
-  }
-  .videoFrame{
-    position:relative;
-    background:#102f31;
-    border-radius:24px 24px 0 0;
-    overflow:hidden;
-  }
-  .videoFrame video{
-    display:block;
-    width:100%;
-    height:auto;
-    max-height:360px;
-    background:#102f31;
-  }
-  .videoCaption{
-    padding:16px 18px 18px;
-    background:linear-gradient(180deg,#ffffff,#f8fffe);
-  }
-  .videoCaption .eyebrow{
-    font-size:12px;
-    color:var(--muted);
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.05em;
-  }
-  .videoCaption strong{
-    display:block;
-    margin-top:4px;
-    font-size:21px;
-    letter-spacing:-.035em;
-  }
-  .videoCaption p{
-    margin:8px 0 0;
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.5;
-  }
+  .videoCard{padding:0;overflow:hidden}
+  .videoFrame{position:relative;background:#102f31;border-radius:24px 24px 0 0;overflow:hidden}
+  .videoFrame video{display:block;width:100%;height:auto;max-height:360px;background:#102f31}
+  .videoCaption{padding:16px 18px 18px;background:linear-gradient(180deg,#ffffff,#f8fffe)}
+  .videoCaption .eyebrow{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+  .videoCaption strong{display:block;margin-top:4px;font-size:21px;letter-spacing:-.035em}
+  .videoCaption p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
 
-
-
-.fruitInline{
-  color:#14776f;
-  font-weight:900;
-  white-space:nowrap;
-}
-
+.fruitInline{color:#14776f;font-weight:900;white-space:nowrap}
 </style>
 <style>
 :root{--bg:#fff8fb;--card:#fffefe;--ink:#523b46;--muted:#927783;--mint:#8edfd2;--mint2:#e5faf5;--green:#bd6685;--yellow:#f3b968;--line:#f1dfe6;--shadow:0 16px 38px rgba(176,99,129,.14)}
@@ -163,16 +123,12 @@ h1{color:#62404d}.overall{color:#bd5d81}.signal,.pill,.tag{background:#e5faf5;co
       <div class="row">
         <div>
           <div class="label">Overall status</div>
-          <div class="overall">매우 양호</div>
+          <div class="overall">경과 양호</div>
         </div>
-        <div class="signal">🟢 정상</div>
+        <div class="signal">🟢 유전검사 정상</div>
       </div>
-      <div class="statusText">
-        16주 초음파에서 봄이는 주수에 맞게 성장했고, 주요 장기와 양수 상태도 양호했습니다.
-      </div>
-      <div class="todayLine">
-        오늘의 한 줄: 16주 초음파 결과가 양호했고, 양수검사 신속검사 결과도 정상으로 안내받았습니다.
-      </div>
+      <div class="statusText">양수검사 Karyotype와 CMA 결과가 모두 정상으로 확인되었습니다. 이제 20주 정밀초음파에서 아기의 성장과 구조를 자세히 확인할 예정입니다.</div>
+      <div class="todayLine">오늘의 한 줄: 2026.08.20 · 오후 3시 50분까지 · 20주 정밀초음파</div>
     </div>
   </section>
 
@@ -190,33 +146,19 @@ h1{color:#62404d}.overall{color:#bd5d81}.signal,.pill,.tag{background:#e5faf5;co
       <div class="value">여아</div><div class="note">초음파로 확인</div>
     </article>
     <article class="card metric">
-      <div class="icon">🧬</div><div class="label">Amniocentesis</div>
-      <div class="value">검사 완료</div><div class="note">기본 검사 + CMA</div>
+      <div class="icon">🩺</div><div class="label">Next visit</div>
+      <div class="value">2026.08.20</div><div class="note">오후 3시 50분까지 · 20주 정밀초음파</div>
     </article>
 
-      <article class="card full videoCard">
-        <div class="videoFrame">
-          <video controls playsinline preload="metadata" src="./assets/video/bomi_ultrasound_260722.mp4"></video>
-        </div>
-        <div class="videoCaption">
-          <div class="eyebrow">Latest ultrasound video</div>
-          <strong>2026.07.22 초음파 영상</strong>
-          <p>16주 봄이 초음파 영상. 웹 재생용으로 최적화했으며 원본은 별도로 보관합니다.</p>
-        </div>
-      </article>
+    <article class="card full videoCard">
+      <div class="videoFrame"><video controls playsinline preload="metadata" src="./assets/video/bomi_ultrasound_260722.mp4"></video></div>
+      <div class="videoCaption"><div class="eyebrow">Latest ultrasound video</div><strong>2026.07.22 초음파 영상</strong><p>16주 봄이 초음파 영상. 웹 재생용으로 최적화했으며 원본은 별도로 보관합니다.</p></div>
+    </article>
 
-
-      <article class="card full videoCard">
-        <div class="videoFrame">
-          <video controls playsinline preload="metadata" src="./assets/video/bomi_ultrasound_260625.mp4"></video>
-        </div>
-        <div class="videoCaption">
-          <div class="eyebrow">Ultrasound video</div>
-          <strong>2026.06.25 초음파 영상</strong>
-          <p>12주 1일 봄이 초음파 영상. 진료 리포트와 함께 장기 보관합니다.</p>
-        </div>
-      </article>
-
+    <article class="card full videoCard">
+      <div class="videoFrame"><video controls playsinline preload="metadata" src="./assets/video/bomi_ultrasound_260625.mp4"></video></div>
+      <div class="videoCaption"><div class="eyebrow">Ultrasound video</div><strong>2026.06.25 초음파 영상</strong><p>12주 1일 봄이 초음파 영상. 진료 리포트와 함께 장기 보관합니다.</p></div>
+    </article>
 
     <article class="card full">
       <h2>진료 상태 대시보드</h2>
@@ -228,7 +170,8 @@ h1{color:#62404d}.overall{color:#bd5d81}.signal,.pill,.tag{background:#e5faf5;co
       <div class="status"><span>16주 장기·양수</span><span class="pill">🟢 양호</span></div>
       <div class="status"><span>양수검사</span><span class="pill">🟢 완료</span></div>
       <div class="status"><span>양수검사 신속검사</span><span class="pill">🟢 정상 안내</span></div>
-      <div class="status"><span>CMA</span><span class="pill yellow">🟡 결과 대기</span></div>
+      <div class="status"><span>Karyotype</span><span class="pill">🟢 정상</span></div>
+      <div class="status"><span>CMA</span><span class="pill">🟢 정상</span></div>
       <div class="status"><span>철분</span><span class="pill">🟢 복용 확인</span></div>
     </article>
 
@@ -236,137 +179,71 @@ h1{color:#62404d}.overall{color:#bd5d81}.signal,.pill,.tag{background:#e5faf5;co
       <h2>진료 타임라인</h2>
       <div class="timeline">
         <div class="event">
-          <div class="date">2026.06.08 · 9주 5일</div>
-          <strong>첫 강남차병원 진료</strong>
+          <div class="date">2026.06.08 · 9주 5일</div><strong>첫 강남차병원 진료</strong>
           <div class="note">CRL 약 3.3cm. 심박 확인. 모자이크 배아 관련 16주 양수검사 안내.</div>
           <div class="tags"><span class="tag">심박 확인</span><span class="tag">CRL 3.3cm</span><span class="tag yellow">양수검사 설명</span></div>
           <a class="linkBtn" href="./reports/2026-06-08.html">260608 리포트 열기</a>
         </div>
         <div class="event">
-          <div class="date">2026.06.25 · 12주 1일</div>
-          <strong>초기 정밀 초음파</strong>
+          <div class="date">2026.06.25 · 12주 1일</div><strong>초기 정밀 초음파</strong>
           <div class="note">NT 1.0mm, 코뼈 확인, CRL 약 6cm, 혈액검사 정상. 베이비 아스피린 시작.</div>
           <div class="tags"><span class="tag">NT 정상</span><span class="tag">코뼈 확인</span><span class="tag">혈액검사 정상</span></div>
           <a class="linkBtn" href="./reports/2026-06-25.html">260625 리포트 열기</a>
         </div>
         <div class="event">
-          <div class="date">2026.07.22 · 16주</div>
-          <strong>16주 진료 · 양수검사</strong>
-          <div class="note">약 156g으로 16주 4일 크기. 주요 장기와 양수 상태가 양호했고, 여아로 확인. 양수검사 신속검사 결과는 정상으로 안내받았으며 CMA 최종 결과를 기다리고 있습니다.</div>
-          <div class="tags"><span class="tag">성장 양호</span><span class="tag">여아 확인</span><span class="tag">신속검사 정상</span><span class="tag yellow">CMA 결과 대기</span></div>
+          <div class="date">2026.07.22 · 16주 0일</div><strong>16주 진료 · 양수검사</strong>
+          <div class="note">약 156g으로 16주 4일 크기. 주요 장기와 양수 상태가 양호했고, 여아로 확인. 양수검사 신속검사 결과는 정상으로 안내받았습니다.</div>
+          <div class="tags"><span class="tag">성장 양호</span><span class="tag">여아 확인</span><span class="tag">신속검사 정상</span></div>
           <a class="linkBtn" href="./reports/2026-07-22.html">260722 리포트 열기</a>
         </div>
-        <div class="event future">
-          <div class="date">2026.08.06 예정</div>
-          <strong>양수검사 결과 상담</strong>
-          <div class="note">결과 설명 및 간단 초음파 예정.</div>
+        <div class="event">
+          <div class="date">2026.08.06 · 18주 1일</div><strong>진료 · 전원 준비 상담</strong>
+          <div class="note">양수검사 Karyotype와 CMA 결과가 모두 정상으로 확인되었고, 20주 정밀초음파 이후 분만 예정 병원으로의 전원 여부를 검토하기로 했습니다.</div>
+          <div class="tags"><span class="tag">Karyotype 정상</span><span class="tag">CMA 정상</span><span class="tag">진료 완료</span></div>
+          <a class="linkBtn" href="./reports/live.html?date=2026-08-06">진료기록 자세히 보기</a>
         </div>
         <div class="event future">
-          <div class="date">2026.08.21 예정</div>
-          <strong>20주 정밀초음파</strong>
-          <div class="note">장기 구조를 더 자세히 확인하는 주요 검사.</div>
+          <div class="date">2026.08.20 예정</div><strong>20주 정밀초음파</strong>
+          <div class="note">오후 3시 50분까지 내원 · 소변검사 후 정밀초음파와 외래 진료 예정.</div>
         </div>
       </div>
     </article>
 
     <article class="card full">
       <h2>다음 체크포인트</h2>
-      <div class="status"><span>양수검사 후 안내사항에 따라 휴식</span><span class="pill">완료</span></div>
-      <div class="status"><span>신속검사 문자 결과 확인</span><span class="pill">정상 안내</span></div>
-      <div class="status"><span>8월 6일 최종 결과 상담</span><span class="pill yellow">다음 진료</span></div>
-      <div class="status"><span>철분 포함량 확인 후 꾸준히 복용</span><span class="pill">복용</span></div>
+      <div class="status"><span>2026.08.20 오후 3시 50분까지</span><span class="pill yellow">다음 진료</span></div>
+      <div class="status"><span>20주 정밀초음파</span><span class="pill yellow">예정</span></div>
+      <div class="status"><span>정밀초음파 안내문 확인</span><span class="pill yellow">확인 필요</span></div>
+      <div class="status"><span>8월 20일 진료 15분 전 내원</span><span class="pill yellow">확인 필요</span></div>
+      <div class="status"><span>내원 후 소변검사 진행</span><span class="pill yellow">확인 필요</span></div>
+      <div class="status"><span>분만 예정 병원 및 전원 여부 검토</span><span class="pill yellow">확인 필요</span></div>
     </article>
   </section>
 
   <div class="footer">BOMI Pregnancy Journal · Family medical archive<br>HTML-first archive · PDF export ready</div>
 </main>
 
-
 <script>
 (function(){
   const dueDate = new Date("2027-01-06T00:00:00+09:00");
   const pregnancyDays = 280;
-
   const weeklyFruitSize = [
-    { week: 8, fruit: "라즈베리", emoji: "🍓" },
-    { week: 9, fruit: "체리", emoji: "🍒" },
-    { week: 10, fruit: "딸기", emoji: "🍓" },
-    { week: 11, fruit: "무화과", emoji: "🟣" },
-    { week: 12, fruit: "라임", emoji: "🍋" },
-    { week: 13, fruit: "레몬", emoji: "🍋" },
-    { week: 14, fruit: "복숭아", emoji: "🍑" },
-    { week: 15, fruit: "사과", emoji: "🍎" },
-    { week: 16, fruit: "아보카도", emoji: "🥑" },
-    { week: 17, fruit: "배", emoji: "🍐" },
-    { week: 18, fruit: "피망", emoji: "🫑" },
-    { week: 19, fruit: "망고", emoji: "🥭" },
-    { week: 20, fruit: "바나나", emoji: "🍌" },
-    { week: 21, fruit: "당근", emoji: "🥕" },
-    { week: 22, fruit: "파파야", emoji: "🧡" },
-    { week: 23, fruit: "자몽", emoji: "🍊" },
-    { week: 24, fruit: "옥수수", emoji: "🌽" },
-    { week: 25, fruit: "콜리플라워", emoji: "🥦" },
-    { week: 26, fruit: "상추 한 포기", emoji: "🥬" },
-    { week: 27, fruit: "양배추", emoji: "🥬" },
-    { week: 28, fruit: "가지", emoji: "🍆" },
-    { week: 29, fruit: "버터넛호박", emoji: "🎃" },
-    { week: 30, fruit: "오이", emoji: "🥒" },
-    { week: 31, fruit: "코코넛", emoji: "🥥" },
-    { week: 32, fruit: "단호박", emoji: "🎃" },
-    { week: 33, fruit: "파인애플", emoji: "🍍" },
-    { week: 34, fruit: "멜론", emoji: "🍈" },
-    { week: 35, fruit: "허니듀 멜론", emoji: "🍈" },
-    { week: 36, fruit: "로메인 상추", emoji: "🥬" },
-    { week: 37, fruit: "근대 한 단", emoji: "🥬" },
-    { week: 38, fruit: "대파 한 단", emoji: "🌿" },
-    { week: 39, fruit: "작은 수박", emoji: "🍉" },
-    { week: 40, fruit: "수박", emoji: "🍉" }
+    { week: 8, fruit: "라즈베리", emoji: "🍓" },{ week: 9, fruit: "체리", emoji: "🍒" },{ week: 10, fruit: "딸기", emoji: "🍓" },{ week: 11, fruit: "무화과", emoji: "🟣" },{ week: 12, fruit: "라임", emoji: "🍋" },{ week: 13, fruit: "레몬", emoji: "🍋" },{ week: 14, fruit: "복숭아", emoji: "🍑" },{ week: 15, fruit: "사과", emoji: "🍎" },{ week: 16, fruit: "아보카도", emoji: "🥑" },{ week: 17, fruit: "배", emoji: "🍐" },{ week: 18, fruit: "피망", emoji: "🫑" },{ week: 19, fruit: "망고", emoji: "🥭" },{ week: 20, fruit: "바나나", emoji: "🍌" },{ week: 21, fruit: "당근", emoji: "🥕" },{ week: 22, fruit: "파파야", emoji: "🧡" },{ week: 23, fruit: "자몽", emoji: "🍊" },{ week: 24, fruit: "옥수수", emoji: "🌽" },{ week: 25, fruit: "콜리플라워", emoji: "🥦" },{ week: 26, fruit: "상추 한 포기", emoji: "🥬" },{ week: 27, fruit: "양배추", emoji: "🥬" },{ week: 28, fruit: "가지", emoji: "🍆" },{ week: 29, fruit: "버터넛호박", emoji: "🎃" },{ week: 30, fruit: "오이", emoji: "🥒" },{ week: 31, fruit: "코코넛", emoji: "🥥" },{ week: 32, fruit: "단호박", emoji: "🎃" },{ week: 33, fruit: "파인애플", emoji: "🍍" },{ week: 34, fruit: "멜론", emoji: "🍈" },{ week: 35, fruit: "허니듀 멜론", emoji: "🍈" },{ week: 36, fruit: "로메인 상추", emoji: "🥬" },{ week: 37, fruit: "근대 한 단", emoji: "🥬" },{ week: 38, fruit: "대파 한 단", emoji: "🌿" },{ week: 39, fruit: "작은 수박", emoji: "🍉" },{ week: 40, fruit: "수박", emoji: "🍉" }
   ];
-
-  function startOfDay(date){
-    const d = new Date(date);
-    d.setHours(0, 0, 0, 0);
-    return d;
-  }
-
-  function diffDays(from, to){
-    return Math.floor((startOfDay(to) - startOfDay(from)) / 86400000);
-  }
-
-  function fruitForWeek(week){
-    return weeklyFruitSize.find(item => item.week === week)
-      || weeklyFruitSize.reduce((prev, curr) => Math.abs(curr.week - week) < Math.abs(prev.week - week) ? curr : prev);
-  }
-
+  function startOfDay(date){const d=new Date(date);d.setHours(0,0,0,0);return d}
+  function diffDays(from,to){return Math.floor((startOfDay(to)-startOfDay(from))/86400000)}
+  function fruitForWeek(week){return weeklyFruitSize.find(item=>item.week===week)||weeklyFruitSize.reduce((prev,curr)=>Math.abs(curr.week-week)<Math.abs(prev.week-week)?curr:prev)}
   function updateGestation(){
-    const baseDate = new Date(dueDate);
-    baseDate.setDate(baseDate.getDate() - pregnancyDays);
-
-    const today = new Date();
-    const elapsed = Math.max(0, diffDays(baseDate, today));
-    const week = Math.floor(elapsed / 7);
-    const day = elapsed % 7;
-    const dDay = Math.max(0, diffDays(today, dueDate));
-    const sizeInfo = fruitForWeek(week);
-
-    const gestationEl = document.getElementById("gestationToday");
-    const noteEl = document.getElementById("gestationNote");
-
-    if (gestationEl) gestationEl.textContent = `${week}주 ${day}일`;
-    if (noteEl && sizeInfo) {
-      noteEl.innerHTML = `출산까지 D-${dDay} · <span class="fruitInline">${sizeInfo.emoji} ${sizeInfo.fruit} 크기예요</span>`;
-    } else if (noteEl) {
-      noteEl.textContent = `출산까지 D-${dDay}`;
-    }
+    const baseDate=new Date(dueDate);baseDate.setDate(baseDate.getDate()-pregnancyDays);
+    const today=new Date();const elapsed=Math.max(0,diffDays(baseDate,today));const week=Math.floor(elapsed/7);const day=elapsed%7;const dDay=Math.max(0,diffDays(today,dueDate));const sizeInfo=fruitForWeek(week);
+    const gestationEl=document.getElementById("gestationToday");const noteEl=document.getElementById("gestationNote");
+    if(gestationEl)gestationEl.textContent=`${week}주 ${day}일`;
+    if(noteEl&&sizeInfo){noteEl.innerHTML=`출산까지 D-${dDay} · <span class="fruitInline">${sizeInfo.emoji} ${sizeInfo.fruit} 크기예요</span>`}else if(noteEl){noteEl.textContent=`출산까지 D-${dDay}`}
   }
-
   updateGestation();
-
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
-  }
+  if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js"))}
 })();
 </script>
-<script src="./bomi-live.js?v=4"></script>
+<script src="./bomi-live.js?v=5"></script>
 </body>
 </html>
