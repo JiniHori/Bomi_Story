@@ -38,6 +38,13 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
 .overall{font-size:30px;font-weight:950;letter-spacing:-.055em;color:#bd5d81;margin-top:3px}
 .statusText{font-size:13px;color:var(--muted);line-height:1.55;margin-top:10px}
 .signal{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:var(--mint2);color:#29786d;font-size:13px;font-weight:900}
+.insuranceMenu{display:flex;align-items:center;gap:14px;margin-top:16px;padding:17px 18px;text-decoration:none;color:var(--ink);background:linear-gradient(135deg,#fff7fb,#edfcf8);border:1px solid #efdbe4;border-radius:24px;box-shadow:0 10px 26px rgba(143,88,114,.075);transition:transform .16s ease,box-shadow .16s ease}
+.insuranceMenu:active{transform:scale(.985)}
+.insuranceIcon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;flex:0 0 46px;border-radius:16px;background:rgba(255,255,255,.9);font-size:24px;box-shadow:0 6px 16px rgba(143,88,114,.08)}
+.insuranceCopy{min-width:0;flex:1}
+.insuranceTitle{font-size:17px;font-weight:950;letter-spacing:-.025em;color:#754b5b}
+.insuranceDesc{margin-top:4px;font-size:12px;line-height:1.45;color:var(--muted)}
+.insuranceArrow{font-size:22px;font-weight:900;color:#b26481}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:0 10px 26px rgba(143,88,114,.075)}
 .card:nth-child(4n+1){background:linear-gradient(145deg,#fff,#fff9fb)}
@@ -97,6 +104,15 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
       <div class="todayLine">다음 일정을 확인하고 있습니다.</div>
     </div>
   </section>
+
+  <a class="insuranceMenu" href="./insurance.html?v=2" aria-label="태아보험 의사결정 도우미로 이동">
+    <div class="insuranceIcon">🛡️</div>
+    <div class="insuranceCopy">
+      <div class="insuranceTitle">태아보험 의사결정 도우미</div>
+      <div class="insuranceDesc">Jake · 지니 답변 비교와 보장 설계 확인</div>
+    </div>
+    <div class="insuranceArrow">›</div>
+  </a>
 
   <section class="grid">
     <article class="card metric">
