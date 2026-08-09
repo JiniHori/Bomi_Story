@@ -45,10 +45,11 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
   border:1px solid var(--line)
 }
 .panelTop{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.panelTop>*{min-width:0}
 .panel strong{display:block;color:var(--pink);font-size:25px;margin-bottom:5px;letter-spacing:-.035em}
 .signal{
-  display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--mint2);
-  color:#29786d;font-size:12px;font-weight:900;white-space:nowrap
+  display:inline-flex;max-width:100%;padding:7px 10px;border-radius:999px;background:var(--mint2);
+  color:#29786d;font-size:12px;font-weight:900;line-height:1.45;white-space:normal;overflow-wrap:anywhere;word-break:keep-all
 }
 .oneLine{font-size:14px;color:#674b57;line-height:1.65;margin-top:8px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
@@ -74,8 +75,8 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
 .metricRow:last-child,.statusRow:last-child{border-bottom:0}
 .metricValue{text-align:right;font-weight:850}
 .pill{
-  white-space:nowrap;padding:6px 9px;border-radius:999px;
-  background:var(--mint2);color:#29786d;font-size:12px;font-weight:900
+  max-width:100%;white-space:normal;padding:6px 9px;border-radius:999px;
+  background:var(--mint2);color:#29786d;font-size:12px;font-weight:900;line-height:1.4;text-align:right;overflow-wrap:anywhere;word-break:keep-all
 }
 .pill.yellow{background:#fff0d8;color:#98611b}
 .pill.pink{background:#ffe6ef;color:#a55271}
