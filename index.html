@@ -81,6 +81,66 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
 .loading{color:var(--muted)}
 .footer{margin-top:22px;text-align:center;color:#ae8e9b;font-size:12px;line-height:1.55}
 #bomiLiveStatus{margin-top:8px;font-weight:800}
+
+/* Tablet portrait: preserve the mobile visual language while using the iPad canvas. */
+@media(min-width:700px){
+  .wrap{max-width:880px;padding:34px 28px 64px}
+  .wrap:before{font-size:92px;left:2vw;top:150px;opacity:.24}
+  .wrap:after{font-size:88px;right:1vw;top:520px;opacity:.24}
+  .hero{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(320px,.95fr);
+    grid-template-rows:auto auto 1fr;
+    column-gap:30px;
+    align-items:center;
+    min-height:330px;
+    padding:36px 34px;
+    border-radius:36px
+  }
+  .hero:after{right:26px;top:22px;font-size:54px}
+  .hero .badge{grid-column:1;grid-row:1;justify-self:start}
+  .hero h1{grid-column:1;grid-row:2;margin:20px 0 10px;font-size:46px}
+  .hero .sub{grid-column:1;grid-row:3;align-self:start;font-size:15px}
+  .statusCard{grid-column:2;grid-row:1/4;margin-top:0;padding:22px;border-radius:28px;box-shadow:0 12px 30px rgba(171,91,122,.08)}
+  .overall{font-size:34px}
+  .statusText{font-size:14px}
+  .todayLine{padding:15px 16px;font-size:14px}
+  .insuranceMenu{margin-top:18px;padding:19px 22px;border-radius:26px}
+  .insuranceIcon{width:50px;height:50px;flex-basis:50px;border-radius:17px;font-size:26px}
+  .insuranceTitle{font-size:18px}
+  .insuranceDesc{font-size:13px}
+  .grid{gap:16px;margin-top:18px}
+  .card{padding:22px;border-radius:28px}
+  .card h2{font-size:22px;margin-bottom:16px}
+  .metric{min-height:155px}
+  .metric .icon{font-size:28px;margin-bottom:10px}
+  .value{font-size:28px}
+  .note{font-size:14px}
+  .status{padding:14px 0;font-size:15px}
+  .event{padding:16px;margin-bottom:16px}
+  .event strong{font-size:18px}
+  .videoFrame video{max-height:480px}
+  .videoCaption{padding:18px 22px 22px}
+  .videoCaption strong{font-size:23px}
+  .footer{margin-top:28px}
+}
+
+/* Tablet landscape / larger iPads: four summary cards in one glance. */
+@media(min-width:960px){
+  .wrap{max-width:1080px;padding:40px 32px 72px}
+  .hero{grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);column-gap:44px;min-height:350px;padding:42px 40px}
+  .hero h1{font-size:52px}
+  .hero .sub{font-size:16px}
+  .statusCard{padding:26px}
+  .overall{font-size:38px}
+  .insuranceMenu{padding:20px 24px}
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .metric{min-height:168px;padding:22px 20px}
+  .metric .value{font-size:27px}
+  .full{grid-column:1/-1}
+  .videoFrame video{max-height:560px}
+}
+
 @media(max-width:380px){.grid{grid-template-columns:1fr}.full{grid-column:auto}h1{font-size:30px}.row{align-items:flex-start;flex-direction:column}.signal{align-self:flex-start}}
 </style>
 <link rel="manifest" href="./manifest.json">
