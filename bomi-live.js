@@ -155,6 +155,11 @@
     if (nextNote) nextNote.textContent = [settings.next_visit_time, settings.next_visit_title].filter(Boolean).join(" · ") || "일정 미등록";
   }
 
+  function googleDrivePreviewUrl(url) {
+    const match = text(url).match(/drive\.google\.com\/file\/d\/([^/?#]+)/i);
+    return match ? `https://drive.google.com/file/d/${match[1]}/preview` : "";
+  }
+
   function renderVideos(records) {
     const host = $("#videoList");
     if (!host) return;
@@ -163,12 +168,29 @@
     withVideo.forEach((record, index) => {
       const card = make("article", "card full videoCard");
       const frame = make("div", "videoFrame");
-      const video = document.createElement("video");
-      video.controls = true;
-      video.playsInline = true;
-      video.preload = "metadata";
-      video.src = record.video_url;
-      frame.append(video);
+      const drivePreview = googleDrivePreviewUrl(record.video_url);
+      if (drivePreview) {
+        const iframe = document.createElement("iframe");
+        iframe.src = drivePreview;
+        iframe.title = `${formatDateKo(record.visit_date)} 초음파 영상`;
+        iframe.loading = "lazy";
+        iframe.allow = "autoplay; fullscreen";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.style.width = "100%";
+        iframe.style.aspectRatio = "16 / 9";
+        iframe.style.border = "0";
+        iframe.style.display = "block";
+        iframe.style.background = "#000";
+        frame.append(iframe);
+      } else {
+        const video = document.createElement("video");
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = "metadata";
+        video.src = record.video_url;
+        frame.append(video);
+      }
       const caption = make("div", "videoCaption");
       caption.append(make("div", "eyebrow", index === 0 ? "Latest ultrasound video" : "Ultrasound video"), make("strong", "", `${formatDateKo(record.visit_date)} 초음파 영상`), make("p", "", record.summary || record.title));
       card.append(frame, caption);
