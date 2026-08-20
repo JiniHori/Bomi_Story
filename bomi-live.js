@@ -160,6 +160,52 @@
     return match ? `https://drive.google.com/file/d/${match[1]}/preview` : "";
   }
 
+  function isMobileVideoLayout() {
+    return window.matchMedia("(max-width: 820px), (pointer: coarse)").matches;
+  }
+
+  function makeDriveMobileLauncher(record) {
+    const launcher = document.createElement("a");
+    launcher.href = record.video_url;
+    launcher.target = "_blank";
+    launcher.rel = "noopener noreferrer";
+    launcher.setAttribute("aria-label", `${formatDateKo(record.visit_date)} 초음파 영상 열기`);
+    launcher.style.display = "flex";
+    launcher.style.flexDirection = "column";
+    launcher.style.alignItems = "center";
+    launcher.style.justifyContent = "center";
+    launcher.style.gap = "10px";
+    launcher.style.width = "100%";
+    launcher.style.minHeight = "176px";
+    launcher.style.padding = "28px 20px";
+    launcher.style.boxSizing = "border-box";
+    launcher.style.borderRadius = "18px";
+    launcher.style.background = "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)";
+    launcher.style.color = "#fff";
+    launcher.style.textDecoration = "none";
+    launcher.style.textAlign = "center";
+
+    const icon = make("div", "", "▶");
+    icon.style.display = "grid";
+    icon.style.placeItems = "center";
+    icon.style.width = "52px";
+    icon.style.height = "52px";
+    icon.style.borderRadius = "50%";
+    icon.style.background = "rgba(255,255,255,.16)";
+    icon.style.fontSize = "22px";
+
+    const title = make("strong", "", "초음파 영상 보기");
+    title.style.fontSize = "17px";
+    const note = make("span", "", "모바일에서는 Google Drive에서 안정적으로 재생됩니다.");
+    note.style.maxWidth = "300px";
+    note.style.fontSize = "13px";
+    note.style.lineHeight = "1.5";
+    note.style.color = "rgba(255,255,255,.78)";
+
+    launcher.append(icon, title, note);
+    return launcher;
+  }
+
   function renderVideos(records) {
     const host = $("#videoList");
     if (!host) return;
@@ -168,21 +214,36 @@
     withVideo.forEach((record, index) => {
       const card = make("article", "card full videoCard");
       const frame = make("div", "videoFrame");
+      frame.style.width = "100%";
+      frame.style.maxWidth = "100%";
+      frame.style.boxSizing = "border-box";
+      frame.style.overflow = "hidden";
       const drivePreview = googleDrivePreviewUrl(record.video_url);
       if (drivePreview) {
-        const iframe = document.createElement("iframe");
-        iframe.src = drivePreview;
-        iframe.title = `${formatDateKo(record.visit_date)} 초음파 영상`;
-        iframe.loading = "lazy";
-        iframe.allow = "autoplay; fullscreen";
-        iframe.allowFullscreen = true;
-        iframe.referrerPolicy = "strict-origin-when-cross-origin";
-        iframe.style.width = "100%";
-        iframe.style.aspectRatio = "16 / 9";
-        iframe.style.border = "0";
-        iframe.style.display = "block";
-        iframe.style.background = "#000";
-        frame.append(iframe);
+        if (isMobileVideoLayout()) {
+          frame.style.height = "auto";
+          frame.style.minHeight = "0";
+          frame.style.aspectRatio = "auto";
+          frame.style.background = "transparent";
+          frame.append(makeDriveMobileLauncher(record));
+        } else {
+          frame.style.aspectRatio = "16 / 9";
+          frame.style.height = "auto";
+          frame.style.background = "#000";
+          const iframe = document.createElement("iframe");
+          iframe.src = drivePreview;
+          iframe.title = `${formatDateKo(record.visit_date)} 초음파 영상`;
+          iframe.loading = "lazy";
+          iframe.allow = "autoplay; fullscreen";
+          iframe.allowFullscreen = true;
+          iframe.referrerPolicy = "strict-origin-when-cross-origin";
+          iframe.style.width = "100%";
+          iframe.style.height = "100%";
+          iframe.style.border = "0";
+          iframe.style.display = "block";
+          iframe.style.background = "#000";
+          frame.append(iframe);
+        }
       } else {
         const video = document.createElement("video");
         video.controls = true;
