@@ -22,7 +22,7 @@ body{
   background:radial-gradient(circle at 8% 7%,rgba(255,205,224,.55),transparent 22%),radial-gradient(circle at 93% 24%,rgba(194,241,230,.58),transparent 25%),linear-gradient(180deg,#fff7fa 0%,#f7fffc 54%,#fff 100%);
   min-height:100vh
 }
-button,select,textarea{font:inherit}
+button,select,textarea,input{font:inherit}
 button{-webkit-tap-highlight-color:transparent}
 .wrap{max-width:980px;margin:0 auto;padding:16px 16px 56px}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 14px}
@@ -44,7 +44,7 @@ h1{margin:17px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.045em;colo
 .heroBrief{margin-top:10px;font-size:13px;line-height:1.55;color:#715360;font-weight:750}
 .notice{display:flex;gap:11px;align-items:flex-start;margin-top:14px;padding:14px 15px;border-radius:20px;background:rgba(255,255,255,.82);border:1px solid var(--line);font-size:12px;line-height:1.55;color:#735965}
 .noticeIcon{font-size:19px;line-height:1.2}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
 .stat{min-width:0;padding:15px 12px;border-radius:21px;background:rgba(255,255,255,.88);border:1px solid var(--line);box-shadow:0 8px 20px rgba(143,88,114,.06)}
 .statLabel{font-size:11px;color:var(--muted);font-weight:850}
 .statValue{margin-top:4px;font-size:22px;font-weight:950;letter-spacing:-.045em;color:#714c5b}
@@ -84,6 +84,28 @@ h1{margin:17px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.045em;colo
 .chip.optional{background:var(--yellow-soft);color:#8f631f}
 .chip.owner{background:var(--blue-soft);color:#5b6f9b}
 .sourceLink{display:inline-flex;align-items:center;text-decoration:none;padding:5px 8px;border-radius:999px;border:1px solid #eee0e6;color:#94717f;font-size:10px;font-weight:850;background:#fff}
+.recordToggle{display:inline-flex;align-items:center;gap:5px;border:1px solid #ddcbd3;border-radius:999px;padding:6px 9px;background:#fff;color:#87566a;font-size:10px;font-weight:900;cursor:pointer}
+.recordToggle.hasData{border-color:#aadfd5;background:var(--mint-soft);color:#32786e}
+.recordEditor{display:none;margin-top:13px;padding:14px;border:1px solid #eadce2;border-radius:17px;background:linear-gradient(145deg,#fffafd,#f8fffd)}
+.recordEditor.open{display:block}
+.recordHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+.recordHead strong{font-size:13px;color:#765361}.recordHint{font-size:10px;color:var(--muted);font-weight:750}
+.fieldGrid{display:grid;grid-template-columns:1fr;gap:10px}
+.fieldLabel{display:block;color:#735966;font-size:11px;font-weight:900}
+.fieldInput,.fieldTextarea{width:100%;margin-top:6px;border:1px solid #e7d7de;border-radius:12px;padding:10px 11px;color:var(--ink);background:#fff;outline:none}
+.fieldTextarea{min-height:82px;line-height:1.5;resize:vertical}
+.fieldInput:focus,.fieldTextarea:focus{border-color:#d695ad;box-shadow:0 0 0 3px rgba(214,149,173,.14)}
+.listRows{display:grid;gap:8px;margin-top:7px}.listRow{display:grid;grid-template-columns:1.35fr .75fr .85fr 1.1fr auto;gap:6px;align-items:center}.listRow .fieldInput{margin:0;min-width:0;padding:9px 8px;font-size:11px}.removeRow{width:31px;height:31px;border:0;border-radius:10px;background:#f7e9ee;color:#a05b73;font-weight:950;cursor:pointer}.addRow{margin-top:8px;border:1px dashed #d8bdc8;border-radius:11px;padding:8px 10px;background:#fff;color:#915a70;font-size:11px;font-weight:900;cursor:pointer}
+.syncPanel{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:13px 15px;border-radius:20px;background:rgba(255,255,255,.86);border:1px solid var(--line)}
+.syncCopy{min-width:0}.syncTitle{font-size:12px;font-weight:950;color:#6f4e5c}.syncState{margin-top:3px;font-size:10px;line-height:1.4;color:var(--muted);font-weight:750}.syncState.online{color:#2b786c}
+.syncButton{flex:0 0 auto;border:0;border-radius:13px;padding:9px 11px;background:linear-gradient(135deg,#ffe6ef,#e4faf5);color:#875167;font-size:11px;font-weight:950;cursor:pointer}
+.syncButton:disabled{opacity:.55}
+.syncDialog{width:min(92vw,480px);border:0;border-radius:26px;padding:0;background:#fff;color:var(--ink);box-shadow:0 24px 70px rgba(72,46,58,.28)}
+.syncDialog::backdrop{background:rgba(57,39,48,.38);backdrop-filter:blur(3px)}
+.dialogBody{padding:22px}.dialogHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.dialogHead h2{margin:0;font-size:21px;letter-spacing:-.035em}.dialogHead p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.55}.dialogClose{border:0;border-radius:50%;width:34px;height:34px;background:#f8edf1;color:#8c6272;font-weight:950;cursor:pointer}
+.dialogActions{display:grid;gap:9px;margin-top:17px}.dialogPrimary,.dialogSecondary,.dialogDanger{border:0;border-radius:14px;padding:12px;font-weight:950;cursor:pointer}.dialogPrimary{background:linear-gradient(135deg,#f8c8d9,#bcecdf);color:#714456}.dialogSecondary{background:#f8f2f4;color:#745b65}.dialogDanger{background:#fff0f2;color:#a34c61}
+.codeBox{display:none;margin-top:16px;padding:14px;border-radius:16px;background:#f5fffc;border:1px solid #d8eee9}.codeBox.show{display:block}.codeLabel{font-size:10px;color:#5f8079;font-weight:900}.codeValue{margin-top:6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.5;font-weight:900;letter-spacing:.04em;word-break:break-all;color:#356c63}.codeHelp{margin-top:7px;font-size:10px;line-height:1.5;color:#68847e}
+.connectForm{display:none;margin-top:15px}.connectForm.show{display:block}.connectForm .fieldInput{text-transform:uppercase;letter-spacing:.03em}.dialogMessage{min-height:17px;margin-top:10px;font-size:11px;line-height:1.45;color:#8b6574}.dialogMessage.error{color:#aa3f55}
 .empty{padding:28px 18px;text-align:center;border:1px dashed #e7cfd9;border-radius:22px;background:rgba(255,255,255,.66);color:var(--muted);font-size:13px;line-height:1.6}
 .sources{margin-top:24px;padding:18px;border-radius:24px;background:rgba(255,255,255,.84);border:1px solid var(--line)}
 .sources summary{cursor:pointer;font-size:15px;font-weight:950;color:#6e4d5b}
@@ -95,10 +117,10 @@ h1{margin:17px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.045em;colo
 .saveToast{position:fixed;z-index:30;left:50%;bottom:22px;transform:translate(-50%,18px);padding:10px 14px;border-radius:999px;background:#5b4350;color:#fff;font-size:12px;font-weight:850;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;box-shadow:0 12px 28px rgba(61,42,51,.22)}
 .saveToast.show{opacity:1;transform:translate(-50%,0)}
 @media(min-width:700px){
-  .wrap{padding:26px 28px 72px}.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);column-gap:30px;align-items:center;padding:34px;border-radius:36px}.heroCopy{align-self:center}.hero h1{font-size:43px}.heroLead{font-size:15px}.weekPanel{margin-top:0}.stats{gap:14px}.stat{padding:18px}.statValue{font-size:27px}.stageGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.task{padding:18px}.taskTitle{font-size:16px}.taskDesc{font-size:13px}.controls{padding-top:13px}.sourceList{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wrap{padding:26px 28px 72px}.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);column-gap:30px;align-items:center;padding:34px;border-radius:36px}.heroCopy{align-self:center}.hero h1{font-size:43px}.heroLead{font-size:15px}.weekPanel{margin-top:0}.stats{gap:14px}.stat{padding:18px}.statValue{font-size:27px}.stageGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.task{padding:18px}.taskTitle{font-size:16px}.taskDesc{font-size:13px}.controls{padding-top:13px}.sourceList{grid-template-columns:repeat(2,minmax(0,1fr))}.fieldGrid.twoCols{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:430px){
-  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat{padding:13px 9px}.statValue{font-size:19px}.statLabel{font-size:10px}.taskTop{gap:8px}.statusSelect{min-width:78px;padding-left:7px}.stageTitle{font-size:18px}.stageMeta{font-size:11px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:13px 9px}.statValue{font-size:19px}.statLabel{font-size:10px}.taskTop{gap:8px}.statusSelect{min-width:78px;padding-left:7px}.stageTitle{font-size:18px}.stageMeta{font-size:11px}.syncPanel{align-items:flex-start}.listRow{grid-template-columns:1fr 1fr}.listRow .removeRow{grid-column:2;justify-self:end}.recordEditor{padding:12px}
 }
 @media(max-width:360px){.weekRow{flex-direction:column}.dDay{align-self:flex-start}.tabs{grid-template-columns:1fr}.taskTop{display:block}.statusSelect{margin-top:10px}}
 </style>
@@ -135,10 +157,19 @@ h1{margin:17px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.045em;colo
     <div><strong>의료 일정은 담당의와 최종 확인해 주세요.</strong><br>검사와 진료 시점은 일반적인 권고와 W여성병원 공개 정보를 기준으로 구성했습니다. 산모·태아 상태에 따라 달라질 수 있습니다.</div>
   </div>
 
+  <section class="syncPanel" aria-label="기기 간 동기화">
+    <div class="syncCopy">
+      <div class="syncTitle">☁️ 아이폰·아이패드 동기화</div>
+      <div class="syncState" id="syncState">이 기기에 안전하게 저장 중</div>
+    </div>
+    <button class="syncButton" id="syncButton" type="button">동기화 설정</button>
+  </section>
+
   <section class="stats" aria-label="체크리스트 요약">
     <div class="stat"><div class="statLabel">전체 진행률</div><div class="statValue" id="progressValue">0%</div></div>
     <div class="stat"><div class="statLabel">완료</div><div class="statValue" id="doneValue">0건</div></div>
     <div class="stat"><div class="statLabel">지금 할 일</div><div class="statValue" id="dueValue">0건</div></div>
+    <div class="stat"><div class="statLabel">기록한 항목</div><div class="statValue" id="recordValue">0건</div></div>
   </section>
 
   <section class="controls" aria-label="체크리스트 보기 설정">
@@ -160,15 +191,46 @@ h1{margin:17px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.045em;colo
 
   <footer class="footer">
     2026년 8월 23일 기준 · 정책과 병원 운영은 신청·진료 전에 재확인<br>
-    완료 상태는 이 기기의 브라우저에 자동 저장됩니다.
+    상태와 입력 내용은 자동 저장되며, 동기화 연결 시 암호화되어 기기 사이에 공유됩니다.
   </footer>
 </main>
 <div class="saveToast" id="saveToast">저장했습니다</div>
+
+<dialog class="syncDialog" id="syncDialog">
+  <div class="dialogBody">
+    <div class="dialogHead">
+      <div><h2>기기 간 동기화</h2><p>한 기기에서 만든 동기화 코드를 다른 기기에 입력하면 같은 체크리스트와 기록을 사용합니다.</p></div>
+      <button class="dialogClose" id="dialogClose" type="button" aria-label="닫기">×</button>
+    </div>
+    <div class="dialogActions" id="syncStartActions">
+      <button class="dialogPrimary" id="createSync" type="button">새 동기화 코드 만들기</button>
+      <button class="dialogSecondary" id="showConnect" type="button">다른 기기의 코드로 연결</button>
+    </div>
+    <form class="connectForm" id="connectForm">
+      <label class="fieldLabel">동기화 코드<input class="fieldInput" id="connectCode" type="text" inputmode="text" autocomplete="off" placeholder="BOMI-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX" required></label>
+      <button class="dialogPrimary" type="submit" style="width:100%;margin-top:10px">연결하고 불러오기</button>
+    </form>
+    <div class="codeBox" id="codeBox">
+      <div class="codeLabel">현재 동기화 코드</div>
+      <div class="codeValue" id="codeValue"></div>
+      <div class="codeHelp">이 코드는 기록을 여는 열쇠입니다. 가족 기기 외에는 공유하지 마세요. 서버에는 입력 내용이 암호화된 상태로 저장됩니다.</div>
+      <div class="dialogActions">
+        <button class="dialogPrimary" id="copyCode" type="button">코드 복사</button>
+        <button class="dialogSecondary" id="syncNow" type="button">지금 동기화</button>
+        <button class="dialogDanger" id="disconnectSync" type="button">이 기기 연결 해제</button>
+      </div>
+    </div>
+    <div class="dialogMessage" id="dialogMessage"></div>
+  </div>
+</dialog>
 
 <script>
 const DUE_DATE = '2027-01-06';
 const DAY = 86400000;
 const STORAGE_KEY = 'bomi-prep-checklist-v1';
+const SYNC_CODE_KEY = 'bomi-prep-sync-code-v1';
+const SYNC_API = './api/prep/sync';
+const SAVE_DELAY = 550;
 
 const CATEGORIES = {
   all:{label:'전체',icon:'✦'},
@@ -308,13 +370,89 @@ const TASKS = [
   {id:'p4-daycare',post:28,cat:'admin',priority:'optional',owner:'함께',title:'어린이집 이용계획이 있다면 대기 신청 검토',desc:'복직 예정일과 희망 시설의 대기 상황을 확인해 필요한 경우 아이사랑에서 신청합니다.'}
 ];
 
+const SPECIAL_RECORDS = {
+  'w21-supplements':{
+    title:'복용약·영양제 시간표',
+    list:{key:'medications',addLabel:'+ 복용 항목 추가',columns:[
+      {key:'name',label:'약·영양제 이름',placeholder:'예: 철분'},
+      {key:'dose',label:'용량',placeholder:'예: 1정'},
+      {key:'time',label:'시간',placeholder:'예: 21:00'},
+      {key:'memo',label:'복용 방법',placeholder:'예: 식후'}
+    ]}
+  },
+  'w20-budget':{
+    title:'출산 준비 예산·보유품',
+    list:{key:'budget',addLabel:'+ 예산 항목 추가',columns:[
+      {key:'name',label:'항목',placeholder:'예: 카시트'},
+      {key:'amount',label:'예산',placeholder:'예: 300,000'},
+      {key:'state',label:'구분',placeholder:'구매·대여'},
+      {key:'memo',label:'메모',placeholder:'보유 여부'}
+    ]}
+  },
+  'w30-cashplan':{
+    title:'출산 전후 현금흐름',
+    list:{key:'budget',addLabel:'+ 비용 항목 추가',columns:[
+      {key:'name',label:'항목',placeholder:'예: 조리원 잔금'},
+      {key:'amount',label:'금액',placeholder:'예: 2,000,000'},
+      {key:'date',label:'예정일',placeholder:'예: 12/20'},
+      {key:'memo',label:'상태',placeholder:'미결제'}
+    ]}
+  },
+  'w22-questions':{
+    title:'첫 진료 질문 목록',
+    list:{key:'questions',addLabel:'+ 질문 추가',columns:[
+      {key:'name',label:'질문',placeholder:'의료진에게 물어볼 내용'},
+      {key:'answer',label:'답변',placeholder:'진료 후 기록',wide:true}
+    ]}
+  },
+  'w31-roles':{
+    title:'출산 직후 역할표',
+    list:{key:'roles',addLabel:'+ 역할 추가',columns:[
+      {key:'name',label:'할 일',placeholder:'예: 식사 준비'},
+      {key:'owner',label:'담당',placeholder:'제이크'},
+      {key:'when',label:'시기',placeholder:'매일'},
+      {key:'memo',label:'메모',placeholder:'연락처 등'}
+    ]}
+  },
+  'w32-bagstart':{
+    title:'출산가방 목록',
+    list:{key:'packing',addLabel:'+ 준비물 추가',columns:[
+      {key:'name',label:'준비물',placeholder:'예: 산모수첩'},
+      {key:'bag',label:'가방',placeholder:'병원용'},
+      {key:'state',label:'상태',placeholder:'준비 완료'},
+      {key:'memo',label:'메모',placeholder:'수량 등'}
+    ]}
+  }
+};
+
 let saved = loadSaved();
 let currentView = 'now';
 let currentCategory = 'all';
 let toastTimer;
+let saveTimer;
+let syncTimer;
+let syncCode = localStorage.getItem(SYNC_CODE_KEY) || '';
+let syncing = false;
+const openEditors = new Set();
 
 function loadSaved(){
-  try{return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')}catch(error){return {}}
+  try{
+    const raw=JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    if(raw&&raw.version===2&&raw.items)return raw;
+    const items={};
+    Object.entries(raw||{}).forEach(([id,status])=>{
+      if(typeof status==='string')items[id]={status,fields:{},updatedAt:1};
+    });
+    return {version:2,items};
+  }catch(error){return {version:2,items:{}}}
+}
+
+function persistSaved(){localStorage.setItem(STORAGE_KEY,JSON.stringify(saved))}
+function itemOf(id){return saved.items[id]||{status:'todo',fields:{},updatedAt:0}}
+function fieldsOf(id){return itemOf(id).fields||{}}
+function hasRecord(id){
+  const fields=fieldsOf(id);
+  return Object.values(fields).some(value=>Array.isArray(value)?value.some(row=>Object.values(row||{}).some(Boolean)):Boolean(String(value||'').trim()));
 }
 
 function seoulDate(){
@@ -337,7 +475,7 @@ function pregnancyNow(){
   return {today,daysUntil,total,week:Math.floor(total/7),day:((total%7)+7)%7};
 }
 
-function stateOf(id){return saved[id] || 'todo'}
+function stateOf(id){return itemOf(id).status || 'todo'}
 function isHiddenByState(task){const s=stateOf(task.id);return document.getElementById('hideDone').checked && (s==='done'||s==='skip')}
 function matchesCategory(task){return currentCategory==='all'||task.cat===currentCategory}
 
@@ -345,15 +483,85 @@ function statusLabel(state){return {todo:'준비 전',done:'완료',hold:'보류
 function priorityLabel(priority){return {essential:'필수',recommended:'권장',optional:'선택'}[priority]}
 
 function saveStatus(id,value){
-  saved[id]=value;
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));
-  showToast();render();
+  updateItem(id,item=>({...item,status:value}),true);
 }
 
-function showToast(){
+function updateItem(id,updater,rerender=false){
+  const current=itemOf(id);
+  saved.items[id]={...updater({...current,fields:{...(current.fields||{})}}),updatedAt:Date.now()};
+  persistSaved();
+  clearTimeout(saveTimer);saveTimer=setTimeout(showToast,SAVE_DELAY);
+  scheduleSync();
+  if(rerender)render();else updateRecordStat();
+}
+
+function updateField(id,key,value){
+  updateItem(id,item=>({...item,fields:{...item.fields,[key]:value}}));
+}
+
+function showToast(message='저장했습니다'){
   const toast=document.getElementById('saveToast');
+  toast.textContent=message;
   toast.classList.add('show');clearTimeout(toastTimer);
   toastTimer=setTimeout(()=>toast.classList.remove('show'),1100);
+}
+
+function esc(value){
+  return String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+}
+
+function makeListEditor(task,list,fields){
+  const rows=Array.isArray(fields[list.key])?fields[list.key]:[];
+  const wrap=document.createElement('div');
+  wrap.innerHTML=`<div class="fieldLabel">${esc(SPECIAL_RECORDS[task.id].title)}</div><div class="listRows"></div><button class="addRow" type="button">${esc(list.addLabel)}</button>`;
+  const host=wrap.querySelector('.listRows');
+
+  rows.forEach((row,rowIndex)=>{
+    const rowEl=document.createElement('div');rowEl.className='listRow';
+    rowEl.style.gridTemplateColumns=`repeat(${list.columns.length},minmax(0,1fr)) auto`;
+    list.columns.forEach(column=>{
+      const input=document.createElement('input');
+      input.className='fieldInput';input.type='text';input.value=row[column.key]||'';
+      input.placeholder=column.placeholder;input.setAttribute('aria-label',column.label);
+      input.addEventListener('input',()=>{
+        const next=(fieldsOf(task.id)[list.key]||[]).map(item=>({...item}));
+        next[rowIndex]={...(next[rowIndex]||{}),[column.key]:input.value};
+        updateField(task.id,list.key,next);
+      });
+      rowEl.appendChild(input);
+    });
+    const remove=document.createElement('button');remove.type='button';remove.className='removeRow';remove.textContent='×';remove.setAttribute('aria-label','행 삭제');
+    remove.addEventListener('click',()=>{
+      const next=(fieldsOf(task.id)[list.key]||[]).filter((_,index)=>index!==rowIndex);
+      updateField(task.id,list.key,next);openEditors.add(task.id);render();
+    });
+    rowEl.appendChild(remove);host.appendChild(rowEl);
+  });
+
+  wrap.querySelector('.addRow').addEventListener('click',()=>{
+    const blank=Object.fromEntries(list.columns.map(column=>[column.key,'']));
+    updateField(task.id,list.key,[...(fieldsOf(task.id)[list.key]||[]),blank]);
+    openEditors.add(task.id);render();
+  });
+  return wrap;
+}
+
+function makeRecordEditor(task){
+  const fields=fieldsOf(task.id);
+  const editor=document.createElement('div');editor.className=`recordEditor${openEditors.has(task.id)?' open':''}`;
+  editor.innerHTML=`
+    <div class="recordHead"><strong>이 항목에 저장</strong><span class="recordHint">입력하면 자동 저장</span></div>
+    <div class="fieldGrid twoCols">
+      <label class="fieldLabel">날짜·예약일<input class="fieldInput" data-field="date" type="date" value="${esc(fields.date||'')}"></label>
+      <label class="fieldLabel">연락처·관련 링크<input class="fieldInput" data-field="contact" type="text" value="${esc(fields.contact||'')}" placeholder="전화번호나 웹주소"></label>
+    </div>`;
+  const special=SPECIAL_RECORDS[task.id];
+  if(special?.list)editor.appendChild(makeListEditor(task,special.list,fields));
+  const note=document.createElement('label');note.className='fieldLabel';note.style.display='block';note.style.marginTop='10px';
+  note.innerHTML=`메모<textarea class="fieldTextarea" data-field="note" placeholder="확인한 내용, 결정사항, 다음 할 일을 자유롭게 기록하세요.">${esc(fields.note||'')}</textarea>`;
+  editor.appendChild(note);
+  editor.querySelectorAll('[data-field]').forEach(input=>input.addEventListener('input',()=>updateField(task.id,input.dataset.field,input.value)));
+  return editor;
 }
 
 function makeTask(task){
@@ -376,8 +584,15 @@ function makeTask(task){
       <span class="chip owner">${task.owner}</span>
       <span class="chip">${CATEGORIES[task.cat].icon} ${CATEGORIES[task.cat].label}</span>
       ${sources}
+      <button class="recordToggle${hasRecord(task.id)?' hasData':''}" type="button">${hasRecord(task.id)?'✎ 기록 있음':'＋ 기록하기'}</button>
     </div>`;
   article.querySelector('select').addEventListener('change',event=>saveStatus(task.id,event.target.value));
+  const editor=makeRecordEditor(task);article.appendChild(editor);
+  article.querySelector('.recordToggle').addEventListener('click',event=>{
+    if(openEditors.has(task.id))openEditors.delete(task.id);else openEditors.add(task.id);
+    editor.classList.toggle('open');
+    event.currentTarget.setAttribute('aria-expanded',editor.classList.contains('open'));
+  });
   return article;
 }
 
@@ -439,8 +654,17 @@ function updateSummary(now){
   document.getElementById('progressValue').textContent=`${pct}%`;
   document.getElementById('doneValue').textContent=`${done}건`;
   document.getElementById('dueValue').textContent=`${due}건`;
+  updateRecordStat();
   document.getElementById('progressFill').style.width=`${pct}%`;
   document.getElementById('heroBrief').textContent=now.week<=40?`이번 주 필수 ${thisWeek}건 · 전체 준비 ${done}/${active.length}건 완료`:`출산 후 일정은 봄이의 실제 출생일에 맞춰 조정해 주세요.`;
+}
+
+function updateRecordStat(){
+  document.getElementById('recordValue').textContent=`${TASKS.filter(task=>hasRecord(task.id)).length}건`;
+  document.querySelectorAll('.task').forEach(article=>{
+    const toggle=article.querySelector('.recordToggle');if(!toggle)return;
+    const has=hasRecord(article.dataset.taskId);toggle.classList.toggle('hasData',has);toggle.textContent=has?'✎ 기록 있음':'＋ 기록하기';
+  });
 }
 
 function updateGestation(now){
@@ -490,13 +714,148 @@ function initSources(){
   });
 }
 
+function normalizeSyncCode(value){return String(value||'').trim().toUpperCase().replace(/\s+/g,'-')}
+
+async function encryptionKey(code){
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(code));
+  return crypto.subtle.importKey('raw',digest,{name:'AES-GCM'},false,['encrypt','decrypt']);
+}
+
+function bytesToBase64(bytes){
+  let binary='';bytes.forEach(byte=>binary+=String.fromCharCode(byte));return btoa(binary);
+}
+
+function base64ToBytes(value){
+  const binary=atob(value);return Uint8Array.from(binary,char=>char.charCodeAt(0));
+}
+
+async function encryptItem(item,code){
+  const key=await encryptionKey(code);const iv=crypto.getRandomValues(new Uint8Array(12));
+  const plain=new TextEncoder().encode(JSON.stringify({status:item.status||'todo',fields:item.fields||{}}));
+  const ciphertext=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,plain);
+  return {updatedAt:item.updatedAt,iv:bytesToBase64(iv),ciphertext:bytesToBase64(new Uint8Array(ciphertext))};
+}
+
+async function decryptItem(entry,code){
+  const key=await encryptionKey(code);
+  const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:base64ToBytes(entry.iv)},key,base64ToBytes(entry.ciphertext));
+  const item=JSON.parse(new TextDecoder().decode(plain));
+  return {status:item.status||'todo',fields:item.fields||{},updatedAt:entry.updatedAt};
+}
+
+async function encryptedSnapshot(code){
+  const entries=await Promise.all(Object.entries(saved.items).map(async([id,item])=>[id,await encryptItem(item,code)]));
+  return {version:1,items:Object.fromEntries(entries),updatedAt:Date.now()};
+}
+
+async function apiSync(action,body){
+  const response=await fetch(`${SYNC_API}/${action}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(data.error||'동기화에 실패했습니다.');
+  return data;
+}
+
+function setSyncState(message,tone=''){
+  const state=document.getElementById('syncState');state.textContent=message;state.classList.toggle('online',tone==='online');
+}
+
+async function mergeRemote(snapshot,code){
+  let localAhead=false;let changed=false;
+  for(const [id,entry] of Object.entries(snapshot?.items||{})){
+    const local=itemOf(id);
+    if(local.updatedAt>entry.updatedAt){localAhead=true;continue}
+    if(entry.updatedAt<=local.updatedAt)continue;
+    try{saved.items[id]=await decryptItem(entry,code);changed=true}catch(error){throw new Error('동기화 코드가 맞지 않거나 저장 데이터를 열 수 없습니다.')}
+  }
+  if(changed){persistSaved();render()}
+  return localAhead;
+}
+
+async function syncPush(){
+  if(!syncCode||syncing||!navigator.onLine)return;
+  syncing=true;setSyncState('변경 내용을 동기화하는 중…');
+  try{
+    const data=await apiSync('push',{syncCode,snapshot:await encryptedSnapshot(syncCode)});
+    await mergeRemote(data.snapshot,syncCode);
+    setSyncState('연결됨 · 모든 기기에 저장됨','online');
+  }catch(error){setSyncState('오프라인 저장 중 · 연결되면 자동 동기화');}
+  finally{syncing=false}
+}
+
+async function syncPull(){
+  if(!syncCode||syncing||!navigator.onLine)return;
+  syncing=true;setSyncState('다른 기기의 변경 내용을 확인하는 중…');
+  try{
+    const data=await apiSync('pull',{syncCode});
+    const localAhead=await mergeRemote(data.snapshot,syncCode);
+    syncing=false;
+    if(localAhead)await syncPush();else setSyncState('연결됨 · 모든 기기에 저장됨','online');
+  }catch(error){setSyncState('오프라인 저장 중 · 연결되면 자동 동기화');syncing=false;throw error}
+}
+
+function scheduleSync(){
+  if(!syncCode)return;clearTimeout(syncTimer);setSyncState('이 기기에 저장됨 · 동기화 대기 중');syncTimer=setTimeout(syncPush,900);
+}
+
+function updateSyncDialog(){
+  const connected=Boolean(syncCode);
+  document.getElementById('syncStartActions').style.display=connected?'none':'grid';
+  document.getElementById('connectForm').classList.remove('show');
+  document.getElementById('codeBox').classList.toggle('show',connected);
+  document.getElementById('codeValue').textContent=syncCode;
+  document.getElementById('dialogMessage').textContent='';
+}
+
+function dialogMessage(message,error=false){
+  const host=document.getElementById('dialogMessage');host.textContent=message;host.classList.toggle('error',error);
+}
+
+async function connectWithCode(code){
+  const normalized=normalizeSyncCode(code);
+  if(!/^BOMI(?:-[A-Z2-9]{4}){6}$/.test(normalized))throw new Error('코드 형식을 확인해 주세요.');
+  const previous=syncCode;syncCode=normalized;
+  try{
+    await syncPull();localStorage.setItem(SYNC_CODE_KEY,syncCode);updateSyncDialog();showToast('동기화 연결 완료');
+  }catch(error){syncCode=previous;throw error}
+}
+
+function initSync(){
+  const dialog=document.getElementById('syncDialog');
+  document.getElementById('syncButton').addEventListener('click',()=>{updateSyncDialog();dialog.showModal()});
+  document.getElementById('dialogClose').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+  document.getElementById('showConnect').addEventListener('click',()=>document.getElementById('connectForm').classList.add('show'));
+  document.getElementById('createSync').addEventListener('click',async event=>{
+    event.currentTarget.disabled=true;dialogMessage('동기화 코드를 만드는 중…');
+    try{
+      const data=await apiSync('create',{});syncCode=data.syncCode;localStorage.setItem(SYNC_CODE_KEY,syncCode);updateSyncDialog();await syncPush();dialogMessage('코드를 다른 기기에 입력하면 같은 기록이 열립니다.');
+    }catch(error){dialogMessage(error.message,true)}finally{event.currentTarget.disabled=false}
+  });
+  document.getElementById('connectForm').addEventListener('submit',async event=>{
+    event.preventDefault();const button=event.currentTarget.querySelector('button');button.disabled=true;dialogMessage('기록을 불러오는 중…');
+    try{await connectWithCode(document.getElementById('connectCode').value);dialogMessage('이 기기가 연결되었습니다.')}catch(error){dialogMessage(error.message,true)}finally{button.disabled=false}
+  });
+  document.getElementById('copyCode').addEventListener('click',async()=>{
+    try{await navigator.clipboard.writeText(syncCode);dialogMessage('동기화 코드를 복사했습니다.')}catch(error){dialogMessage('코드를 길게 눌러 직접 복사해 주세요.',true)}
+  });
+  document.getElementById('syncNow').addEventListener('click',async()=>{
+    dialogMessage('동기화하는 중…');try{await syncPull();dialogMessage('최신 기록으로 동기화했습니다.')}catch(error){dialogMessage(error.message,true)}
+  });
+  document.getElementById('disconnectSync').addEventListener('click',()=>{
+    syncCode='';localStorage.removeItem(SYNC_CODE_KEY);updateSyncDialog();setSyncState('이 기기에 안전하게 저장 중');dialogMessage('이 기기의 연결을 해제했습니다. 저장된 기록은 이 기기에 남아 있습니다.');
+  });
+  window.addEventListener('online',()=>syncPull().catch(()=>{}));
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')syncPull().catch(()=>{})});
+  if(syncCode){setSyncState('연결됨 · 최신 기록 확인 중');syncPull().catch(()=>{})}
+}
+
 document.querySelectorAll('.tab').forEach(button=>button.addEventListener('click',()=>{
   currentView=button.dataset.view;
   document.querySelectorAll('.tab').forEach(item=>item.classList.toggle('active',item===button));
   render();window.scrollTo({top:document.querySelector('.controls').offsetTop-6,behavior:'smooth'});
 }));
 document.getElementById('hideDone').addEventListener('change',render);
-initFilters();initSources();render();
+initFilters();initSources();render();initSync();
 
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'))}
 </script>
