@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'bomi-';
-const CACHE_NAME = 'bomi-live-v8';
+const CACHE_NAME = 'bomi-live-v9';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
