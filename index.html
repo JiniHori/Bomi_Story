@@ -40,6 +40,7 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
 .signal{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:var(--mint2);color:#29786d;font-size:13px;font-weight:900}
 .insuranceMenu{display:flex;align-items:center;gap:14px;margin-top:16px;padding:17px 18px;text-decoration:none;color:var(--ink);background:linear-gradient(135deg,#fff7fb,#edfcf8);border:1px solid #efdbe4;border-radius:24px;box-shadow:0 10px 26px rgba(143,88,114,.075);transition:transform .16s ease,box-shadow .16s ease}
 .insuranceMenu:active{transform:scale(.985)}
+.insuranceMenu.prepMenu{background:linear-gradient(135deg,#fff1f6,#e8fbf6);border-color:#edcedb}
 .insuranceIcon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;flex:0 0 46px;border-radius:16px;background:rgba(255,255,255,.9);font-size:24px;box-shadow:0 6px 16px rgba(143,88,114,.08)}
 .insuranceCopy{min-width:0;flex:1}
 .insuranceTitle{font-size:17px;font-weight:950;letter-spacing:-.025em;color:#754b5b}
@@ -164,6 +165,15 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
       <div class="todayLine">다음 일정을 확인하고 있습니다.</div>
     </div>
   </section>
+
+  <a class="insuranceMenu prepMenu" href="./prep.html?v=1" aria-label="봄이 출산 준비 체크리스트로 이동">
+    <div class="insuranceIcon">📋</div>
+    <div class="insuranceCopy">
+      <div class="insuranceTitle">출산 준비 체크리스트</div>
+      <div class="insuranceDesc">현재 주수 맞춤 · 진료·용품·행정·가족 역할을 한눈에</div>
+    </div>
+    <div class="insuranceArrow">›</div>
+  </a>
 
   <a class="insuranceMenu" href="./insurance.html?v=3" aria-label="봄이 태아보험 가입기록으로 이동">
     <div class="insuranceIcon">🛡️</div>
