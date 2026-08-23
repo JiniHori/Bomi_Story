@@ -94,11 +94,14 @@
   function updateGestation(dueDateIso) {
     if (!dueDateIso) return;
     const dueDate = new Date(`${dueDateIso}T00:00:00+09:00`);
-    const baseDate = new Date(dueDate);
-    baseDate.setDate(baseDate.getDate() - 280);
-    const today = new Date();
-    const start = (date) => { const d = new Date(date); d.setHours(0, 0, 0, 0); return d; };
-    const diffDays = (from, to) => Math.floor((start(to) - start(from)) / 86400000);
+    const dayMs = 86400000;
+    const baseDate = new Date(dueDate.getTime() - 280 * dayMs);
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
+    }).formatToParts(new Date());
+    const part = (type) => parts.find((item) => item.type === type)?.value;
+    const today = new Date(`${part("year")}-${part("month")}-${part("day")}T00:00:00+09:00`);
+    const diffDays = (from, to) => Math.round((to - from) / dayMs);
     const elapsed = Math.max(0, diffDays(baseDate, today));
     const week = Math.floor(elapsed / 7);
     const day = elapsed % 7;
