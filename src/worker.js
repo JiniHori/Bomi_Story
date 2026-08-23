@@ -7,22 +7,14 @@ const JSON_HEADERS = {
 };
 
 const MAX_BODY_BYTES = 300_000;
-const CODE_PATTERN = /^BOMI(?:-[A-Z2-9]{4}){6}$/;
+const SYNC_ID_PATTERN = /^BOMI(?:-[A-Z2-9]{4}){2}$/;
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
 }
 
-function normalizeCode(value) {
+function normalizeSyncId(value) {
   return String(value || "").trim().toUpperCase().replace(/\s+/g, "-");
-}
-
-function randomCode() {
-  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  const bytes = crypto.getRandomValues(new Uint8Array(24));
-  let raw = "";
-  for (const byte of bytes) raw += alphabet[byte & 31];
-  return `BOMI-${raw.match(/.{4}/g).join("-")}`;
 }
 
 async function readJson(request) {
@@ -99,10 +91,17 @@ async function prepApi(request, env) {
 
   const url = new URL(request.url);
   if (url.pathname === "/api/prep/sync/create") {
-    const syncCode = randomCode();
-    const stub = env.PREP_SYNC.getByName(`prep-v1:${syncCode}`);
+    let body;
+    try {
+      body = await readJson(request);
+    } catch (error) {
+      return json({ error: "요청 형식이 올바르지 않습니다." }, 400);
+    }
+    const syncId = normalizeSyncId(body.syncId);
+    if (!SYNC_ID_PATTERN.test(syncId)) return json({ error: "동기화 식별자를 확인해 주세요." }, 400);
+    const stub = env.PREP_SYNC.getByName(`prep-v2:${syncId}`);
     await stub.fetch("https://prep-sync.internal/initialize", { method: "POST" });
-    return json({ syncCode }, 201);
+    return json({ ok: true }, 201);
   }
 
   if (!["/api/prep/sync/pull", "/api/prep/sync/push"].includes(url.pathname)) {
@@ -116,10 +115,10 @@ async function prepApi(request, env) {
     return json({ error: error.message === "PAYLOAD_TOO_LARGE" ? "저장 데이터가 너무 큽니다." : "요청 형식이 올바르지 않습니다." }, 400);
   }
 
-  const code = normalizeCode(body.syncCode);
-  if (!CODE_PATTERN.test(code)) return json({ error: "동기화 코드를 확인해 주세요." }, 400);
+  const syncId = normalizeSyncId(body.syncId);
+  if (!SYNC_ID_PATTERN.test(syncId)) return json({ error: "동기화 식별자를 확인해 주세요." }, 400);
 
-  const stub = env.PREP_SYNC.getByName(`prep-v1:${code}`);
+  const stub = env.PREP_SYNC.getByName(`prep-v2:${syncId}`);
   const target = url.pathname.endsWith("/push") ? "/push" : "/pull";
   const payload = target === "/push" ? JSON.stringify({ snapshot: body.snapshot }) : "{}";
   return stub.fetch(`https://prep-sync.internal${target}`, {

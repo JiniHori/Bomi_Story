@@ -715,6 +715,11 @@ function initSources(){
 }
 
 function normalizeSyncCode(value){return String(value||'').trim().toUpperCase().replace(/\s+/g,'-')}
+function syncIdOf(code){return normalizeSyncCode(code).split('-').slice(0,3).join('-')}
+function randomSyncCode(){
+  const alphabet='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';const bytes=crypto.getRandomValues(new Uint8Array(24));let raw='';
+  bytes.forEach(byte=>raw+=alphabet[byte&31]);return `BOMI-${raw.match(/.{4}/g).join('-')}`;
+}
 
 async function encryptionKey(code){
   const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(code));
@@ -775,7 +780,7 @@ async function syncPush(){
   if(!syncCode||syncing||!navigator.onLine)return;
   syncing=true;setSyncState('변경 내용을 동기화하는 중…');
   try{
-    const data=await apiSync('push',{syncCode,snapshot:await encryptedSnapshot(syncCode)});
+    const data=await apiSync('push',{syncId:syncIdOf(syncCode),snapshot:await encryptedSnapshot(syncCode)});
     await mergeRemote(data.snapshot,syncCode);
     setSyncState('연결됨 · 모든 기기에 저장됨','online');
   }catch(error){setSyncState('오프라인 저장 중 · 연결되면 자동 동기화');}
@@ -786,7 +791,7 @@ async function syncPull(){
   if(!syncCode||syncing||!navigator.onLine)return;
   syncing=true;setSyncState('다른 기기의 변경 내용을 확인하는 중…');
   try{
-    const data=await apiSync('pull',{syncCode});
+    const data=await apiSync('pull',{syncId:syncIdOf(syncCode)});
     const localAhead=await mergeRemote(data.snapshot,syncCode);
     syncing=false;
     if(localAhead)await syncPush();else setSyncState('연결됨 · 모든 기기에 저장됨','online');
@@ -828,7 +833,7 @@ function initSync(){
   document.getElementById('createSync').addEventListener('click',async event=>{
     event.currentTarget.disabled=true;dialogMessage('동기화 코드를 만드는 중…');
     try{
-      const data=await apiSync('create',{});syncCode=data.syncCode;localStorage.setItem(SYNC_CODE_KEY,syncCode);updateSyncDialog();await syncPush();dialogMessage('코드를 다른 기기에 입력하면 같은 기록이 열립니다.');
+      const candidate=randomSyncCode();await apiSync('create',{syncId:syncIdOf(candidate)});syncCode=candidate;localStorage.setItem(SYNC_CODE_KEY,syncCode);updateSyncDialog();await syncPush();dialogMessage('코드를 다른 기기에 입력하면 같은 기록이 열립니다.');
     }catch(error){dialogMessage(error.message,true)}finally{event.currentTarget.disabled=false}
   });
   document.getElementById('connectForm').addEventListener('submit',async event=>{
