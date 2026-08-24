@@ -41,6 +41,7 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
 .insuranceMenu{display:flex;align-items:center;gap:14px;margin-top:16px;padding:17px 18px;text-decoration:none;color:var(--ink);background:linear-gradient(135deg,#fff7fb,#edfcf8);border:1px solid #efdbe4;border-radius:24px;box-shadow:0 10px 26px rgba(143,88,114,.075);transition:transform .16s ease,box-shadow .16s ease}
 .insuranceMenu:active{transform:scale(.985)}
 .insuranceMenu.prepMenu{background:linear-gradient(135deg,#fff1f6,#e8fbf6);border-color:#edcedb}
+.insuranceMenu.familyMenu{background:linear-gradient(135deg,#f8fffd,#fff3f7);border-color:#dcece7}
 .insuranceIcon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;flex:0 0 46px;border-radius:16px;background:rgba(255,255,255,.9);font-size:24px;box-shadow:0 6px 16px rgba(143,88,114,.08)}
 .insuranceCopy{min-width:0;flex:1}
 .insuranceTitle{font-size:17px;font-weight:950;letter-spacing:-.025em;color:#754b5b}
@@ -83,63 +84,22 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
 .footer{margin-top:22px;text-align:center;color:#ae8e9b;font-size:12px;line-height:1.55}
 #bomiLiveStatus{margin-top:8px;font-weight:800}
 
-/* Tablet portrait: preserve the mobile visual language while using the iPad canvas. */
 @media(min-width:700px){
   .wrap{max-width:880px;padding:34px 28px 64px}
   .wrap:before{font-size:92px;left:2vw;top:150px;opacity:.24}
   .wrap:after{font-size:88px;right:1vw;top:520px;opacity:.24}
-  .hero{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) minmax(320px,.95fr);
-    grid-template-rows:auto auto 1fr;
-    column-gap:30px;
-    align-items:center;
-    min-height:330px;
-    padding:36px 34px;
-    border-radius:36px
-  }
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.95fr);grid-template-rows:auto auto 1fr;column-gap:30px;align-items:center;min-height:330px;padding:36px 34px;border-radius:36px}
   .hero:after{right:26px;top:22px;font-size:54px}
   .hero .badge{grid-column:1;grid-row:1;justify-self:start}
   .hero h1{grid-column:1;grid-row:2;margin:20px 0 10px;font-size:46px}
   .hero .sub{grid-column:1;grid-row:3;align-self:start;font-size:15px}
   .statusCard{grid-column:2;grid-row:1/4;margin-top:0;padding:22px;border-radius:28px;box-shadow:0 12px 30px rgba(171,91,122,.08)}
-  .overall{font-size:34px}
-  .statusText{font-size:14px}
-  .todayLine{padding:15px 16px;font-size:14px}
-  .insuranceMenu{margin-top:18px;padding:19px 22px;border-radius:26px}
-  .insuranceIcon{width:50px;height:50px;flex-basis:50px;border-radius:17px;font-size:26px}
-  .insuranceTitle{font-size:18px}
-  .insuranceDesc{font-size:13px}
-  .grid{gap:16px;margin-top:18px}
-  .card{padding:22px;border-radius:28px}
-  .card h2{font-size:22px;margin-bottom:16px}
-  .metric{min-height:155px}
-  .metric .icon{font-size:28px;margin-bottom:10px}
-  .value{font-size:28px}
-  .note{font-size:14px}
-  .status{padding:14px 0;font-size:15px}
-  .event{padding:16px;margin-bottom:16px}
-  .event strong{font-size:18px}
-  .videoFrame video{max-height:480px}
-  .videoCaption{padding:18px 22px 22px}
-  .videoCaption strong{font-size:23px}
-  .footer{margin-top:28px}
+  .overall{font-size:34px}.statusText{font-size:14px}.todayLine{padding:15px 16px;font-size:14px}.insuranceMenu{margin-top:18px;padding:19px 22px;border-radius:26px}.insuranceIcon{width:50px;height:50px;flex-basis:50px;border-radius:17px;font-size:26px}.insuranceTitle{font-size:18px}.insuranceDesc{font-size:13px}.grid{gap:16px;margin-top:18px}.card{padding:22px;border-radius:28px}.card h2{font-size:22px;margin-bottom:16px}.metric{min-height:155px}.metric .icon{font-size:28px;margin-bottom:10px}.value{font-size:28px}.note{font-size:14px}.status{padding:14px 0;font-size:15px}.event{padding:16px;margin-bottom:16px}.event strong{font-size:18px}.videoFrame video{max-height:480px}.videoCaption{padding:18px 22px 22px}.videoCaption strong{font-size:23px}.footer{margin-top:28px}
 }
 
-/* Tablet landscape / larger iPads: four summary cards in one glance. */
 @media(min-width:960px){
   .wrap{max-width:1080px;padding:40px 32px 72px}
-  .hero{grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);column-gap:44px;min-height:350px;padding:42px 40px}
-  .hero h1{font-size:52px}
-  .hero .sub{font-size:16px}
-  .statusCard{padding:26px}
-  .overall{font-size:38px}
-  .insuranceMenu{padding:20px 24px}
-  .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-  .metric{min-height:168px;padding:22px 20px}
-  .metric .value{font-size:27px}
-  .full{grid-column:1/-1}
-  .videoFrame video{max-height:560px}
+  .hero{grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);column-gap:44px;min-height:350px;padding:42px 40px}.hero h1{font-size:52px}.hero .sub{font-size:16px}.statusCard{padding:26px}.overall{font-size:38px}.insuranceMenu{padding:20px 24px}.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.metric{min-height:168px;padding:22px 20px}.metric .value{font-size:27px}.full{grid-column:1/-1}.videoFrame video{max-height:560px}
 }
 
 @media(max-width:380px){.grid{grid-template-columns:1fr}.full{grid-column:auto}h1{font-size:30px}.row{align-items:flex-start;flex-direction:column}.signal{align-self:flex-start}}
@@ -155,10 +115,7 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
     <div class="sub">출산예정일 <span id="dueDateText">불러오는 중</span><br>진료기록 · 검사결과 · 복용약 · 성장 타임라인</div>
     <div class="statusCard">
       <div class="row">
-        <div>
-          <div class="label">Overall status</div>
-          <div class="overall loading">기록 확인 중</div>
-        </div>
+        <div><div class="label">Overall status</div><div class="overall loading">기록 확인 중</div></div>
         <div class="signal">최신 기록 확인</div>
       </div>
       <div class="statusText">최신 진료기록을 불러오고 있습니다.</div>
@@ -166,70 +123,42 @@ h1{margin:18px 0 8px;font-size:34px;line-height:1.05;letter-spacing:-.045em;colo
     </div>
   </section>
 
-  <a class="insuranceMenu prepMenu" href="./prep.html?v=1" aria-label="봄이 출산 준비 체크리스트로 이동">
+  <a class="insuranceMenu prepMenu" href="./prep.html?v=2" aria-label="봄이 출산 준비 체크리스트로 이동">
     <div class="insuranceIcon">📋</div>
-    <div class="insuranceCopy">
-      <div class="insuranceTitle">출산 준비 체크리스트</div>
-      <div class="insuranceDesc">현재 주수 맞춤 · 진료·용품·행정·가족 역할을 한눈에</div>
-    </div>
+    <div class="insuranceCopy"><div class="insuranceTitle">출산 준비 체크리스트</div><div class="insuranceDesc">현재 주수 맞춤 · 진료·용품·행정·산후도우미·가족 역할을 한눈에</div></div>
+    <div class="insuranceArrow">›</div>
+  </a>
+
+  <a class="insuranceMenu familyMenu" href="./newborn-family-guide.html?v=1" aria-label="봄이 가족 예방접종과 방문가이드로 이동">
+    <div class="insuranceIcon">💉</div>
+    <div class="insuranceCopy"><div class="insuranceTitle">가족 예방접종 & 방문가이드</div><div class="insuranceDesc">Tdap·독감 · 신생아 방문수칙 · 산후도우미 건강·접종 점검</div></div>
     <div class="insuranceArrow">›</div>
   </a>
 
   <a class="insuranceMenu" href="./insurance.html?v=3" aria-label="봄이 태아보험 가입기록으로 이동">
     <div class="insuranceIcon">🛡️</div>
-    <div class="insuranceCopy">
-      <div class="insuranceTitle">태아보험 가입기록</div>
-      <div class="insuranceDesc">가입 완료 · 15년납 30세만기 · 주요 보장과 보험료</div>
-    </div>
+    <div class="insuranceCopy"><div class="insuranceTitle">태아보험 가입기록</div><div class="insuranceDesc">가입 완료 · 15년납 30세만기 · 주요 보장과 보험료</div></div>
     <div class="insuranceArrow">›</div>
   </a>
 
   <section class="grid">
-    <article class="card metric">
-      <div class="icon">👧</div><div class="label">오늘의 주수</div>
-      <div class="value" id="gestationToday">계산 중</div><div class="note" id="gestationNote">출산예정일 기준 자동 계산</div>
-    </article>
-    <article class="card metric">
-      <div class="icon">⚖️</div><div class="label">Latest weight</div>
-      <div class="value" id="latestWeight">불러오는 중</div><div class="note" id="latestWeightNote">최근 측정값 기준</div>
-    </article>
-    <article class="card metric">
-      <div class="icon">🎀</div><div class="label">Baby</div>
-      <div class="value" id="babySex">불러오는 중</div><div class="note" id="babySexNote">진료기록 기준</div>
-    </article>
-    <article class="card metric">
-      <div class="icon">🩺</div><div class="label">Next visit</div>
-      <div class="value" id="nextVisitDate">불러오는 중</div><div class="note" id="nextVisitNote">일정 확인 중</div>
-    </article>
+    <article class="card metric"><div class="icon">👧</div><div class="label">오늘의 주수</div><div class="value" id="gestationToday">계산 중</div><div class="note" id="gestationNote">출산예정일 기준 자동 계산</div></article>
+    <article class="card metric"><div class="icon">⚖️</div><div class="label">Latest weight</div><div class="value" id="latestWeight">불러오는 중</div><div class="note" id="latestWeightNote">최근 측정값 기준</div></article>
+    <article class="card metric"><div class="icon">🎀</div><div class="label">Baby</div><div class="value" id="babySex">불러오는 중</div><div class="note" id="babySexNote">진료기록 기준</div></article>
+    <article class="card metric"><div class="icon">🩺</div><div class="label">Next visit</div><div class="value" id="nextVisitDate">불러오는 중</div><div class="note" id="nextVisitNote">일정 확인 중</div></article>
 
     <div id="videoList" class="videoList" hidden></div>
 
-    <article class="card full">
-      <h2>진료 상태 대시보드</h2>
-      <div id="statusRows"><div class="note">최신 검사 결과를 불러오고 있습니다.</div></div>
-    </article>
-
-    <article class="card full">
-      <h2>진료 타임라인</h2>
-      <div class="timeline"><div class="note">진료기록을 불러오고 있습니다.</div></div>
-    </article>
-
-    <article class="card full">
-      <h2>다음 체크포인트</h2>
-      <div id="checklistRows"><div class="note">다음 방문 준비사항을 불러오고 있습니다.</div></div>
-    </article>
+    <article class="card full"><h2>진료 상태 대시보드</h2><div id="statusRows"><div class="note">최신 검사 결과를 불러오고 있습니다.</div></div></article>
+    <article class="card full"><h2>진료 타임라인</h2><div class="timeline"><div class="note">진료기록을 불러오고 있습니다.</div></div></article>
+    <article class="card full"><h2>다음 체크포인트</h2><div id="checklistRows"><div class="note">다음 방문 준비사항을 불러오고 있습니다.</div></div></article>
   </section>
 
-  <div class="footer">
-    BOMI Pregnancy Journal · Family medical archive<br>HTML-first archive · PDF export ready
-    <div id="bomiLiveStatus">연결 준비 중</div>
-  </div>
+  <div class="footer">BOMI Pregnancy Journal · Family medical archive<br>HTML-first archive · PDF export ready<div id="bomiLiveStatus">연결 준비 중</div></div>
 </main>
 
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
-}
+if ("serviceWorker" in navigator) {window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));}
 </script>
 <script src="./bomi-live.js?v=7" defer></script>
 </body>
