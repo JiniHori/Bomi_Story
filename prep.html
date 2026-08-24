@@ -153,6 +153,11 @@ h1{margin:17px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.045em;colo
   </section>
 
   <div class="notice">
+    <div class="noticeIcon">🏡</div>
+    <div><strong>산후 회복 계획 반영 완료</strong><br>지니는 산후조리원을 이용하지 않고 퇴원 후 집에서 회복하며, 참사랑어머니회 인천 남동구 지점 산후도우미를 일반적인 기간보다 길게 이용할 계획입니다.</div>
+  </div>
+
+  <div class="notice">
     <div class="noticeIcon">🩺</div>
     <div><strong>의료 일정은 담당의와 최종 확인해 주세요.</strong><br>검사와 진료 시점은 일반적인 권고와 W여성병원 공개 정보를 기준으로 구성했습니다. 산모·태아 상태에 따라 달라질 수 있습니다.</div>
   </div>
@@ -190,7 +195,7 @@ h1{margin:17px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.045em;colo
   </details>
 
   <footer class="footer">
-    2026년 8월 23일 기준 · 정책과 병원 운영은 신청·진료 전에 재확인<br>
+    2026년 8월 24일 기준 · 정책과 병원 운영은 신청·진료 전에 재확인<br>
     상태와 입력 내용은 자동 저장되며, 동기화 연결 시 암호화되어 기기 사이에 공유됩니다.
   </footer>
 </main>
@@ -235,7 +240,7 @@ const SAVE_DELAY = 550;
 const CATEGORIES = {
   all:{label:'전체',icon:'✦'},
   medical:{label:'진료·검사',icon:'🩺'},
-  birth:{label:'분만·조리',icon:'🏥'},
+  birth:{label:'분만·산후회복',icon:'🏥'},
   gear:{label:'용품·공간',icon:'🧺'},
   admin:{label:'행정·직장',icon:'🗂️'},
   family:{label:'가족·역할',icon:'🤝'},
@@ -251,6 +256,7 @@ const SOURCES = {
   tests:{type:'의료',name:'ACOG · 임신 중 일반 검사',url:'https://www.acog.org/womens-health/faqs/routine-tests-during-pregnancy'},
   visits:{type:'의료',name:'ACOG · 산전 진료 일정',url:'https://www.acog.org/education-and-events/creog/curriculum-resources/cases-in-high-value-care/expanding-prenatal-care-options-for-low-risk-patients'},
   helper:{type:'지역',name:'인천광역시 · 2026 산모·신생아 건강관리',url:'https://www.incheon.go.kr/earlychild/EC020102'},
+  familyguide:{type:'가이드',name:'봄이 가족 예방접종·방문가이드',url:'./newborn-family-guide.html'},
   happy:{type:'공식',name:'정부24 · 행복출산 원스톱서비스',url:'https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=17410000001'},
   voucher:{type:'공식',name:'복지로 · 첫만남이용권',url:'https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004656'},
   hepB:{type:'공식',name:'질병관리청 · 신생아 B형간염 접종',url:'https://nip.kdca.go.kr/irhp/infm/goVcntInfo.do?menuCd=1102&menuLv=1'},
@@ -265,20 +271,20 @@ const SOURCES = {
 const TASKS = [
   {id:'w20-records',week:20,cat:'medical',priority:'essential',owner:'함께',title:'전원 진료자료 한 묶음으로 정리',desc:'진료의뢰서, 혈액형·초기검사, NIPT·양수검사·CMA 결과, 정밀초음파, 복용약·영양제 목록을 준비합니다.'},
   {id:'w20-emergency',week:20,cat:'safety',priority:'essential',owner:'제이크',title:'W여성병원 응급 연락·전원 질문 만들기',desc:'24시간 연락처, 응급분만, 신생아 상태 악화 시 협력·전원 병원과 이송 주체를 9월 19일 질문 목록에 넣습니다.',sources:['wnewborn']},
-  {id:'w20-carecenter',week:20,cat:'birth',priority:'recommended',owner:'함께',title:'산후조리원 예약 상태 재점검',desc:'계약금, 입실 조건, 취소 규정, 보호자 출입·주차, 병원 퇴원일과의 연결을 확인합니다.'},
+  {id:'w20-carecenter',week:20,cat:'birth',priority:'recommended',owner:'함께',title:'산후 회복 방식·도우미 장기 이용계획 확정',desc:'산후조리원은 이용하지 않습니다. W여성병원 퇴원 후 집에서 회복하며 참사랑어머니회 인천 남동구 지점 산후도우미를 일반적인 기간보다 길게 이용하는 계획을 기준으로 준비합니다.',sources:['helper']},
   {id:'w20-budget',week:20,cat:'gear',priority:'recommended',owner:'제이크',title:'출산 준비 예산과 보유품 목록 시작',desc:'필수·대여·선물·출산 후 구매로 구분해 과잉구매를 막습니다.'},
 
   {id:'w21-movement',week:21,cat:'medical',priority:'recommended',owner:'지니',title:'봄이의 평소 태동 시간대 익히기',desc:'정식 횟수 세기보다 평소 활발한 시간과 느낌을 알아두고, 갑작스러운 변화는 병원에 문의합니다.'},
   {id:'w21-class',week:21,cat:'family',priority:'optional',owner:'함께',title:'인천 출산·육아 교실 일정 확인',desc:'부모코칭, 임산부·대디클래스, 신생아 돌봄 교육 중 필요한 수업을 골라 예약합니다.',sources:['incheon']},
   {id:'w21-supplements',week:21,cat:'medical',priority:'recommended',owner:'지니',title:'복용약·영양제 시간표 정리',desc:'프리네이탈, 철분, 비타민D, 칼슘·마그네슘과 처방약을 한 장에 정리해 전원 진료 때 검토받습니다.'},
 
-  {id:'w22-questions',week:22,cat:'medical',priority:'essential',owner:'제이크',title:'전현아 원장님 첫 진료 질문지 완성',desc:'검사 이어받기, 분만 방식, 응급 대응, 신생아 진료, 입원·조리원 연계 순서로 질문을 정리합니다.'},
+  {id:'w22-questions',week:22,cat:'medical',priority:'essential',owner:'제이크',title:'전현아 원장님 첫 진료 질문지 완성',desc:'검사 이어받기, 분만 방식, 응급 대응, 신생아 진료, 퇴원 후 집에서의 산후 회복·돌봄 순서로 질문을 정리합니다.'},
   {id:'w22-route',week:22,cat:'safety',priority:'essential',owner:'제이크',title:'집·회사에서 병원까지 비상 이동경로 저장',desc:'평일·야간 이동시간, 주차·분만실 출입구, 택시 대안과 보호자 연락망을 휴대전화에 저장합니다.'},
   {id:'w22-checklist-share',week:22,cat:'family',priority:'recommended',owner:'함께',title:'부부 역할과 체크리스트 사용법 합의',desc:'각 항목 담당자와 주 1회 확인 시간을 정해 한 사람이 준비를 전부 떠안지 않도록 합니다.'},
 
   {id:'w23-docpack',week:23,cat:'medical',priority:'essential',owner:'제이크',title:'9월 19일 진료 서류·신분증 가방 준비',desc:'실물 신분증, 산모수첩, 검사결과, 복용 목록을 한 파일에 넣습니다. 접수시간 10분 경과 시 당일접수 전환 안내를 고려합니다.'},
   {id:'w23-gdm-call',week:23,cat:'medical',priority:'recommended',owner:'함께',title:'임신성 당뇨 검사 방식 미리 확인',desc:'첫 진료 당일 시행 여부, 금식 필요 여부와 검사 소요시간은 병원 지침에 따라 확인합니다.',sources:['diabetes']},
-  {id:'w23-provided',week:23,cat:'birth',priority:'recommended',owner:'제이크',title:'병원·조리원 제공품 목록 요청',desc:'기저귀·산모패드·수건·신생아 의류 등 제공 범위를 먼저 확인해 출산가방 중복을 줄입니다.'},
+  {id:'w23-provided',week:23,cat:'birth',priority:'recommended',owner:'제이크',title:'병원 제공품·퇴원 후 집 준비물 확인',desc:'기저귀·산모패드·수건·신생아 의류 등 병원 제공 범위를 먼저 확인하고, 조리원 이동 없이 바로 집으로 오는 동선에 맞춰 퇴원 후 첫날 필요한 물품을 별도로 정리합니다.'},
 
   {id:'w24-firstvisit',week:24,cat:'medical',priority:'essential',owner:'함께',date:'9월 19일 09:00',title:'W여성병원 전현아 원장님 첫 진료',desc:'2층 접수 후 진료실로 이동합니다. 기존 검사 결과와 전원 자료를 전달하고 이후 검사·진료 일정을 확정합니다.'},
   {id:'w24-gdm',week:24,cat:'medical',priority:'essential',owner:'지니',date:'24-28주',title:'임신성 당뇨·중기 빈혈 검사 일정 확정',desc:'일반적으로 24-28주에 임신성 당뇨 선별검사를 시행합니다. 검사 방식은 담당 병원 기준을 따릅니다.',sources:['diabetes','tests']},
@@ -291,7 +297,7 @@ const TASKS = [
 
   {id:'w26-class',week:26,cat:'family',priority:'recommended',owner:'함께',title:'분만·신생아 돌봄·영아 심폐소생술 교육 예약',desc:'수유만이 아니라 안전수면, 기도폐쇄 대응, 아기 목욕과 기저귀 교체가 포함된 교육을 우선합니다.',sources:['incheon','sleep']},
   {id:'w26-shortlist',week:26,cat:'gear',priority:'recommended',owner:'함께',title:'카시트·안전수면 공간 후보 압축',desc:'신생아용 후방 장착 카시트와 단단하고 평평한 별도 수면 공간을 기준으로 비교합니다.',sources:['car','sleep']},
-  {id:'w26-vaccinehistory',week:26,cat:'medical',priority:'recommended',owner:'제이크',title:'가족 백일해 접종력 확인',desc:'산모·아빠와 출산 직후 자주 접촉할 보호자의 Tdap 접종 여부를 확인해 의료진과 일정을 조정합니다.',sources:['tdap']},
+  {id:'w26-vaccinehistory',week:26,cat:'medical',priority:'recommended',owner:'제이크',title:'가족 백일해 접종력·방문 원칙 확인',desc:'산모·아빠와 출산 직후 자주 접촉할 보호자의 Tdap·독감 접종 여부를 확인하고, 생후 첫 4주 방문 대상과 방문수칙을 가족과 미리 공유합니다.',sources:['tdap','familyguide']},
 
   {id:'w27-momtdap',week:27,cat:'medical',priority:'essential',owner:'지니',date:'27-36주',title:'지니 백일해 Tdap 접종',desc:'질병관리청은 임신 27-36주 접종을 권장합니다. 산부인과 상담 후 접종합니다.',sources:['tdap','incheon']},
   {id:'w27-dadtdap',week:27,cat:'medical',priority:'recommended',owner:'제이크',title:'제이크 백일해 접종 완료',desc:'접종력과 의료진 판단을 확인해 출산 전 충분한 시기를 두고 접종합니다.',sources:['tdap','incheon']},
@@ -304,25 +310,29 @@ const TASKS = [
 
   {id:'w29-leaveplan',week:29,cat:'admin',priority:'essential',owner:'제이크',title:'부부 휴가·업무 인수인계 일정 초안',desc:'예정일 전후 휴가 시작일, 돌발 입원 시 대체자, 연락 범위와 육아휴직 분담을 문서화합니다.',sources:['leave']},
   {id:'w29-biggear',week:29,cat:'gear',priority:'recommended',owner:'함께',title:'카시트와 수면 공간 구매·대여 확정',desc:'배송·교환·설치 시간을 고려하되 유모차·의류·젖병은 처음부터 과하게 사지 않습니다.',sources:['car','sleep']},
-  {id:'w29-helpercompare',week:29,cat:'birth',priority:'recommended',owner:'제이크',title:'산모·신생아 건강관리 제공기관 비교',desc:'정부 지원 신청 전 서비스 시간, 추가비용, 대체인력, 반려묘가 있는 가정의 방문 가능 여부를 비교합니다.',sources:['helper']},
+  {id:'w29-helpercompare',week:29,cat:'birth',priority:'essential',owner:'제이크',title:'참사랑어머니회 예약내용·장기 이용기간 확정',desc:'인천 남동구 지점 예약을 기준으로 서비스 시작일, 정부지원 이용기간, 추가 자부담 연장기간, 총 예상비용, 취소·변경 규정을 확정합니다. 산후조리원 미이용 일정과 연결해 공백이 없도록 합니다.',sources:['helper']},
+  {id:'w29-helperhealth',week:29,cat:'safety',priority:'essential',owner:'제이크',title:'산후도우미 Tdap·독감·건강서류 확인조건 전달',desc:'배정 관리사는 Tdap 접종 여부와 접종일을 확인하고 가능하면 접종기록을 요청합니다. 2026-2027절기 독감 접종, 최근 호흡기 증상, 유효한 건강진단서 보유 여부도 업체에 확인합니다.',sources:['helper','tdap','familyguide']},
+  {id:'w29-helperwork',week:29,cat:'birth',priority:'recommended',owner:'함께',title:'산후도우미 업무범위·대체인력·온유 동거조건 확인',desc:'신생아 돌봄, 산모 식사, 세탁·청소 범위와 추가비용을 확인합니다. 관리사 변경·결근 시 대체인력 기준과 온유가 있는 가정에 방문 가능한 관리사 배정도 재확인합니다.',sources:['helper']},
 
   {id:'w30-carseat',week:30,cat:'safety',priority:'essential',owner:'제이크',title:'아반떼에 후방 장착 카시트 설치 연습',desc:'차량·카시트 설명서를 함께 보고 뒷좌석에 단단히 설치합니다. 후방 장착 카시트는 앞좌석에 두지 않습니다.',sources:['car']},
   {id:'w30-birthprefs',week:30,cat:'birth',priority:'recommended',owner:'함께',title:'분만 선호사항 1차 정리',desc:'무통, 보호자 동반, 응급 제왕절개, 초기 모자동실·수유 등 궁금한 점을 의료진과 상의할 질문으로 정리합니다.'},
-  {id:'w30-cashplan',week:30,cat:'admin',priority:'recommended',owner:'제이크',title:'출산 전후 현금흐름·지원금 표 만들기',desc:'병원·조리원 잔금, 용품, 산후도우미 본인부담금과 휴가기간 소득 변화를 한눈에 정리합니다.',sources:['happy','voucher']},
+  {id:'w30-cashplan',week:30,cat:'admin',priority:'recommended',owner:'제이크',title:'출산 전후 현금흐름·지원금 표 만들기',desc:'병원비, 산후도우미 정부지원 본인부담금과 추가 연장비, 용품비, 휴가기간 소득 변화를 한눈에 정리합니다.',sources:['happy','voucher','helper']},
 
-  {id:'w31-providedfinal',week:31,cat:'birth',priority:'essential',owner:'제이크',title:'병원·조리원 제공품 최종 대조',desc:'입원 기간과 분만 방식별 준비물 차이를 확인해 출산가방을 병원용·조리원용으로 나눕니다.'},
-  {id:'w31-docfolder',week:31,cat:'admin',priority:'essential',owner:'제이크',title:'출산 문서 폴더와 디지털 백업 만들기',desc:'신분증, 산모수첩, 검사결과, 보험증권, 조리원 계약서, 회사 서류와 연락처를 한곳에 모읍니다.'},
-  {id:'w31-roles',week:31,cat:'family',priority:'recommended',owner:'함께',title:'출산 직후 2주 역할표 작성',desc:'수유 보조, 식사, 빨래, 방문객 조율, 행정 신청, 온유 돌봄 담당을 구체적으로 나눕니다.'},
+  {id:'w31-providedfinal',week:31,cat:'birth',priority:'essential',owner:'제이크',title:'병원 제공품·퇴원 후 집 준비물 최종 대조',desc:'입원 기간과 분만 방식별 준비물 차이를 확인하고, 퇴원 후 바로 집으로 오는 일정에 맞춰 첫 48시간 산모·신생아 용품을 따로 준비합니다.'},
+  {id:'w31-docfolder',week:31,cat:'admin',priority:'essential',owner:'제이크',title:'출산 문서 폴더와 디지털 백업 만들기',desc:'신분증, 산모수첩, 검사결과, 보험증권, 산후도우미 예약·계약 자료, 회사 서류와 연락처를 한곳에 모읍니다.'},
+  {id:'w31-roles',week:31,cat:'family',priority:'recommended',owner:'함께',title:'출산 직후 2주 역할표 작성',desc:'산후도우미 이용시간 밖의 수유 보조, 식사, 빨래, 방문객 조율, 행정 신청, 온유 돌봄 담당을 구체적으로 나눕니다.'},
 
   {id:'w32-bagstart',week:32,cat:'birth',priority:'essential',owner:'함께',date:'32-34주',title:'출산가방 본격적으로 꾸리기',desc:'산모·아기·보호자·서류를 분리하고 병원 제공품과 중복되지 않게 준비합니다.',sources:['bag32']},
   {id:'w32-safesleep',week:32,cat:'safety',priority:'essential',owner:'제이크',title:'봄이 안전수면 공간 설치',desc:'단단하고 평평한 매트리스와 맞는 시트만 두고 베개·범퍼·인형·두꺼운 침구는 수면 공간에서 뺍니다.',sources:['sleep']},
   {id:'w32-pediatric',week:32,cat:'medical',priority:'recommended',owner:'제이크',title:'신생아 진료·BCG 접종 동선 확인',desc:'W여성병원 퇴원 후 이용할 소아청소년과와 BCG 접종기관, 예약 방식을 미리 확인합니다.',sources:['vaccine','wnewborn']},
+  {id:'w32-homeflow',week:32,cat:'birth',priority:'recommended',owner:'함께',title:'퇴원 당일 집 도착·산후도우미 시작 동선 점검',desc:'조리원으로 이동하지 않으므로 퇴원 시간, 집 도착 후 산모 휴식공간, 봄이 수면·수유 공간, 산후도우미 첫 출근일을 하나의 일정으로 맞춥니다.',sources:['helper','sleep']},
 
   {id:'w33-emergencycard',week:33,cat:'safety',priority:'essential',owner:'제이크',title:'한 장짜리 출산 비상카드 완성',desc:'병원 번호, 주소·주차, 산모 혈액형·알레르기, 복용약, 보호자 연락처와 전원 관련 답변을 적습니다.'},
   {id:'w33-dryrun',week:33,cat:'safety',priority:'recommended',owner:'제이크',title:'야간 병원 이동 동선 모의점검',desc:'가방·차키 위치, 주차장 진입, 분만실 연락 순서를 실제처럼 한 번 확인합니다.'},
-  {id:'w33-onu',week:33,cat:'family',priority:'essential',owner:'제이크',title:'입원·조리원 기간 온유 돌봄계획 확정',desc:'급식·음수·화장실·약 복용과 응급병원 연락을 돌봄 담당자에게 문서로 전달합니다.'},
+  {id:'w33-onu',week:33,cat:'family',priority:'essential',owner:'제이크',title:'입원·산후 초기 온유 돌봄계획 확정',desc:'입원 기간 급식·음수·화장실·약 복용을 정리하고, 퇴원 후 산후도우미가 집에 오는 동안 온유의 안전한 휴식공간과 접촉 원칙도 함께 정합니다.'},
 
-  {id:'w34-helperapply',week:34,cat:'admin',priority:'essential',owner:'제이크',date:'11월 27일부터',title:'산모·신생아 건강관리 지원 신청',desc:'2026년 인천 안내 기준 예정일 40일 전부터 출산 후 60일까지 신청할 수 있습니다. 복지로 또는 주소지 보건소에서 자격과 서류를 확인합니다.',sources:['helper']},
+  {id:'w34-helperapply',week:34,cat:'admin',priority:'essential',owner:'제이크',date:'11월 27일부터',title:'산모·신생아 건강관리 지원 신청',desc:'2026년 인천 안내 기준 예정일 40일 전부터 출산 후 60일까지 신청할 수 있습니다. 복지로 또는 주소지 보건소에서 자격과 서류를 확인하고 참사랑어머니회 예약과 연계합니다.',sources:['helper']},
+  {id:'w34-helperfinal',week:34,cat:'birth',priority:'essential',owner:'제이크',title:'산후도우미 배정 전 최종 점검표 업체 전달',desc:'Tdap 접종·접종일, 독감 접종, 최근 호흡기 증상, 건강진단서, 온유 동거 가능 여부, 대체인력 조건을 최종 체크해 참사랑어머니회 인천 남동구 지점에 전달합니다.',sources:['helper','tdap','familyguide']},
   {id:'w34-laundry',week:34,cat:'gear',priority:'recommended',owner:'함께',title:'신생아 의류·손수건 최소 수량 세탁',desc:'배냇옷, 속싸개, 시트 등 초반에 쓸 물품만 세탁·건조해 종류별로 보관합니다.',sources:['bag35']},
   {id:'w34-bag80',week:34,cat:'birth',priority:'essential',owner:'제이크',title:'출산가방 80% 완성',desc:'충전기, 슬리퍼, 세면도구, 산모용품, 퇴원복과 서류를 넣고 빠진 항목만 별도 표시합니다.',sources:['bag32']},
   {id:'w34-workfinal',week:34,cat:'admin',priority:'essential',owner:'제이크',title:'돌발 입원 대비 업무 인수인계 완료',desc:'예정일보다 일찍 입원해도 인계 가능한 수준으로 파일·연락처·대체자를 정리합니다.',sources:['leave']},
@@ -332,7 +342,7 @@ const TASKS = [
   {id:'w35-petzones',week:35,cat:'safety',priority:'recommended',owner:'제이크',title:'온유와 봄이의 생활구역 정비',desc:'신생아 수면 공간은 온유가 들어가지 않도록 하고, 온유의 화장실·식사·휴식 공간은 안정적으로 유지합니다.',sources:['sleep']},
 
   {id:'w36-latetests',week:36,cat:'medical',priority:'essential',owner:'지니',title:'GBS·막달검사·태아검사 진행',desc:'GBS, 빈혈·소변검사, 태아 위치·성장, 필요 시 NST 등 병원이 지정한 검사를 진행합니다.',sources:['tests']},
-  {id:'w36-bagdone',week:36,cat:'birth',priority:'essential',owner:'함께',title:'출산가방 완성해 바로 들고 나갈 위치에 두기',desc:'병원용·조리원용 가방에 이름표를 붙이고 보호자도 내용과 위치를 알도록 합니다.',sources:['bag35']},
+  {id:'w36-bagdone',week:36,cat:'birth',priority:'essential',owner:'함께',title:'출산가방 완성해 바로 들고 나갈 위치에 두기',desc:'병원용·퇴원용 가방에 이름표를 붙이고 보호자도 내용과 위치를 알도록 합니다.',sources:['bag35']},
   {id:'w36-carfinal',week:36,cat:'safety',priority:'essential',owner:'제이크',title:'카시트 설치 최종 점검',desc:'후방 장착, 하네스 높이와 조임, 흔들림을 설명서 기준으로 재확인합니다.',sources:['car']},
   {id:'w36-callrules',week:36,cat:'safety',priority:'essential',owner:'함께',title:'진통·파수·출혈·태동 변화 시 연락 기준 확인',desc:'어떤 증상에 어느 번호로 먼저 연락하고 바로 내원해야 하는지 W여성병원 지침을 적어 둡니다.'},
 
@@ -345,8 +355,8 @@ const TASKS = [
   {id:'w38-home',week:38,cat:'gear',priority:'recommended',owner:'함께',title:'집으로 돌아올 첫 48시간 동선 점검',desc:'안전수면, 기저귀 교체, 수유·세척, 산모 휴식 공간을 최소 이동으로 사용할 수 있게 배치합니다.',sources:['sleep']},
 
   {id:'w39-followup',week:39,cat:'medical',priority:'essential',owner:'함께',title:'미출산 시 추적진료·유도 기준 확인',desc:'다음 진료일, 태아검사, 유도분만을 논의하는 시점과 응급 연락 기준을 담당의에게 확인합니다.'},
-  {id:'w39-support',week:39,cat:'family',priority:'recommended',owner:'제이크',title:'방문객·가족 도움 일정 최소화·확정',desc:'산모 휴식과 감염 예방을 우선해 출산 직후 꼭 필요한 도움만 남기고 방문은 조율합니다.'},
-  {id:'w39-meals',week:39,cat:'gear',priority:'optional',owner:'제이크',title:'산후 첫 주 식사·생활소모품 확보',desc:'상온·냉동식, 생수, 세제, 휴지 등 부모가 외출하지 않고 버틸 수 있는 정도만 준비합니다.'},
+  {id:'w39-support',week:39,cat:'family',priority:'recommended',owner:'제이크',title:'방문객·가족 도움 일정 최소화·확정',desc:'산모 휴식과 감염 예방을 우선해 출산 직후 꼭 필요한 도움만 남기고 방문은 조율합니다. 생후 첫 4주는 핵심 가족 중심으로 운영하는 원칙을 공유합니다.',sources:['familyguide']},
+  {id:'w39-meals',week:39,cat:'gear',priority:'optional',owner:'제이크',title:'산후 첫 주 식사·생활소모품 확보',desc:'산후도우미 이용시간 밖에도 부모가 외출하지 않고 버틸 수 있도록 상온·냉동식, 생수, 세제, 휴지 등 기본 소모품을 준비합니다.'},
 
   {id:'w40-check',week:40,cat:'medical',priority:'essential',owner:'함께',title:'예정일 진료와 이후 계획 따르기',desc:'진통이 없더라도 병원 예약과 태아 상태 확인 일정을 지키고, 이후 분만 계획은 담당의 지시에 따릅니다.'},
   {id:'w40-flex',week:40,cat:'family',priority:'recommended',owner:'함께',title:'예정일은 확정일이 아님을 공유',desc:'가족 연락과 휴가 일정에 여유를 두고 산모·태아 상태를 최우선으로 판단합니다.'},
@@ -392,8 +402,8 @@ const SPECIAL_RECORDS = {
   'w30-cashplan':{
     title:'출산 전후 현금흐름',
     list:{key:'budget',addLabel:'+ 비용 항목 추가',columns:[
-      {key:'name',label:'항목',placeholder:'예: 조리원 잔금'},
-      {key:'amount',label:'금액',placeholder:'예: 2,000,000'},
+      {key:'name',label:'항목',placeholder:'예: 산후도우미 추가 연장비'},
+      {key:'amount',label:'금액',placeholder:'예: 1,000,000'},
       {key:'date',label:'예정일',placeholder:'예: 12/20'},
       {key:'memo',label:'상태',placeholder:'미결제'}
     ]}
@@ -408,9 +418,9 @@ const SPECIAL_RECORDS = {
   'w31-roles':{
     title:'출산 직후 역할표',
     list:{key:'roles',addLabel:'+ 역할 추가',columns:[
-      {key:'name',label:'할 일',placeholder:'예: 식사 준비'},
+      {key:'name',label:'할 일',placeholder:'예: 야간 수유 보조'},
       {key:'owner',label:'담당',placeholder:'제이크'},
-      {key:'when',label:'시기',placeholder:'매일'},
+      {key:'when',label:'시기',placeholder:'도우미 퇴근 후'},
       {key:'memo',label:'메모',placeholder:'연락처 등'}
     ]}
   },
