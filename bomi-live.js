@@ -2,8 +2,10 @@
   "use strict";
 
   const API_URL = "https://bomi-v4.jinihori.workers.dev/api/public/state";
-  const STATE_CACHE_KEY = "bomi.public.state.v2";
+  const STATE_CACHE_KEY = "bomi.public.state.v3";
   const CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
+  const BABY_WEIGHT_ALIASES = ["추정 체중", "태아 체중", "예상 체중", "아기 체중", "봄이 체중", "몸무게", "체중"];
+  const MATERNAL_WEIGHT_BLOCKLIST = ["산모", "엄마", "임신부", "임부", "maternal", "mother"];
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
@@ -53,6 +55,27 @@
     for (const metric of metricMap.values()) {
       const label = normalize(metric?.label);
       if (aliases.some((alias) => label.includes(normalize(alias)))) return metric;
+    }
+    return null;
+  }
+
+  function findLatestMetric(records, aliases, blockedAliases = []) {
+    const aliasKeys = aliases.map(normalize).filter(Boolean);
+    const blockedKeys = blockedAliases.map(normalize).filter(Boolean);
+    const matchesLabel = (metric, exactOnly) => {
+      const label = normalize(metric?.label);
+      if (!label) return false;
+      if (blockedKeys.some((blocked) => label.includes(blocked))) return false;
+      return aliasKeys.some((alias) => exactOnly ? label === alias : label.includes(alias));
+    };
+
+    const sorted = records.slice().sort((a, b) => text(b.visit_date).localeCompare(text(a.visit_date)));
+    for (const record of sorted) {
+      const metrics = Array.isArray(record.metrics) ? record.metrics : [];
+      const exact = metrics.find((metric) => matchesLabel(metric, true));
+      if (exact) return { ...exact, _visit_date: record.visit_date };
+      const partial = metrics.find((metric) => matchesLabel(metric, false));
+      if (partial) return { ...partial, _visit_date: record.visit_date };
     }
     return null;
   }
@@ -140,9 +163,9 @@
     }
   }
 
-  function updateMetricCards(settings, metricMap) {
-    const weight = findMetric(metricMap, ["추정 체중", "체중"]);
-    const sex = findMetric(metricMap, ["성별"]);
+  function updateMetricCards(settings, records, metricMap) {
+    const weight = findLatestMetric(records, BABY_WEIGHT_ALIASES, MATERNAL_WEIGHT_BLOCKLIST);
+    const sex = findLatestMetric(records, ["성별"]) || findMetric(metricMap, ["성별"]);
     const weightValue = $("#latestWeight");
     const weightNote = $("#latestWeightNote");
     const babyValue = $("#babySex");
@@ -151,7 +174,7 @@
     const nextNote = $("#nextVisitNote");
 
     if (weightValue) weightValue.textContent = weight?.value || "기록 없음";
-    if (weightNote) weightNote.textContent = weight?.note || "최근 측정값 기준";
+    if (weightNote) weightNote.textContent = weight?.note || (weight?._visit_date ? `${formatDateKo(weight._visit_date)} 측정값 기준` : "최근 측정값 기준");
     if (babyValue) babyValue.textContent = sex?.value || "기록 없음";
     if (babyNote) babyNote.textContent = sex?.note || "진료기록 기준";
     if (nextValue) nextValue.textContent = settings.next_visit_date ? formatDateKo(settings.next_visit_date) : "미정";
@@ -190,15 +213,15 @@
     host.hidden = withVideo.length === 0;
   }
 
-  function renderDashboard(metricMap) {
+  function renderDashboard(metricMap, records) {
     const host = $("#statusRows");
     if (!host) return;
     host.replaceChildren();
     const preferred = [
-      ["Karyotype", ["Karyotype"]], ["CMA", ["CMA"]], ["양수검사", ["양수검사 종합"]], ["NT", ["NT"]], ["CRL", ["CRL"]], ["추정 체중", ["추정 체중"]], ["성별", ["성별"]]
+      ["Karyotype", ["Karyotype"]], ["CMA", ["CMA"]], ["양수검사", ["양수검사 종합"]], ["NT", ["NT"]], ["CRL", ["CRL"]], ["추정 체중", BABY_WEIGHT_ALIASES, MATERNAL_WEIGHT_BLOCKLIST], ["성별", ["성별"]]
     ];
-    preferred.forEach(([label, aliases]) => {
-      const metric = findMetric(metricMap, aliases);
+    preferred.forEach(([label, aliases, blockedAliases]) => {
+      const metric = label === "추정 체중" ? findLatestMetric(records, aliases, blockedAliases || []) : findMetric(metricMap, aliases);
       if (!metric?.value) return;
       const row = make("div", "status");
       const pill = make("span", statusTone(metric.value) === "yellow" ? "pill yellow" : "pill", pillText(metric.value));
@@ -258,9 +281,9 @@
     const records = Array.isArray(state?.records) ? state.records : [];
     const metricMap = collectMetrics(records);
     updateHero(settings, records, metricMap);
-    updateMetricCards(settings, metricMap);
+    updateMetricCards(settings, records, metricMap);
     renderVideos(records);
-    renderDashboard(metricMap);
+    renderDashboard(metricMap, records);
     renderTimeline(records, settings);
     renderChecklist(records, settings);
     setConnectionStatus(source === "cache" ? "저장된 최신 화면을 즉시 표시 중" : "실시간 진료기록 최신 상태", false);
@@ -278,7 +301,7 @@
     const response = await fetch(API_URL, {
       method: "GET",
       mode: "cors",
-      cache: "default",
+      cache: "no-store",
       headers: { Accept: "application/json" }
     });
     if (!response.ok) throw new Error(`BOMI API ${response.status}`);
