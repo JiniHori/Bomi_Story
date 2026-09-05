@@ -128,10 +128,42 @@ async function prepApi(request, env) {
   });
 }
 
+async function strollerPage(request, env) {
+  const assetResponse = await env.ASSETS.fetch(request);
+  if (!assetResponse.ok) return assetResponse;
+
+  const contentType = assetResponse.headers.get("content-type") || "";
+  if (!contentType.includes("text/html")) return assetResponse;
+
+  let html = await assetResponse.text();
+  html = html
+    .replace(
+      "https://www.bugaboo.com/on/demandware.static/-/Sites-masterCatalog_Bugaboo/default/dw0b8f51f1/images/large/1000x1000_fox5renew_taupemelange_black.jpg",
+      "/assets/stroller-fox5.svg"
+    )
+    .replace(
+      "https://arvana.gr/image/cache/catalog/INGLESINA/APTICA%20XT%20NC/1%20%28%CE%9A%CE%9A%CE%9A7%29-1-500x500.jpg",
+      "/assets/stroller-aptica-xt.svg"
+    )
+    .replace(
+      "https://godomall.speedycdn.net/4b7407a938ffaff76ad1aa1152b36f77/goods/1000000434/image/detail/1000000434_detail_112.jpg",
+      "/assets/stroller-melio-carbon.svg"
+    );
+
+  const headers = new Headers(assetResponse.headers);
+  headers.set("cache-control", "no-cache");
+  return new Response(html, {
+    status: assetResponse.status,
+    statusText: assetResponse.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/api/prep/")) return prepApi(request, env);
+    if (url.pathname === "/stroller.html") return strollerPage(request, env);
     return env.ASSETS.fetch(request);
   },
 };
