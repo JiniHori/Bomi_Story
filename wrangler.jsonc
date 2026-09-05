@@ -10,7 +10,8 @@
     "directory": ".",
     "binding": "ASSETS",
     "run_worker_first": [
-      "/api/prep/*"
+      "/api/prep/*",
+      "/stroller.html"
     ]
   },
   "durable_objects": {
