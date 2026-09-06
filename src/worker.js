@@ -159,11 +159,34 @@ async function strollerPage(request, env) {
   });
 }
 
+async function babyfairPage(request, env) {
+  const assetResponse = await env.ASSETS.fetch(request);
+  if (!assetResponse.ok) return assetResponse;
+
+  const contentType = assetResponse.headers.get("content-type") || "";
+  if (!contentType.includes("text/html")) return assetResponse;
+
+  let html = await assetResponse.text();
+  const hotfix = '<script src="/babyfair-sync-hotfix.js?v=2" defer></script>';
+  if (!html.includes('babyfair-sync-hotfix.js')) {
+    html = html.includes('</body>') ? html.replace('</body>', `${hotfix}</body>`) : `${html}${hotfix}`;
+  }
+
+  const headers = new Headers(assetResponse.headers);
+  headers.set("cache-control", "no-cache, no-store, must-revalidate");
+  return new Response(html, {
+    status: assetResponse.status,
+    statusText: assetResponse.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/api/prep/")) return prepApi(request, env);
     if (url.pathname === "/stroller.html") return strollerPage(request, env);
+    if (url.pathname === "/babyfair.html") return babyfairPage(request, env);
     return env.ASSETS.fetch(request);
   },
 };
