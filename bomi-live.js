@@ -156,12 +156,19 @@
     const latest = latestRecord(records);
 
     if (overall) {
-      overall.textContent = latest?.report?.overall_status || settings.overall_status || "기록 확인 중";
+      overall.textContent = latest?.title || latest?.report?.signal || "최신 진료기록";
       overall.classList.remove("loading");
     }
+
     if (statusText) {
-      statusText.textContent = latest?.report?.one_line || latest?.summary || settings.status_text || "최신 진료기록을 불러오고 있습니다.";
+      const meta = [
+        gestationText(latest),
+        latest?.hospital,
+        latest?.visit_date ? `${formatDateKo(latest.visit_date)} 진료` : ""
+      ].filter(Boolean);
+      statusText.textContent = meta.length ? meta.join(" · ") : (settings.status_text || "최신 진료기록을 확인해 주세요.");
     }
+
     if (statusMore && latest?.visit_date) {
       statusMore.href = knownReportUrl(latest.visit_date) || `./reports/live.html?date=${encodeURIComponent(latest.visit_date)}`;
       statusMore.hidden = false;
