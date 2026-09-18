@@ -139,6 +139,10 @@
     if (note) note.innerHTML = fruit ? `출산까지 D-${dDay} · <span class="fruitInline">${fruit[0]} ${fruit[1]} 크기예요</span>` : `출산까지 D-${dDay}`;
   }
 
+  function knownReportUrl(date) {
+    return new Set(["2026-06-08", "2026-06-25", "2026-07-22"]).has(date) ? `./reports/${date}.html` : "";
+  }
+
   function updateHero(settings, records, metricMap) {
     const due = $("#dueDateText");
     if (due && settings.due_date) due.textContent = settings.due_date;
@@ -148,9 +152,20 @@
     const statusText = $(".statusText");
     const todayLine = $(".todayLine");
     const signal = $(".signal");
+    const statusMore = $("#statusMore");
     const latest = latestRecord(records);
-    if (overall) overall.textContent = settings.overall_status || latest?.report?.overall_status || "기록 확인 중";
-    if (statusText) statusText.textContent = settings.status_text || latest?.summary || "최신 진료기록을 불러오고 있습니다.";
+
+    if (overall) {
+      overall.textContent = latest?.report?.overall_status || settings.overall_status || "기록 확인 중";
+      overall.classList.remove("loading");
+    }
+    if (statusText) {
+      statusText.textContent = latest?.report?.one_line || latest?.summary || settings.status_text || "최신 진료기록을 불러오고 있습니다.";
+    }
+    if (statusMore && latest?.visit_date) {
+      statusMore.href = knownReportUrl(latest.visit_date) || `./reports/live.html?date=${encodeURIComponent(latest.visit_date)}`;
+      statusMore.hidden = false;
+    }
 
     const nextParts = [settings.next_visit_date ? formatDateKo(settings.next_visit_date) : "", settings.next_visit_time, settings.next_visit_title].filter(Boolean);
     if (todayLine) todayLine.textContent = nextParts.length ? `다음 일정: ${nextParts.join(" · ")}` : "다음 일정은 아직 등록되지 않았습니다.";
@@ -229,10 +244,6 @@
       host.append(row);
     });
     if (!host.children.length) host.append(make("div", "note", "표시할 검사 결과가 아직 없습니다."));
-  }
-
-  function knownReportUrl(date) {
-    return new Set(["2026-06-08", "2026-06-25", "2026-07-22"]).has(date) ? `./reports/${date}.html` : "";
   }
 
   function renderTimeline(records, settings) {
