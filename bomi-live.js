@@ -12,6 +12,80 @@
   const text = (value) => value == null ? "" : String(value);
   const normalize = (value) => text(value).replace(/\s+/g, "").toLowerCase();
 
+  function politeText(value) {
+    let result = text(value);
+    const end = "(?=\\s*(?:[.!?]|$))";
+    const rules = [
+      [new RegExp(`긴급 내원${end}`, "g"), "긴급 내원했습니다"],
+      [new RegExp(`내원${end}`, "g"), "내원했습니다"],
+      [new RegExp(`검사 시행${end}`, "g"), "검사를 시행했습니다"],
+      [new RegExp(`시행${end}`, "g"), "시행했습니다"],
+      [new RegExp(`확인${end}`, "g"), "확인했습니다"],
+      [new RegExp(`괜찮은가${end}`, "g"), "괜찮은가요"],
+      [new RegExp(`가능한가${end}`, "g"), "가능한가요"],
+      [new RegExp(`인가${end}`, "g"), "인가요"],
+      [new RegExp(`되나${end}`, "g"), "되나요"],
+      [new RegExp(`하나${end}`, "g"), "하나요"],
+      [new RegExp(`할까${end}`, "g"), "할까요"],
+      [new RegExp(`될까${end}`, "g"), "될까요"],
+      [new RegExp(`할 수 있나${end}`, "g"), "할 수 있나요"],
+      [new RegExp(`해야 한다${end}`, "g"), "해야 합니다"],
+      [new RegExp(`할 수 있다${end}`, "g"), "할 수 있습니다"],
+      [new RegExp(`할 수 없다${end}`, "g"), "할 수 없습니다"],
+      [new RegExp(`되어 있다${end}`, "g"), "되어 있습니다"],
+      [new RegExp(`돼 있다${end}`, "g"), "되어 있습니다"],
+      [new RegExp(`아니었다${end}`, "g"), "아니었습니다"],
+      [new RegExp(`아니다${end}`, "g"), "아닙니다"],
+      [new RegExp(`않았다${end}`, "g"), "않았습니다"],
+      [new RegExp(`이었다${end}`, "g"), "이었습니다"],
+      [new RegExp(`보였다${end}`, "g"), "보였습니다"],
+      [new RegExp(`였다${end}`, "g"), "였습니다"],
+      [new RegExp(`되었다${end}`, "g"), "되었습니다"],
+      [new RegExp(`됐다${end}`, "g"), "되었습니다"],
+      [new RegExp(`나타났다${end}`, "g"), "나타났습니다"],
+      [new RegExp(`나왔다${end}`, "g"), "나왔습니다"],
+      [new RegExp(`받았다${end}`, "g"), "받았습니다"],
+      [new RegExp(`들었다${end}`, "g"), "들었습니다"],
+      [new RegExp(`먹었다${end}`, "g"), "먹었습니다"],
+      [new RegExp(`갔다${end}`, "g"), "갔습니다"],
+      [new RegExp(`왔다${end}`, "g"), "왔습니다"],
+      [new RegExp(`봤다${end}`, "g"), "봤습니다"],
+      [new RegExp(`했다${end}`, "g"), "했습니다"],
+      [new RegExp(`한다${end}`, "g"), "합니다"],
+      [new RegExp(`된다${end}`, "g"), "됩니다"],
+      [new RegExp(`보인다${end}`, "g"), "보입니다"],
+      [new RegExp(`나타난다${end}`, "g"), "나타납니다"],
+      [new RegExp(`있다${end}`, "g"), "있습니다"],
+      [new RegExp(`없다${end}`, "g"), "없습니다"],
+      [new RegExp(`같다${end}`, "g"), "같습니다"],
+      [new RegExp(`맞다${end}`, "g"), "맞습니다"],
+      [new RegExp(`괜찮다${end}`, "g"), "괜찮습니다"],
+      [new RegExp(`좋다${end}`, "g"), "좋습니다"],
+      [new RegExp(`크다${end}`, "g"), "큽니다"],
+      [new RegExp(`작다${end}`, "g"), "작습니다"],
+      [new RegExp(`높다${end}`, "g"), "높습니다"],
+      [new RegExp(`낮다${end}`, "g"), "낮습니다"],
+      [new RegExp(`필요하다${end}`, "g"), "필요합니다"],
+      [new RegExp(`권장한다${end}`, "g"), "권장합니다"],
+      [new RegExp(`유지한다${end}`, "g"), "유지합니다"],
+      [new RegExp(`복용한다${end}`, "g"), "복용합니다"],
+      [new RegExp(`확인한다${end}`, "g"), "확인합니다"],
+      [new RegExp(`하다${end}`, "g"), "합니다"],
+      [new RegExp(`이다${end}`, "g"), "입니다"],
+      [new RegExp(`확인됨${end}`, "g"), "확인되었습니다"],
+      [new RegExp(`진행됨${end}`, "g"), "진행되었습니다"],
+      [new RegExp(`권장됨${end}`, "g"), "권장됩니다"],
+      [new RegExp(`예정임${end}`, "g"), "예정입니다"],
+      [new RegExp(`정상임${end}`, "g"), "정상입니다"],
+      [new RegExp(`필요함${end}`, "g"), "필요합니다"],
+      [new RegExp(`대기 중임${end}`, "g"), "대기 중입니다"]
+    ];
+    rules.forEach(([pattern, replacement]) => {
+      result = result.replace(pattern, replacement);
+    });
+    return result;
+  }
+
   function make(tag, className, value) {
     const el = document.createElement(tag);
     if (className) el.className = className;
@@ -166,7 +240,7 @@
         latest?.hospital,
         latest?.visit_date ? `${formatDateKo(latest.visit_date)} 진료` : ""
       ].filter(Boolean);
-      statusText.textContent = meta.length ? meta.join(" · ") : (settings.status_text || "최신 진료기록을 확인해 주세요.");
+      statusText.textContent = meta.length ? meta.join(" · ") : politeText(settings.status_text || "최신 진료기록을 확인해 주세요.");
     }
 
     if (statusMore && latest?.visit_date) {
@@ -228,7 +302,7 @@
       frame.append(video);
 
       const caption = make("div", "videoCaption");
-      caption.append(make("div", "eyebrow", index === 0 ? "Latest ultrasound video" : "Ultrasound video"), make("strong", "", `${formatDateKo(record.visit_date)} 초음파 영상`), make("p", "", record.summary || record.title));
+      caption.append(make("div", "eyebrow", index === 0 ? "Latest ultrasound video" : "Ultrasound video"), make("strong", "", `${formatDateKo(record.visit_date)} 초음파 영상`), make("p", "", politeText(record.summary || record.title)));
       card.append(frame, caption);
       host.append(card);
     });
@@ -259,7 +333,7 @@
     host.replaceChildren();
     records.slice().sort((a, b) => text(a.visit_date).localeCompare(text(b.visit_date))).forEach((record) => {
       const event = make("div", "event");
-      event.append(make("div", "date", `${formatDateKo(record.visit_date)} · ${gestationText(record)}`), make("strong", "", record.title), make("div", "note", record.summary));
+      event.append(make("div", "date", `${formatDateKo(record.visit_date)} · ${gestationText(record)}`), make("strong", "", record.title), make("div", "note", politeText(record.summary)));
       const tags = make("div", "tags");
       if (record.hospital) tags.append(make("span", "tag", record.hospital));
       if (record.status === "completed") tags.append(make("span", "tag", "진료 완료"));
@@ -285,7 +359,7 @@
     const items = [];
     if (settings.next_visit_date) items.push([`${formatDateKo(settings.next_visit_date)} ${settings.next_visit_time || ""}`.trim(), "다음 진료"]);
     if (settings.next_visit_title) items.push([settings.next_visit_title, "예정"]);
-    (latest?.checklist || []).slice(0, 6).forEach((item) => items.push([item, "확인 필요"]));
+    (latest?.checklist || []).slice(0, 6).forEach((item) => items.push([politeText(item), "확인 필요"]));
     items.forEach(([label, status]) => {
       const row = make("div", "status");
       row.append(make("span", "", label), make("span", "pill yellow", status));
