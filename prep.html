@@ -152,6 +152,8 @@ h1{margin:17px 0 8px;font-size:32px;line-height:1.08;letter-spacing:-.045em;colo
     </div>
   </section>
 
+  <a class="homeLink" href="./supplies.html?v=20261004" style="display:flex;margin-top:16px;font-size:16px;line-height:1.5;padding:16px">🧺 출산 준비물 · 구매·예산·제품 후보 체크리스트</a>
+
   <div class="notice">
     <div class="noticeIcon">🏡</div>
     <div><strong>산후 회복 계획 반영 완료</strong><br>지니는 산후조리원을 이용하지 않고 퇴원 후 집에서 회복하며, 참사랑어머니회 인천 남동구 지점 산후도우미를 일반적인 기간보다 길게 이용할 계획입니다.</div>
@@ -457,7 +459,11 @@ function loadSaved(){
   }catch(error){return {version:2,items:{}}}
 }
 
-function persistSaved(){localStorage.setItem(STORAGE_KEY,JSON.stringify(saved))}
+function persistSaved(){
+  const fresh=loadSaved();
+  for(const [id,item] of Object.entries(fresh.items))if((item.updatedAt||0)>(saved.items[id]?.updatedAt||0))saved.items[id]=item;
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));
+}
 function itemOf(id){return saved.items[id]||{status:'todo',fields:{},updatedAt:0}}
 function fieldsOf(id){return itemOf(id).fields||{}}
 function hasRecord(id){
@@ -870,6 +876,12 @@ document.querySelectorAll('.tab').forEach(button=>button.addEventListener('click
   render();window.scrollTo({top:document.querySelector('.controls').offsetTop-6,behavior:'smooth'});
 }));
 document.getElementById('hideDone').addEventListener('change',render);
+window.addEventListener('storage',event=>{
+  if(event.key!==STORAGE_KEY)return;
+  const fresh=loadSaved();
+  for(const [id,item] of Object.entries(fresh.items))if((item.updatedAt||0)>(saved.items[id]?.updatedAt||0))saved.items[id]=item;
+  if(!document.activeElement?.matches('input,textarea,select'))render();else updateRecordStat();
+});
 initFilters();initSources();render();initSync();
 
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'))}
