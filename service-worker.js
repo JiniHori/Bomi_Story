@@ -1,8 +1,9 @@
 const CACHE_PREFIX = 'bomi-';
-const CACHE_NAME = 'bomi-live-v16';
+const CACHE_NAME = 'bomi-live-v17';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
+  './blood-pressure.html',
   './bomi-live.js',
   './prep.html',
   './supplies.html',
@@ -66,3 +67,4 @@ self.addEventListener('fetch', event => {
       )
   );
 });
+
