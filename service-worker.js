@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'bomi-';
-const CACHE_NAME = 'bomi-live-v17';
+const CACHE_NAME = 'bomi-live-v18';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
@@ -67,4 +67,3 @@ self.addEventListener('fetch', event => {
       )
   );
 });
-
