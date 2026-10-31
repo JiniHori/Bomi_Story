@@ -107,6 +107,8 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.15;word-
 .noticeList{margin:10px 0 0;padding-left:19px}
 .noticeList li{padding:4px 0}
 .video{width:100%;display:block;border-radius:18px;background:#3f3038;max-height:420px}
+.drivePreview{display:block;width:100%;aspect-ratio:16/9;min-height:180px;border:0;border-radius:18px;background:#f5eef2}
+.videoHint{margin:9px 0 0}
 .linkBtn{
   display:flex;align-items:center;justify-content:center;margin-top:16px;
   padding:13px;border-radius:17px;text-decoration:none;
@@ -188,6 +190,10 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.15;word-
   const API_URL = "https://bomi-v4.jinihori.workers.dev/api/public/state";
   const params = new URLSearchParams(location.search);
   const targetDate = params.get("date");
+  const ULTRASOUND_DRIVE = Object.freeze({
+    "2026-10-17": { id: "19Qd63HdJwUfPDpaUvsn_vMXgrLxG1tnQ", title: "28주 3일 입체초음파" },
+    "2026-10-31": { id: "1QXe025AXqQ3U8H5rWrlVchN0mcUAHCyu", title: "30주 3일 초음파" }
+  });
   const POLITE_CLASSES = new Set(["oneLine", "summaryBlock", "bodyText", "q", "a", "note", "metricNote", "notice"]);
   const ICONS = Object.freeze({
     "baby":"👶", "activity":"📏", "heart":"❤️", "heart-pulse":"💗",
@@ -486,8 +492,32 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.15;word-
   }
 
   function renderVideo(record) {
-    if (!record.video_url) return;
-    const article = card("관련 영상", "video-auto");
+    const drive = ULTRASOUND_DRIVE[record.visit_date];
+    if (drive) {
+      const article = card("봄이의 초음파 영상", "video-auto");
+      article.append(el("div", "label", drive.title));
+      const frame = document.createElement("iframe");
+      frame.className = "drivePreview";
+      frame.src = `https://drive.google.com/file/d/${drive.id}/preview`;
+      frame.title = `${drive.title} · Google Drive 영상 미리보기`;
+      frame.loading = "lazy";
+      frame.allow = "autoplay; fullscreen; encrypted-media";
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      frame.style.marginTop = "10px";
+      article.append(frame);
+      const original = document.createElement("a");
+      original.className = "linkBtn";
+      original.href = `https://drive.google.com/file/d/${drive.id}/view?usp=drivesdk`;
+      original.target = "_blank";
+      original.rel = "noopener noreferrer";
+      original.textContent = "↗ Google Drive에서 원본 영상 열기";
+      article.append(original);
+      article.append(el("div", "metricNote videoHint", "미리보기가 열리지 않으면 원본 링크를 이용해 주세요. 영상 재생 여부는 Google Drive 공유 권한과 브라우저 설정에 따라 달라질 수 있습니다."));
+      content.append(article);
+    }
+    if (!record.video_url || (drive && record.video_url.includes(drive.id))) return;
+    const article = card("관련 영상", drive ? "video-existing" : "video-auto");
     const video = document.createElement("video");
     video.className = "video";
     video.controls = true;
