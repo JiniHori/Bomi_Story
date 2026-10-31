@@ -34,11 +34,12 @@ body{
 }
 .hero:after{content:"✿";position:absolute;right:18px;top:18px;color:#fff;font-size:44px;opacity:.72}
 .badge{
-  display:inline-flex;padding:8px 12px;border-radius:999px;
-  background:rgba(255,255,255,.8);color:#a95876;font-size:12px;font-weight:850
+  display:inline-flex;max-width:100%;padding:8px 12px;border-radius:999px;
+  background:rgba(255,255,255,.8);color:#a95876;font-size:12px;font-weight:850;
+  overflow-wrap:anywhere;word-break:keep-all
 }
-h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
-.sub{color:var(--muted);font-size:14px;line-height:1.6}
+h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.15;word-break:keep-all;overflow-wrap:anywhere}
+.sub{color:var(--muted);font-size:14px;line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
 .panel{
   margin-top:18px;padding:16px;border-radius:21px;
   background:linear-gradient(135deg,#fff8fb,#f5fffc);
@@ -46,57 +47,65 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
 }
 .panelTop{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .panelTop>*{min-width:0}
-.panel strong{display:block;color:var(--pink);font-size:25px;margin-bottom:5px;letter-spacing:-.035em}
+.panel strong{display:block;color:var(--pink);font-size:25px;margin-bottom:5px;letter-spacing:-.035em;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
 .signal{
   display:inline-flex;max-width:100%;padding:7px 10px;border-radius:999px;background:var(--mint2);
   color:#29786d;font-size:12px;font-weight:900;line-height:1.45;white-space:normal;overflow-wrap:anywhere;word-break:keep-all
 }
-.oneLine{font-size:14px;color:#674b57;line-height:1.65;margin-top:8px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+.oneLine{font-size:14px;color:#674b57;line-height:1.65;margin-top:8px;word-break:keep-all;overflow-wrap:anywhere}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
 .card{
-  background:var(--card);border:1px solid var(--line);border-radius:25px;
+  min-width:0;background:var(--card);border:1px solid var(--line);border-radius:25px;
   padding:18px;box-shadow:0 10px 26px rgba(143,88,114,.075)
 }
 .full{grid-column:1/-1}
-.card h2{margin:0 0 13px;font-size:20px;letter-spacing:-.03em}
-.label{font-size:12px;color:var(--muted);font-weight:850;letter-spacing:.02em}
-.value{font-size:22px;font-weight:900;margin-top:5px;letter-spacing:-.03em}
-.note,.bodyText{font-size:14px;color:#674b57;line-height:1.68;white-space:pre-line}
-.metricNote{font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px}
+.card h2{margin:0 0 13px;font-size:20px;letter-spacing:-.03em;line-height:1.45;word-break:keep-all;overflow-wrap:anywhere}
+.label{font-size:12px;color:var(--muted);font-weight:850;letter-spacing:.02em;line-height:1.5;word-break:keep-all;overflow-wrap:anywhere}
+.value{font-size:clamp(18px,4.7vw,22px);font-weight:900;margin-top:5px;letter-spacing:-.035em;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
+.note,.bodyText{font-size:14px;color:#674b57;line-height:1.68;white-space:pre-line;overflow-wrap:anywhere;word-break:keep-all}
+.metricNote{font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px;overflow-wrap:anywhere;word-break:keep-all}
 .summaryBlock{
   padding:14px 15px;border-radius:18px;background:linear-gradient(135deg,#fff8fb,#f5fffc);
-  border:1px solid var(--line);font-size:14px;line-height:1.7;color:#674b57;white-space:pre-line
+  border:1px solid var(--line);font-size:14px;line-height:1.7;color:#674b57;white-space:pre-line;
+  word-break:keep-all;overflow-wrap:anywhere
 }
-.metricCard .icon{font-size:24px;margin-bottom:8px}
+.metricCard .icon{font-size:23px;line-height:1.35;margin-bottom:8px}
+.metricCard .value{hyphens:manual}
+.metricCard.full .value{font-size:clamp(19px,5vw,23px)}
 .metricRow,.statusRow{
   display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
-  padding:11px 0;border-bottom:1px solid var(--line);font-size:14px
+  padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;
+  overflow-wrap:anywhere;word-break:keep-all
 }
+.metricRow>* ,.statusRow>*{min-width:0}
 .metricRow:last-child,.statusRow:last-child{border-bottom:0}
-.metricValue{text-align:right;font-weight:850}
+.metricValue{text-align:right;font-weight:850;overflow-wrap:anywhere;word-break:keep-all}
 .pill{
-  max-width:100%;white-space:normal;padding:6px 9px;border-radius:999px;
+  max-width:65%;flex-shrink:0;white-space:normal;padding:6px 9px;border-radius:999px;
   background:var(--mint2);color:#29786d;font-size:12px;font-weight:900;line-height:1.4;text-align:right;overflow-wrap:anywhere;word-break:keep-all
 }
 .pill.yellow{background:#fff0d8;color:#98611b}
 .pill.pink{background:#ffe6ef;color:#a55271}
 .qa{border-top:1px solid var(--line);padding:12px 0}
 .qa:first-child{border-top:0;padding-top:0}
-.q{font-size:13px;color:#a55271;font-weight:900;margin-bottom:4px}
-.a{font-size:14px;color:#674b57;line-height:1.65;white-space:pre-line}
+.q{font-size:13px;color:#a55271;font-weight:900;margin-bottom:4px;word-break:keep-all;overflow-wrap:anywhere}
+.a{font-size:14px;color:#674b57;line-height:1.65;white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere}
 .timeline{position:relative;padding-left:22px}
 .timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(#f3bfd1,#bcebe2)}
-.step{position:relative;margin-bottom:15px;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fffafd}
+.step{position:relative;margin-bottom:15px;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fffafd;word-break:keep-all;overflow-wrap:anywhere}
 .step:last-child{margin-bottom:0}
 .step:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:#f3a9c2;border:3px solid #fff;box-shadow:0 0 0 1px #f1c4d4}
 .stepDate{font-size:13px;color:var(--muted);font-weight:900}
 .step strong{display:block;margin-top:3px;font-size:16px}
-.check{display:flex;gap:9px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.55}
+.check{display:flex;gap:9px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
 .check:last-child{border-bottom:0}
+.check>div:last-child{min-width:0}
 .box{width:20px;height:20px;flex:0 0 20px;border:2px solid #e3b8c8;border-radius:7px;background:#fff;margin-top:1px}
 .check.done .box{display:grid;place-items:center;background:#e5faf5;border-color:#8edfd2;color:#29786d;font-size:12px;font-weight:900}
-.notice{background:#fff5df;color:#855b19;border-radius:16px;padding:13px;font-size:13px;line-height:1.65;white-space:pre-line}
+.notice{background:#fff5df;color:#855b19;border-radius:16px;padding:13px;font-size:13px;line-height:1.65;white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere}
 .notice.info{background:#eefbf8;color:#29786d}
+.noticeList{margin:10px 0 0;padding-left:19px}
+.noticeList li{padding:4px 0}
 .video{width:100%;display:block;border-radius:18px;background:#3f3038;max-height:420px}
 .linkBtn{
   display:flex;align-items:center;justify-content:center;margin-top:16px;
@@ -108,62 +117,68 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
 .hidden{display:none!important}
 .nav{
   position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:10;
-  width:min(510px,calc(100% - 28px));display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+  width:min(510px,calc(100% - 28px));display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;
   padding:8px;border-radius:24px;background:rgba(255,250,252,.92);backdrop-filter:blur(18px);
   border:1px solid #f0dce4;box-shadow:0 14px 34px rgba(24,50,51,.14)
 }
-.nav a{text-decoration:none;text-align:center;border-radius:18px;padding:9px 4px;font-size:11px;font-weight:850;color:#745d67}
+.nav a{text-decoration:none;text-align:center;border-radius:18px;padding:9px 4px;font-size:11px;font-weight:850;color:#745d67;min-width:0;white-space:nowrap}
 .nav a.active{background:linear-gradient(135deg,#ffe5ee,#e4faf5);color:#a55271}
 .nav span{display:block;font-size:18px;margin-bottom:2px}
 @media(max-width:390px){
-  .grid{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .card{padding:14px;border-radius:22px}
+  .metricCard .icon{font-size:21px;margin-bottom:7px}
+  .metricCard .value{font-size:18px;line-height:1.4}
+  .metricCard.full .value{font-size:20px}
   h1{font-size:30px}
   .panelTop{align-items:flex-start;flex-direction:column}
+  .nav a{font-size:10px;padding:8px 2px}
 }
+@media(max-width:330px){.grid{grid-template-columns:minmax(0,1fr)}.full{grid-column:1/-1}.metricCard .value{font-size:21px}}
 </style>
 </head>
 <body>
 <main class="wrap">
   <section class="hero">
-    <div class="badge" id="badge">🌸 BOMI PREGNANCY JOURNAL</div>
+    <div class="badge" id="badge">🌸 봄이의 임신 기록</div>
     <h1 id="title">진료기록을 불러오는 중</h1>
     <div class="sub" id="subtitle">잠시만 기다려 주세요.</div>
     <div class="panel">
       <div class="panelTop">
         <div>
-          <div class="label">Overall status</div>
-          <strong id="focus">실시간 기록 연결</strong>
+          <div class="label">진료 종합 상태</div>
+          <strong id="focus">진료기록 연결</strong>
         </div>
-        <div class="signal" id="signal">● LIVE</div>
+        <div class="signal" id="signal">● 진료기록</div>
       </div>
-      <div class="oneLine" id="summary">V4 데이터베이스의 기록을 기존 봄이스토리 디자인으로 표시합니다.</div>
+      <div class="oneLine" id="summary">봄이스토리의 진료기록을 기존 디자인으로 표시합니다.</div>
     </div>
   </section>
 
   <section class="grid" id="content">
     <article class="card metricCard">
-      <div class="icon">🤰</div>
-      <div class="label">Gestation</div>
+      <div class="icon" aria-hidden="true">🤰</div>
+      <div class="label">임신 주수</div>
       <div class="value" id="gestation">-</div>
       <div class="metricNote">진료일 기준</div>
     </article>
     <article class="card metricCard">
-      <div class="icon">🏥</div>
-      <div class="label">Hospital</div>
+      <div class="icon" aria-hidden="true">🏥</div>
+      <div class="label">진료 병원</div>
       <div class="value" id="hospital">-</div>
       <div class="metricNote" id="status">진료기록</div>
     </article>
   </section>
 
   <a class="linkBtn" href="../index.html">← 봄이스토리 홈으로</a>
-  <div class="footer">BOMI Pregnancy Journal · 기존 디자인 자동 상세리포트</div>
+  <div class="footer">봄이스토리 · 진료기록 상세 리포트</div>
 </main>
 
-<nav class="nav">
-  <a href="../index.html"><span>🏠</span>Home</a>
-  <a class="active" href="#content"><span>📋</span>Report</a>
-  <a href="#schedule-auto"><span>📅</span>Next</a>
-  <a href="#checklist-auto"><span>✅</span>Check</a>
+<nav class="nav" aria-label="진료기록 메뉴">
+  <a href="../index.html"><span>🏠</span>홈</a>
+  <a class="active" href="#content"><span>📋</span>리포트</a>
+  <a href="#schedule-auto"><span>📅</span>다음 일정</a>
+  <a href="#checklist-auto"><span>✅</span>체크리스트</a>
 </nav>
 
 <script>
@@ -174,7 +189,15 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
   const params = new URLSearchParams(location.search);
   const targetDate = params.get("date");
   const POLITE_CLASSES = new Set(["oneLine", "summaryBlock", "bodyText", "q", "a", "note", "metricNote", "notice"]);
-
+  const ICONS = Object.freeze({
+    "baby":"👶", "activity":"📏", "heart":"❤️", "heart-pulse":"💗",
+    "droplets":"💧", "map-pin":"📍", "ruler":"📏", "calendar":"📅",
+    "calendar-days":"📅", "hospital":"🏥", "check":"✅", "check-circle":"✅",
+    "stethoscope":"🩺", "clipboard-list":"📋", "clipboard-check":"📋",
+    "pill":"💊", "syringe":"💉", "thermometer":"🌡️", "weight":"⚖️",
+    "scale":"⚖️", "footprints":"👣", "eye":"👁️", "clock":"🕒",
+    "alert-triangle":"⚠️", "shield-check":"🛡️", "calendar-check":"📅"
+  });
   const $ = (id) => document.getElementById(id);
   const content = $("content");
 
@@ -186,6 +209,16 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
 
   function text(value, fallback = "") {
     return value == null || value === "" ? fallback : String(value);
+  }
+
+  function iconText(value) {
+    if (!value) return "📌";
+    const name = String(value).trim().toLowerCase();
+    if (Object.prototype.hasOwnProperty.call(ICONS, name)) return ICONS[name];
+    // Older report entries sometimes contain emoji already; preserve those.
+    if (/[^a-z0-9_-]/i.test(name)) return String(value);
+    // Never display internal icon identifiers to families.
+    return "📌";
   }
 
   function politeText(value) {
@@ -201,7 +234,6 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
       [new RegExp(`될까${end}`, "g"), "될까요"],
       [new RegExp(`좋아질까${end}`, "g"), "좋아질까요"],
       [new RegExp(`할 수 있나${end}`, "g"), "할 수 있나요"],
-
       [new RegExp(`해야 한다${end}`, "g"), "해야 합니다"],
       [new RegExp(`할 수 있다${end}`, "g"), "할 수 있습니다"],
       [new RegExp(`할 수 없다${end}`, "g"), "할 수 없습니다"],
@@ -248,7 +280,6 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
       [new RegExp(`확인한다${end}`, "g"), "확인합니다"],
       [new RegExp(`하다${end}`, "g"), "합니다"],
       [new RegExp(`이다${end}`, "g"), "입니다"],
-
       [new RegExp(`확인됨${end}`, "g"), "확인되었습니다"],
       [new RegExp(`진행됨${end}`, "g"), "진행되었습니다"],
       [new RegExp(`권장됨${end}`, "g"), "권장됩니다"],
@@ -261,7 +292,6 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
       [new RegExp(`안내함${end}`, "g"), "안내합니다"],
       [new RegExp(`대기 중임${end}`, "g"), "대기 중입니다"]
     ];
-
     rules.forEach(([pattern, replacement]) => {
       result = result.replace(pattern, replacement);
     });
@@ -300,11 +330,15 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
   function renderMetricCards(metrics) {
     if (!Array.isArray(metrics)) return;
     metrics.slice(0, 8).forEach((metric) => {
-      const article = el("article", "card metricCard");
+      const value = text(metric.value, "-");
+      const longValue = value.length > 15;
+      const article = el("article", longValue ? "card metricCard full" : "card metricCard");
+      const iconNode = el("div", "icon", iconText(metric.icon));
+      iconNode.setAttribute("aria-hidden", "true");
       article.append(
-        el("div", "icon", metric.icon || "📌"),
-        el("div", "label", metric.label || "Metric"),
-        el("div", "value", metric.value || "-")
+        iconNode,
+        el("div", "label", metric.label || "검사 항목"),
+        el("div", "value", value)
       );
       if (metric.note) article.append(el("div", "metricNote", metric.note));
       content.append(article);
@@ -356,13 +390,13 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
   }
 
   function renderTimelineSection(section, index) {
-    const article = card(section.title || "향후 일정", section.id || `timeline-${index}`);
-    if (!article.id.includes("schedule")) article.id = article.id || `timeline-${index}`;
+    const article = card(section.title || "향후 일정", section.id || "schedule-auto");
     const timeline = el("div", "timeline");
     const items = Array.isArray(section.items) ? section.items : [];
     items.forEach((item) => {
       const step = el("div", "step");
-      step.append(el("div", "stepDate", item.date || item.when || ""));
+      const when = [item.date, item.when].filter(Boolean).join(" · ");
+      step.append(el("div", "stepDate", when));
       step.append(el("strong", "", item.title || item.label || "일정"));
       if (item.note || item.description) step.append(el("div", "note", item.note || item.description));
       timeline.append(step);
@@ -372,10 +406,11 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
   }
 
   function renderChecklistSection(section, index) {
-    const article = card(section.title || "체크리스트", section.id || `checklist-${index}`);
+    const article = card(section.title || "체크리스트", section.id || "checklist-auto");
     const items = Array.isArray(section.items) ? section.items : [];
     items.forEach((item) => {
       const normalized = typeof item === "string" ? { text: item } : item;
+      if (!normalized) return;
       const row = el("div", normalized.done ? "check done" : "check");
       const box = el("div", "box", normalized.done ? "✓" : "");
       const body = el("div", "");
@@ -390,26 +425,31 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
   function renderNoticeSection(section, index) {
     const article = card(section.title || "주의사항", section.id || `notice-${index}`);
     const tone = section.tone === "info" ? "notice info" : "notice";
-    article.append(el("div", tone, section.text || section.note || ""));
+    const notice = el("div", tone);
+    if (section.text || section.note) notice.append(el("div", "", politeText(section.text || section.note)));
+    const items = Array.isArray(section.items) ? section.items : [];
+    if (items.length) {
+      const list = el("ul", "noticeList");
+      items.forEach((item) => {
+        const body = typeof item === "string" ? item : (item && (item.text || item.description || item.label || item.value));
+        if (body) list.append(el("li", "", politeText(body)));
+      });
+      notice.append(list);
+    }
+    article.append(notice);
     content.append(article);
   }
 
   function renderSection(section, index) {
     if (!section || typeof section !== "object") return;
     switch (section.type) {
-      case "status":
-        renderStatusSection(section, index); break;
-      case "qa":
-        renderQaSection(section, index); break;
-      case "timeline":
-        renderTimelineSection(section, index); break;
-      case "checklist":
-        renderChecklistSection(section, index); break;
-      case "notice":
-        renderNoticeSection(section, index); break;
+      case "status": renderStatusSection(section, index); break;
+      case "qa": renderQaSection(section, index); break;
+      case "timeline": renderTimelineSection(section, index); break;
+      case "checklist": renderChecklistSection(section, index); break;
+      case "notice": renderNoticeSection(section, index); break;
       case "text":
-      default:
-        renderTextSection(section, index); break;
+      default: renderTextSection(section, index); break;
     }
   }
 
@@ -426,19 +466,16 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
       });
       content.append(article);
     }
-
     if (record.details) {
       const article = card("상세 기록", "legacy-details");
       article.append(el("div", "bodyText", record.details));
       content.append(article);
     }
-
     if (record.next_schedule) {
       const article = card("다음 일정", "schedule-auto");
       article.append(el("div", "bodyText", record.next_schedule));
       content.append(article);
     }
-
     if (Array.isArray(record.checklist) && record.checklist.length) {
       renderChecklistSection({
         title: "체크리스트",
@@ -466,21 +503,17 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
       ? record.report
       : {};
     const hasReport = Object.keys(report).length > 0;
-
     document.title = `${record.visit_date || ""} ${record.title || "봄이 진료기록"}`;
 
-    setText("badge", report.badge || (report.volume ? `📖 BOMI REPORT · ${report.volume}` : "🌸 BOMI PREGNANCY JOURNAL"));
+    setText("badge", report.badge || (report.volume ? `📖 봄이 진료 리포트 · ${report.volume}` : "🌸 봄이의 임신 기록"));
     setText("title", report.title || record.title, "봄이 진료기록");
-    setText(
-      "subtitle",
-      report.subtitle || [
-        record.hospital,
-        formatDateKo(record.visit_date),
-        `${record.gestation_week}주 ${record.gestation_day || 0}일`
-      ].filter(Boolean).join(" · ")
-    );
+    setText("subtitle", report.subtitle || [
+      record.hospital,
+      formatDateKo(record.visit_date),
+      `${record.gestation_week}주 ${record.gestation_day || 0}일`
+    ].filter(Boolean).join(" · "));
     setText("focus", report.overall_status || (record.status === "planned" ? "예정된 진료" : "진료기록"));
-    setText("signal", report.signal || (record.status === "planned" ? "📅 예정" : "● LIVE"));
+    setText("signal", report.signal || (record.status === "planned" ? "📅 예정" : "● 진료기록"));
     setText("summary", report.one_line || record.summary);
     setText("gestation", `${record.gestation_week}주 ${record.gestation_day || 0}일`);
     setText("hospital", record.hospital, "병원 미입력");
@@ -488,22 +521,18 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
 
     if (hasReport) {
       if (report.executive_summary) {
-        const article = card("Executive Summary", "executive-summary");
+        const article = card("진료 핵심 요약", "executive-summary");
         article.append(el("div", "summaryBlock", report.executive_summary));
         content.append(article);
       }
-
       renderMetricCards(report.metrics);
-
       const sections = Array.isArray(report.sections) ? report.sections : [];
       sections.forEach(renderSection);
-
       if (!sections.some((s) => s && s.type === "timeline") && record.next_schedule) {
         const article = card("다음 일정", "schedule-auto");
         article.append(el("div", "bodyText", record.next_schedule));
         content.append(article);
       }
-
       if (!sections.some((s) => s && s.type === "checklist") &&
           Array.isArray(record.checklist) && record.checklist.length) {
         renderChecklistSection({
@@ -515,7 +544,6 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
     } else {
       renderLegacy(record);
     }
-
     renderVideo(record);
   }
 
@@ -525,7 +553,6 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
     setText("focus", "연결 확인 필요");
     setText("signal", "⚠️ 확인");
     setText("summary", "기존 홈 화면으로 돌아가 다시 시도해 주세요.");
-
     const article = card("오류", "error-card");
     article.append(el("div", "notice", message));
     content.append(article);
@@ -533,19 +560,13 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.08}
 
   async function load() {
     if (!targetDate) throw new Error("진료일이 지정되지 않았습니다.");
-
     const response = await fetch(`${API_URL}?t=${Date.now()}`, {
-      cache: "no-store",
-      mode: "cors",
-      headers: { Accept: "application/json" }
+      cache: "no-store", mode: "cors", headers: { Accept: "application/json" }
     });
-
     if (!response.ok) throw new Error(`진료기록 API 오류: ${response.status}`);
-
     const state = await response.json();
     const records = Array.isArray(state.records) ? state.records : [];
     const record = records.find((item) => item.visit_date === targetDate);
-
     if (!record) throw new Error(`${targetDate} 진료기록을 찾을 수 없습니다.`);
     render(record);
   }
