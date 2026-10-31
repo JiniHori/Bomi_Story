@@ -6,136 +6,55 @@
 <title>봄이 진료기록</title>
 <meta name="theme-color" content="#f7dce7">
 <style>
-:root{
-  --bg:#fff8fb;--card:#fffefe;--ink:#523b46;--muted:#927783;
-  --mint:#8edfd2;--mint2:#e5faf5;--pink:#bd6685;--yellow:#f3b968;
-  --line:#f1dfe6;--shadow:0 16px 38px rgba(176,99,129,.14)
-}
+:root{--bg:#fff8fb;--card:#fffefe;--ink:#523b46;--muted:#927783;--mint:#8edfd2;--mint2:#e5faf5;--pink:#bd6685;--yellow:#f3b968;--line:#f1dfe6;--shadow:0 16px 38px rgba(176,99,129,.14)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{
-  margin:0;padding-bottom:86px;
-  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 8% 8%,rgba(255,205,224,.5),transparent 23%),
-    radial-gradient(circle at 92% 28%,rgba(194,241,230,.55),transparent 25%),
-    linear-gradient(180deg,#fff7fa,#f7fffc 54%,#fff)
-}
+body{margin:0;padding-bottom:86px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 8%,rgba(255,205,224,.5),transparent 23%),radial-gradient(circle at 92% 28%,rgba(194,241,230,.55),transparent 25%),linear-gradient(180deg,#fff7fa,#f7fffc 54%,#fff)}
 .wrap{max-width:540px;margin:0 auto;padding:22px 16px 46px}
-.hero{
-  position:relative;overflow:hidden;border:1px solid #fff;border-radius:30px;
-  padding:28px 22px;
-  background:
-    radial-gradient(circle at 88% 4%,rgba(255,205,224,.8),transparent 34%),
-    radial-gradient(circle at 5% 0%,rgba(142,223,210,.55),transparent 40%),
-    linear-gradient(145deg,#fff,#fff3f7);
-  box-shadow:var(--shadow)
-}
+.hero{position:relative;overflow:hidden;border:1px solid #fff;border-radius:30px;padding:28px 22px;background:radial-gradient(circle at 88% 4%,rgba(255,205,224,.8),transparent 34%),radial-gradient(circle at 5% 0%,rgba(142,223,210,.55),transparent 40%),linear-gradient(145deg,#fff,#fff3f7);box-shadow:var(--shadow)}
 .hero:after{content:"✿";position:absolute;right:18px;top:18px;color:#fff;font-size:44px;opacity:.72}
-.badge{
-  display:inline-flex;max-width:100%;padding:8px 12px;border-radius:999px;
-  background:rgba(255,255,255,.8);color:#a95876;font-size:12px;font-weight:850;
-  overflow-wrap:anywhere;word-break:keep-all
-}
+.badge{display:inline-flex;max-width:100%;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.8);color:#a95876;font-size:12px;font-weight:850;overflow-wrap:anywhere;word-break:keep-all}
 h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.15;word-break:keep-all;overflow-wrap:anywhere}
 .sub{color:var(--muted);font-size:14px;line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
-.panel{
-  margin-top:18px;padding:16px;border-radius:21px;
-  background:linear-gradient(135deg,#fff8fb,#f5fffc);
-  border:1px solid var(--line)
-}
-.panelTop{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
-.panelTop>*{min-width:0}
+.panel{margin-top:18px;padding:16px;border-radius:21px;background:linear-gradient(135deg,#fff8fb,#f5fffc);border:1px solid var(--line)}
+.panelTop{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}.panelTop>*{min-width:0}
 .panel strong{display:block;color:var(--pink);font-size:25px;margin-bottom:5px;letter-spacing:-.035em;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
-.signal{
-  display:inline-flex;max-width:100%;padding:7px 10px;border-radius:999px;background:var(--mint2);
-  color:#29786d;font-size:12px;font-weight:900;line-height:1.45;white-space:normal;overflow-wrap:anywhere;word-break:keep-all
-}
+.signal{display:inline-flex;max-width:100%;padding:7px 10px;border-radius:999px;background:var(--mint2);color:#29786d;font-size:12px;font-weight:900;line-height:1.45;white-space:normal;overflow-wrap:anywhere;word-break:keep-all}
 .oneLine{font-size:14px;color:#674b57;line-height:1.65;margin-top:8px;word-break:keep-all;overflow-wrap:anywhere}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
-.card{
-  min-width:0;background:var(--card);border:1px solid var(--line);border-radius:25px;
-  padding:18px;box-shadow:0 10px 26px rgba(143,88,114,.075)
-}
-.full{grid-column:1/-1}
-.card h2{margin:0 0 13px;font-size:20px;letter-spacing:-.03em;line-height:1.45;word-break:keep-all;overflow-wrap:anywhere}
+.card{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:25px;padding:18px;box-shadow:0 10px 26px rgba(143,88,114,.075)}
+.full{grid-column:1/-1}.card h2{margin:0 0 13px;font-size:20px;letter-spacing:-.03em;line-height:1.45;word-break:keep-all;overflow-wrap:anywhere}
 .label{font-size:12px;color:var(--muted);font-weight:850;letter-spacing:.02em;line-height:1.5;word-break:keep-all;overflow-wrap:anywhere}
 .value{font-size:clamp(18px,4.7vw,22px);font-weight:900;margin-top:5px;letter-spacing:-.035em;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
 .note,.bodyText{font-size:14px;color:#674b57;line-height:1.68;white-space:pre-line;overflow-wrap:anywhere;word-break:keep-all}
 .metricNote{font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px;overflow-wrap:anywhere;word-break:keep-all}
-.summaryBlock{
-  padding:14px 15px;border-radius:18px;background:linear-gradient(135deg,#fff8fb,#f5fffc);
-  border:1px solid var(--line);font-size:14px;line-height:1.7;color:#674b57;white-space:pre-line;
-  word-break:keep-all;overflow-wrap:anywhere
-}
-.metricCard .icon{font-size:23px;line-height:1.35;margin-bottom:8px}
-.metricCard .value{hyphens:manual}
-.metricCard.full .value{font-size:clamp(19px,5vw,23px)}
-.metricRow,.statusRow{
-  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
-  padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;
-  overflow-wrap:anywhere;word-break:keep-all
-}
-.metricRow>* ,.statusRow>*{min-width:0}
-.metricRow:last-child,.statusRow:last-child{border-bottom:0}
+.summaryBlock{padding:14px 15px;border-radius:18px;background:linear-gradient(135deg,#fff8fb,#f5fffc);border:1px solid var(--line);font-size:14px;line-height:1.7;color:#674b57;white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere}
+.metricCard .icon{font-size:23px;line-height:1.35;margin-bottom:8px}.metricCard .value{hyphens:manual}.metricCard.full .value{font-size:clamp(19px,5vw,23px)}
+.metricRow,.statusRow{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere;word-break:keep-all}
+.metricRow>*,.statusRow>*{min-width:0}.metricRow:last-child,.statusRow:last-child{border-bottom:0}
 .metricValue{text-align:right;font-weight:850;overflow-wrap:anywhere;word-break:keep-all}
-.pill{
-  max-width:65%;flex-shrink:0;white-space:normal;padding:6px 9px;border-radius:999px;
-  background:var(--mint2);color:#29786d;font-size:12px;font-weight:900;line-height:1.4;text-align:right;overflow-wrap:anywhere;word-break:keep-all
-}
-.pill.yellow{background:#fff0d8;color:#98611b}
-.pill.pink{background:#ffe6ef;color:#a55271}
-.qa{border-top:1px solid var(--line);padding:12px 0}
-.qa:first-child{border-top:0;padding-top:0}
+.pill{max-width:65%;flex-shrink:0;white-space:normal;padding:6px 9px;border-radius:999px;background:var(--mint2);color:#29786d;font-size:12px;font-weight:900;line-height:1.4;text-align:right;overflow-wrap:anywhere;word-break:keep-all}
+.pill.yellow{background:#fff0d8;color:#98611b}.pill.pink{background:#ffe6ef;color:#a55271}
+.qa{border-top:1px solid var(--line);padding:12px 0}.qa:first-child{border-top:0;padding-top:0}
 .q{font-size:13px;color:#a55271;font-weight:900;margin-bottom:4px;word-break:keep-all;overflow-wrap:anywhere}
 .a{font-size:14px;color:#674b57;line-height:1.65;white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere}
-.timeline{position:relative;padding-left:22px}
-.timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(#f3bfd1,#bcebe2)}
+.timeline{position:relative;padding-left:22px}.timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(#f3bfd1,#bcebe2)}
 .step{position:relative;margin-bottom:15px;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fffafd;word-break:keep-all;overflow-wrap:anywhere}
-.step:last-child{margin-bottom:0}
-.step:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:#f3a9c2;border:3px solid #fff;box-shadow:0 0 0 1px #f1c4d4}
-.stepDate{font-size:13px;color:var(--muted);font-weight:900}
-.step strong{display:block;margin-top:3px;font-size:16px}
-.check{display:flex;gap:9px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
-.check:last-child{border-bottom:0}
-.check>div:last-child{min-width:0}
-.box{width:20px;height:20px;flex:0 0 20px;border:2px solid #e3b8c8;border-radius:7px;background:#fff;margin-top:1px}
-.check.done .box{display:grid;place-items:center;background:#e5faf5;border-color:#8edfd2;color:#29786d;font-size:12px;font-weight:900}
-.notice{background:#fff5df;color:#855b19;border-radius:16px;padding:13px;font-size:13px;line-height:1.65;white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere}
-.notice.info{background:#eefbf8;color:#29786d}
-.noticeList{margin:10px 0 0;padding-left:19px}
-.noticeList li{padding:4px 0}
+.step:last-child{margin-bottom:0}.step:before{content:"";position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:#f3a9c2;border:3px solid #fff;box-shadow:0 0 0 1px #f1c4d4}
+.stepDate{font-size:13px;color:var(--muted);font-weight:900}.step strong{display:block;margin-top:3px;font-size:16px}
+.check{display:flex;gap:9px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}.check:last-child{border-bottom:0}.check>div:last-child{min-width:0}
+.box{width:20px;height:20px;flex:0 0 20px;border:2px solid #e3b8c8;border-radius:7px;background:#fff;margin-top:1px}.check.done .box{display:grid;place-items:center;background:#e5faf5;border-color:#8edfd2;color:#29786d;font-size:12px;font-weight:900}
+.notice{background:#fff5df;color:#855b19;border-radius:16px;padding:13px;font-size:13px;line-height:1.65;white-space:pre-line;word-break:keep-all;overflow-wrap:anywhere}.notice.info{background:#eefbf8;color:#29786d}
+.noticeList{margin:10px 0 0;padding-left:19px}.noticeList li{padding:4px 0}
 .video{width:100%;display:block;border-radius:18px;background:#3f3038;max-height:420px}
 .drivePreview{display:block;width:100%;aspect-ratio:16/9;min-height:180px;border:0;border-radius:18px;background:#f5eef2}
 .videoHint{margin:9px 0 0}
-.linkBtn{
-  display:flex;align-items:center;justify-content:center;margin-top:16px;
-  padding:13px;border-radius:17px;text-decoration:none;
-  background:linear-gradient(135deg,#ffe8f0,#e6faf6);
-  color:#8d4964;font-weight:900
-}
-.footer{text-align:center;color:#ae8e9b;font-size:12px;line-height:1.55;margin-top:20px}
-.hidden{display:none!important}
-.nav{
-  position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:10;
-  width:min(510px,calc(100% - 28px));display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;
-  padding:8px;border-radius:24px;background:rgba(255,250,252,.92);backdrop-filter:blur(18px);
-  border:1px solid #f0dce4;box-shadow:0 14px 34px rgba(24,50,51,.14)
-}
-.nav a{text-decoration:none;text-align:center;border-radius:18px;padding:9px 4px;font-size:11px;font-weight:850;color:#745d67;min-width:0;white-space:nowrap}
-.nav a.active{background:linear-gradient(135deg,#ffe5ee,#e4faf5);color:#a55271}
-.nav span{display:block;font-size:18px;margin-bottom:2px}
-@media(max-width:390px){
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .card{padding:14px;border-radius:22px}
-  .metricCard .icon{font-size:21px;margin-bottom:7px}
-  .metricCard .value{font-size:18px;line-height:1.4}
-  .metricCard.full .value{font-size:20px}
-  h1{font-size:30px}
-  .panelTop{align-items:flex-start;flex-direction:column}
-  .nav a{font-size:10px;padding:8px 2px}
-}
+.linkBtn{display:flex;align-items:center;justify-content:center;margin-top:16px;padding:13px;border-radius:17px;text-decoration:none;background:linear-gradient(135deg,#ffe8f0,#e6faf6);color:#8d4964;font-weight:900}
+.galleryCard{margin-top:18px}.galleryCard .drivePreview{aspect-ratio:4/3;min-height:260px;margin-top:12px}.galleryCard .linkBtn{min-height:44px}.galleryCard p{font-size:13px;color:var(--muted);line-height:1.7;margin:12px 0 0;word-break:keep-all;overflow-wrap:anywhere}
+.footer{text-align:center;color:#ae8e9b;font-size:12px;line-height:1.55;margin-top:20px}.hidden{display:none!important}
+.nav{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:10;width:min(510px,calc(100% - 28px));display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:8px;border-radius:24px;background:rgba(255,250,252,.92);backdrop-filter:blur(18px);border:1px solid #f0dce4;box-shadow:0 14px 34px rgba(24,50,51,.14)}
+.nav a{text-decoration:none;text-align:center;border-radius:18px;padding:9px 4px;font-size:11px;font-weight:850;color:#745d67;min-width:0;white-space:nowrap}.nav a.active{background:linear-gradient(135deg,#ffe5ee,#e4faf5);color:#a55271}.nav span{display:block;font-size:18px;margin-bottom:2px}
+@media(max-width:390px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:14px;border-radius:22px}.metricCard .icon{font-size:21px;margin-bottom:7px}.metricCard .value{font-size:18px;line-height:1.4}.metricCard.full .value{font-size:20px}h1{font-size:30px}.panelTop{align-items:flex-start;flex-direction:column}.nav a{font-size:10px;padding:8px 2px}}
 @media(max-width:330px){.grid{grid-template-columns:minmax(0,1fr)}.full{grid-column:1/-1}.metricCard .value{font-size:21px}}
 </style>
 </head>
@@ -147,46 +66,36 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.15;word-
     <div class="sub" id="subtitle">잠시만 기다려 주세요.</div>
     <div class="panel">
       <div class="panelTop">
-        <div>
-          <div class="label">진료 종합 상태</div>
-          <strong id="focus">진료기록 연결</strong>
-        </div>
+        <div><div class="label">진료 종합 상태</div><strong id="focus">진료기록 연결</strong></div>
         <div class="signal" id="signal">● 진료기록</div>
       </div>
       <div class="oneLine" id="summary">봄이스토리의 진료기록을 기존 디자인으로 표시합니다.</div>
     </div>
   </section>
-
   <section class="grid" id="content">
-    <article class="card metricCard">
-      <div class="icon" aria-hidden="true">🤰</div>
-      <div class="label">임신 주수</div>
-      <div class="value" id="gestation">-</div>
-      <div class="metricNote">진료일 기준</div>
-    </article>
-    <article class="card metricCard">
-      <div class="icon" aria-hidden="true">🏥</div>
-      <div class="label">진료 병원</div>
-      <div class="value" id="hospital">-</div>
-      <div class="metricNote" id="status">진료기록</div>
-    </article>
+    <article class="card metricCard"><div class="icon" aria-hidden="true">🤰</div><div class="label">임신 주수</div><div class="value" id="gestation">-</div><div class="metricNote">진료일 기준</div></article>
+    <article class="card metricCard"><div class="icon" aria-hidden="true">🏥</div><div class="label">진료 병원</div><div class="value" id="hospital">-</div><div class="metricNote" id="status">진료기록</div></article>
   </section>
-
+  <section class="card galleryCard hidden" id="oct17-gallery" aria-labelledby="oct17-gallery-title">
+    <h2 id="oct17-gallery-title">📸 봄이의 입체초음파 사진첩</h2>
+    <div class="label">2026년 10월 17일 · 28주 3일</div>
+    <iframe class="drivePreview" title="봄이 입체초음파 사진 · 09분 56초" loading="lazy" src="https://drive.google.com/file/d/1T0rdGqYnUQS1DS2eoggIHHJMjvyZBHOl/preview" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <a class="linkBtn" target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1T0rdGqYnUQS1DS2eoggIHHJMjvyZBHOl/view?usp=drivesdk">📷 09분 56초 사진 원본 보기</a>
+    <a class="linkBtn" target="_blank" rel="noopener noreferrer" href="https://drive.google.com/drive/folders/1qTaSQ7OeEy6p10KoNKm1cmgN8OOikDZD">📁 봄이 사진 폴더 열기</a>
+    <p>첨부하신 00분 20초·01분 30초·01분 55초 사진도 확인했으나, 홈페이지에서 개별 사진으로 표시하려면 별도의 웹 접근 가능한 파일 주소가 필요합니다. 현재 화면에는 Drive 개별 링크를 확인한 09분 56초 사진만 미리보기로 연결했습니다. 폴더 내부 사진은 공유 설정에 따라 보이지 않을 수 있습니다.</p>
+  </section>
   <a class="linkBtn" href="../index.html">← 봄이스토리 홈으로</a>
   <div class="footer">봄이스토리 · 진료기록 상세 리포트</div>
 </main>
-
 <nav class="nav" aria-label="진료기록 메뉴">
   <a href="../index.html"><span>🏠</span>홈</a>
   <a class="active" href="#content"><span>📋</span>리포트</a>
   <a href="#schedule-auto"><span>📅</span>다음 일정</a>
   <a href="#checklist-auto"><span>✅</span>체크리스트</a>
 </nav>
-
 <script>
 (() => {
   "use strict";
-
   const API_URL = "https://bomi-v4.jinihori.workers.dev/api/public/state";
   const params = new URLSearchParams(location.search);
   const targetDate = params.get("date");
@@ -196,415 +105,52 @@ h1{margin:18px 0 5px;font-size:34px;letter-spacing:-.04em;line-height:1.15;word-
   });
   const POLITE_CLASSES = new Set(["oneLine", "summaryBlock", "bodyText", "q", "a", "note", "metricNote", "notice"]);
   const ICONS = Object.freeze({
-    "baby":"👶", "activity":"📏", "heart":"❤️", "heart-pulse":"💗",
-    "droplets":"💧", "map-pin":"📍", "ruler":"📏", "calendar":"📅",
-    "calendar-days":"📅", "hospital":"🏥", "check":"✅", "check-circle":"✅",
-    "stethoscope":"🩺", "clipboard-list":"📋", "clipboard-check":"📋",
-    "pill":"💊", "syringe":"💉", "thermometer":"🌡️", "weight":"⚖️",
-    "scale":"⚖️", "footprints":"👣", "eye":"👁️", "clock":"🕒",
-    "alert-triangle":"⚠️", "shield-check":"🛡️", "calendar-check":"📅"
+    "baby":"👶", "activity":"📏", "heart":"❤️", "heart-pulse":"💗", "droplets":"💧", "map-pin":"📍", "ruler":"📏", "calendar":"📅", "calendar-days":"📅", "hospital":"🏥", "check":"✅", "check-circle":"✅", "stethoscope":"🩺", "clipboard-list":"📋", "clipboard-check":"📋", "pill":"💊", "syringe":"💉", "thermometer":"🌡️", "weight":"⚖️", "scale":"⚖️", "footprints":"👣", "eye":"👁️", "clock":"🕒", "alert-triangle":"⚠️", "shield-check":"🛡️", "calendar-check":"📅"
   });
   const $ = (id) => document.getElementById(id);
   const content = $("content");
-
-  function formatDateKo(value) {
-    if (!value) return "";
-    const parts = String(value).split("-");
-    return parts.length === 3 ? `${parts[0]}.${parts[1]}.${parts[2]}` : String(value);
+  function formatDateKo(value){if(!value)return "";const parts=String(value).split("-");return parts.length===3?`${parts[0]}.${parts[1]}.${parts[2]}`:String(value)}
+  function text(value,fallback=""){return value==null||value===""?fallback:String(value)}
+  function iconText(value){if(!value)return "📌";const name=String(value).trim().toLowerCase();if(Object.prototype.hasOwnProperty.call(ICONS,name))return ICONS[name];if(/[^a-z0-9_-]/i.test(name))return String(value);return "📌"}
+  function politeText(value){
+    let result=text(value);const end="(?=\\s*(?:[.!?]|$))";
+    const rules=[
+      [new RegExp(`괜찮은가${end}`,"g"),"괜찮은가요"],[new RegExp(`가능한가${end}`,"g"),"가능한가요"],[new RegExp(`인가${end}`,"g"),"인가요"],[new RegExp(`되나${end}`,"g"),"되나요"],[new RegExp(`하나${end}`,"g"),"하나요"],[new RegExp(`할까${end}`,"g"),"할까요"],[new RegExp(`될까${end}`,"g"),"될까요"],[new RegExp(`좋아질까${end}`,"g"),"좋아질까요"],[new RegExp(`할 수 있나${end}`,"g"),"할 수 있나요"],[new RegExp(`해야 한다${end}`,"g"),"해야 합니다"],[new RegExp(`할 수 있다${end}`,"g"),"할 수 있습니다"],[new RegExp(`할 수 없다${end}`,"g"),"할 수 없습니다"],[new RegExp(`되어 있다${end}`,"g"),"되어 있습니다"],[new RegExp(`돼 있다${end}`,"g"),"되어 있습니다"],[new RegExp(`아니다${end}`,"g"),"아닙니다"],[new RegExp(`이었다${end}`,"g"),"이었습니다"],[new RegExp(`보였다${end}`,"g"),"보였습니다"],[new RegExp(`였다${end}`,"g"),"였습니다"],[new RegExp(`되었다${end}`,"g"),"되었습니다"],[new RegExp(`됐다${end}`,"g"),"되었습니다"],[new RegExp(`확인됐다${end}`,"g"),"확인되었습니다"],[new RegExp(`나타났다${end}`,"g"),"나타났습니다"],[new RegExp(`나왔다${end}`,"g"),"나왔습니다"],[new RegExp(`받았다${end}`,"g"),"받았습니다"],[new RegExp(`들었다${end}`,"g"),"들었습니다"],[new RegExp(`먹었다${end}`,"g"),"먹었습니다"],[new RegExp(`갔다${end}`,"g"),"갔습니다"],[new RegExp(`왔다${end}`,"g"),"왔습니다"],[new RegExp(`봤다${end}`,"g"),"봤습니다"],[new RegExp(`말했다${end}`,"g"),"말했습니다"],[new RegExp(`안내했다${end}`,"g"),"안내했습니다"],[new RegExp(`설명했다${end}`,"g"),"설명했습니다"],[new RegExp(`확인했다${end}`,"g"),"확인했습니다"],[new RegExp(`했다${end}`,"g"),"했습니다"],[new RegExp(`한다${end}`,"g"),"합니다"],[new RegExp(`된다${end}`,"g"),"됩니다"],[new RegExp(`보인다${end}`,"g"),"보입니다"],[new RegExp(`나타난다${end}`,"g"),"나타납니다"],[new RegExp(`있다${end}`,"g"),"있습니다"],[new RegExp(`없다${end}`,"g"),"없습니다"],[new RegExp(`같다${end}`,"g"),"같습니다"],[new RegExp(`맞다${end}`,"g"),"맞습니다"],[new RegExp(`괜찮다${end}`,"g"),"괜찮습니다"],[new RegExp(`좋다${end}`,"g"),"좋습니다"],[new RegExp(`크다${end}`,"g"),"큽니다"],[new RegExp(`작다${end}`,"g"),"작습니다"],[new RegExp(`높다${end}`,"g"),"높습니다"],[new RegExp(`낮다${end}`,"g"),"낮습니다"],[new RegExp(`필요하다${end}`,"g"),"필요합니다"],[new RegExp(`권장한다${end}`,"g"),"권장합니다"],[new RegExp(`유지한다${end}`,"g"),"유지합니다"],[new RegExp(`복용한다${end}`,"g"),"복용합니다"],[new RegExp(`확인한다${end}`,"g"),"확인합니다"],[new RegExp(`하다${end}`,"g"),"합니다"],[new RegExp(`이다${end}`,"g"),"입니다"],[new RegExp(`확인됨${end}`,"g"),"확인되었습니다"],[new RegExp(`진행됨${end}`,"g"),"진행되었습니다"],[new RegExp(`권장됨${end}`,"g"),"권장됩니다"],[new RegExp(`예정임${end}`,"g"),"예정입니다"],[new RegExp(`정상임${end}`,"g"),"정상입니다"],[new RegExp(`필요함${end}`,"g"),"필요합니다"],[new RegExp(`유지함${end}`,"g"),"유지합니다"],[new RegExp(`복용함${end}`,"g"),"복용합니다"],[new RegExp(`설명함${end}`,"g"),"설명합니다"],[new RegExp(`안내함${end}`,"g"),"안내합니다"],[new RegExp(`대기 중임${end}`,"g"),"대기 중입니다"]
+    ];rules.forEach(([pattern,replacement])=>{result=result.replace(pattern,replacement)});return result;
   }
-
-  function text(value, fallback = "") {
-    return value == null || value === "" ? fallback : String(value);
-  }
-
-  function iconText(value) {
-    if (!value) return "📌";
-    const name = String(value).trim().toLowerCase();
-    if (Object.prototype.hasOwnProperty.call(ICONS, name)) return ICONS[name];
-    // Older report entries sometimes contain emoji already; preserve those.
-    if (/[^a-z0-9_-]/i.test(name)) return String(value);
-    // Never display internal icon identifiers to families.
-    return "📌";
-  }
-
-  function politeText(value) {
-    let result = text(value);
-    const end = "(?=\\s*(?:[.!?]|$))";
-    const rules = [
-      [new RegExp(`괜찮은가${end}`, "g"), "괜찮은가요"],
-      [new RegExp(`가능한가${end}`, "g"), "가능한가요"],
-      [new RegExp(`인가${end}`, "g"), "인가요"],
-      [new RegExp(`되나${end}`, "g"), "되나요"],
-      [new RegExp(`하나${end}`, "g"), "하나요"],
-      [new RegExp(`할까${end}`, "g"), "할까요"],
-      [new RegExp(`될까${end}`, "g"), "될까요"],
-      [new RegExp(`좋아질까${end}`, "g"), "좋아질까요"],
-      [new RegExp(`할 수 있나${end}`, "g"), "할 수 있나요"],
-      [new RegExp(`해야 한다${end}`, "g"), "해야 합니다"],
-      [new RegExp(`할 수 있다${end}`, "g"), "할 수 있습니다"],
-      [new RegExp(`할 수 없다${end}`, "g"), "할 수 없습니다"],
-      [new RegExp(`되어 있다${end}`, "g"), "되어 있습니다"],
-      [new RegExp(`돼 있다${end}`, "g"), "되어 있습니다"],
-      [new RegExp(`아니다${end}`, "g"), "아닙니다"],
-      [new RegExp(`이었다${end}`, "g"), "이었습니다"],
-      [new RegExp(`보였다${end}`, "g"), "보였습니다"],
-      [new RegExp(`였다${end}`, "g"), "였습니다"],
-      [new RegExp(`되었다${end}`, "g"), "되었습니다"],
-      [new RegExp(`됐다${end}`, "g"), "되었습니다"],
-      [new RegExp(`확인됐다${end}`, "g"), "확인되었습니다"],
-      [new RegExp(`나타났다${end}`, "g"), "나타났습니다"],
-      [new RegExp(`나왔다${end}`, "g"), "나왔습니다"],
-      [new RegExp(`받았다${end}`, "g"), "받았습니다"],
-      [new RegExp(`들었다${end}`, "g"), "들었습니다"],
-      [new RegExp(`먹었다${end}`, "g"), "먹었습니다"],
-      [new RegExp(`갔다${end}`, "g"), "갔습니다"],
-      [new RegExp(`왔다${end}`, "g"), "왔습니다"],
-      [new RegExp(`봤다${end}`, "g"), "봤습니다"],
-      [new RegExp(`말했다${end}`, "g"), "말했습니다"],
-      [new RegExp(`안내했다${end}`, "g"), "안내했습니다"],
-      [new RegExp(`설명했다${end}`, "g"), "설명했습니다"],
-      [new RegExp(`확인했다${end}`, "g"), "확인했습니다"],
-      [new RegExp(`했다${end}`, "g"), "했습니다"],
-      [new RegExp(`한다${end}`, "g"), "합니다"],
-      [new RegExp(`된다${end}`, "g"), "됩니다"],
-      [new RegExp(`보인다${end}`, "g"), "보입니다"],
-      [new RegExp(`나타난다${end}`, "g"), "나타납니다"],
-      [new RegExp(`있다${end}`, "g"), "있습니다"],
-      [new RegExp(`없다${end}`, "g"), "없습니다"],
-      [new RegExp(`같다${end}`, "g"), "같습니다"],
-      [new RegExp(`맞다${end}`, "g"), "맞습니다"],
-      [new RegExp(`괜찮다${end}`, "g"), "괜찮습니다"],
-      [new RegExp(`좋다${end}`, "g"), "좋습니다"],
-      [new RegExp(`크다${end}`, "g"), "큽니다"],
-      [new RegExp(`작다${end}`, "g"), "작습니다"],
-      [new RegExp(`높다${end}`, "g"), "높습니다"],
-      [new RegExp(`낮다${end}`, "g"), "낮습니다"],
-      [new RegExp(`필요하다${end}`, "g"), "필요합니다"],
-      [new RegExp(`권장한다${end}`, "g"), "권장합니다"],
-      [new RegExp(`유지한다${end}`, "g"), "유지합니다"],
-      [new RegExp(`복용한다${end}`, "g"), "복용합니다"],
-      [new RegExp(`확인한다${end}`, "g"), "확인합니다"],
-      [new RegExp(`하다${end}`, "g"), "합니다"],
-      [new RegExp(`이다${end}`, "g"), "입니다"],
-      [new RegExp(`확인됨${end}`, "g"), "확인되었습니다"],
-      [new RegExp(`진행됨${end}`, "g"), "진행되었습니다"],
-      [new RegExp(`권장됨${end}`, "g"), "권장됩니다"],
-      [new RegExp(`예정임${end}`, "g"), "예정입니다"],
-      [new RegExp(`정상임${end}`, "g"), "정상입니다"],
-      [new RegExp(`필요함${end}`, "g"), "필요합니다"],
-      [new RegExp(`유지함${end}`, "g"), "유지합니다"],
-      [new RegExp(`복용함${end}`, "g"), "복용합니다"],
-      [new RegExp(`설명함${end}`, "g"), "설명합니다"],
-      [new RegExp(`안내함${end}`, "g"), "안내합니다"],
-      [new RegExp(`대기 중임${end}`, "g"), "대기 중입니다"]
-    ];
-    rules.forEach(([pattern, replacement]) => {
-      result = result.replace(pattern, replacement);
-    });
-    return result;
-  }
-
-  function shouldPolishClass(className) {
-    return String(className || "")
-      .split(/\s+/)
-      .some((name) => POLITE_CLASSES.has(name));
-  }
-
-  function setText(id, value, fallback = "-") {
-    const node = $(id);
-    const output = text(value, fallback);
-    node.textContent = shouldPolishClass(node.className) ? politeText(output) : output;
-  }
-
-  function el(tag, className, value) {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (value !== undefined) {
-      const output = text(value);
-      node.textContent = shouldPolishClass(className) ? politeText(output) : output;
-    }
-    return node;
-  }
-
-  function card(title, id) {
-    const article = el("article", "card full");
-    if (id) article.id = id;
-    if (title) article.append(el("h2", "", title));
-    return article;
-  }
-
-  function renderMetricCards(metrics) {
-    if (!Array.isArray(metrics)) return;
-    metrics.slice(0, 8).forEach((metric) => {
-      const value = text(metric.value, "-");
-      const longValue = value.length > 15;
-      const article = el("article", longValue ? "card metricCard full" : "card metricCard");
-      const iconNode = el("div", "icon", iconText(metric.icon));
-      iconNode.setAttribute("aria-hidden", "true");
-      article.append(
-        iconNode,
-        el("div", "label", metric.label || "검사 항목"),
-        el("div", "value", value)
-      );
-      if (metric.note) article.append(el("div", "metricNote", metric.note));
-      content.append(article);
-    });
-  }
-
-  function renderStatusSection(section, index) {
-    const article = card(section.title || "확인 사항", section.id || `status-${index}`);
-    const items = Array.isArray(section.items) ? section.items : [];
-    items.forEach((item) => {
-      const row = el("div", "statusRow");
-      row.append(el("span", "", item.label || "항목"));
-      const tone = item.tone === "yellow" ? "pill yellow" : item.tone === "pink" ? "pill pink" : "pill";
-      row.append(el("span", tone, item.value || "-"));
-      article.append(row);
-    });
-    if (section.note) {
-      const note = el("div", "summaryBlock", section.note);
-      article.append(note);
-    }
-    content.append(article);
-  }
-
-  function renderQaSection(section, index) {
-    const article = card(section.title || "상담 메모", section.id || `qa-${index}`);
-    const items = Array.isArray(section.items) ? section.items : [];
-    items.forEach((item) => {
-      const qa = el("div", "qa");
-      qa.append(el("div", "q", item.question || item.q || "질문"));
-      qa.append(el("div", "a", item.answer || item.a || ""));
-      article.append(qa);
-    });
-    content.append(article);
-  }
-
-  function renderTextSection(section, index) {
-    const article = card(section.title || "상세 기록", section.id || `text-${index}`);
-    const paragraphs = Array.isArray(section.paragraphs)
-      ? section.paragraphs
-      : section.text
-        ? [section.text]
-        : [];
-    paragraphs.forEach((paragraph) => {
-      const p = el("div", "bodyText", paragraph);
-      p.style.marginTop = "9px";
-      article.append(p);
-    });
-    content.append(article);
-  }
-
-  function renderTimelineSection(section, index) {
-    const article = card(section.title || "향후 일정", section.id || "schedule-auto");
-    const timeline = el("div", "timeline");
-    const items = Array.isArray(section.items) ? section.items : [];
-    items.forEach((item) => {
-      const step = el("div", "step");
-      const when = [item.date, item.when].filter(Boolean).join(" · ");
-      step.append(el("div", "stepDate", when));
-      step.append(el("strong", "", item.title || item.label || "일정"));
-      if (item.note || item.description) step.append(el("div", "note", item.note || item.description));
-      timeline.append(step);
-    });
-    article.append(timeline);
-    content.append(article);
-  }
-
-  function renderChecklistSection(section, index) {
-    const article = card(section.title || "체크리스트", section.id || "checklist-auto");
-    const items = Array.isArray(section.items) ? section.items : [];
-    items.forEach((item) => {
-      const normalized = typeof item === "string" ? { text: item } : item;
-      if (!normalized) return;
-      const row = el("div", normalized.done ? "check done" : "check");
-      const box = el("div", "box", normalized.done ? "✓" : "");
-      const body = el("div", "");
-      body.append(el("strong", "", politeText(normalized.text || normalized.label || "확인")));
-      if (normalized.note) body.append(el("div", "metricNote", normalized.note));
-      row.append(box, body);
-      article.append(row);
-    });
-    content.append(article);
-  }
-
-  function renderNoticeSection(section, index) {
-    const article = card(section.title || "주의사항", section.id || `notice-${index}`);
-    const tone = section.tone === "info" ? "notice info" : "notice";
-    const notice = el("div", tone);
-    if (section.text || section.note) notice.append(el("div", "", politeText(section.text || section.note)));
-    const items = Array.isArray(section.items) ? section.items : [];
-    if (items.length) {
-      const list = el("ul", "noticeList");
-      items.forEach((item) => {
-        const body = typeof item === "string" ? item : (item && (item.text || item.description || item.label || item.value));
-        if (body) list.append(el("li", "", politeText(body)));
-      });
-      notice.append(list);
-    }
-    article.append(notice);
-    content.append(article);
-  }
-
-  function renderSection(section, index) {
-    if (!section || typeof section !== "object") return;
-    switch (section.type) {
-      case "status": renderStatusSection(section, index); break;
-      case "qa": renderQaSection(section, index); break;
-      case "timeline": renderTimelineSection(section, index); break;
-      case "checklist": renderChecklistSection(section, index); break;
-      case "notice": renderNoticeSection(section, index); break;
-      case "text":
-      default: renderTextSection(section, index); break;
-    }
-  }
-
-  function renderLegacy(record) {
-    if (Array.isArray(record.metrics) && record.metrics.length) {
-      const article = card("핵심 정보", "legacy-metrics");
-      record.metrics.forEach((metric) => {
-        const row = el("div", "metricRow");
-        const left = el("div", "");
-        left.append(el("div", "", metric.label || "항목"));
-        if (metric.note) left.append(el("div", "metricNote", metric.note));
-        row.append(left, el("div", "metricValue", metric.value || "-"));
-        article.append(row);
-      });
-      content.append(article);
-    }
-    if (record.details) {
-      const article = card("상세 기록", "legacy-details");
-      article.append(el("div", "bodyText", record.details));
-      content.append(article);
-    }
-    if (record.next_schedule) {
-      const article = card("다음 일정", "schedule-auto");
-      article.append(el("div", "bodyText", record.next_schedule));
-      content.append(article);
-    }
-    if (Array.isArray(record.checklist) && record.checklist.length) {
-      renderChecklistSection({
-        title: "체크리스트",
-        id: "checklist-auto",
-        items: record.checklist.map((item) => ({ text: item, done: false }))
-      }, 0);
-    }
-  }
-
-  function renderVideo(record) {
-    const drive = ULTRASOUND_DRIVE[record.visit_date];
-    if (drive) {
-      const article = card("봄이의 초음파 영상", "video-auto");
-      article.append(el("div", "label", drive.title));
-      const frame = document.createElement("iframe");
-      frame.className = "drivePreview";
-      frame.src = `https://drive.google.com/file/d/${drive.id}/preview`;
-      frame.title = `${drive.title} · Google Drive 영상 미리보기`;
-      frame.loading = "lazy";
-      frame.allow = "autoplay; fullscreen; encrypted-media";
-      frame.allowFullscreen = true;
-      frame.referrerPolicy = "strict-origin-when-cross-origin";
-      frame.style.marginTop = "10px";
-      article.append(frame);
-      const original = document.createElement("a");
-      original.className = "linkBtn";
-      original.href = `https://drive.google.com/file/d/${drive.id}/view?usp=drivesdk`;
-      original.target = "_blank";
-      original.rel = "noopener noreferrer";
-      original.textContent = "↗ Google Drive에서 원본 영상 열기";
-      article.append(original);
-      article.append(el("div", "metricNote videoHint", "미리보기가 열리지 않으면 원본 링크를 이용해 주세요. 영상 재생 여부는 Google Drive 공유 권한과 브라우저 설정에 따라 달라질 수 있습니다."));
-      content.append(article);
-    }
-    if (!record.video_url || (drive && record.video_url.includes(drive.id))) return;
-    const article = card("관련 영상", drive ? "video-existing" : "video-auto");
-    const video = document.createElement("video");
-    video.className = "video";
-    video.controls = true;
-    video.playsInline = true;
-    video.preload = "metadata";
-    video.src = record.video_url;
-    article.append(video);
-    content.append(article);
-  }
-
-  function render(record) {
-    const report = record.report && typeof record.report === "object" && !Array.isArray(record.report)
-      ? record.report
-      : {};
-    const hasReport = Object.keys(report).length > 0;
-    document.title = `${record.visit_date || ""} ${record.title || "봄이 진료기록"}`;
-
-    setText("badge", report.badge || (report.volume ? `📖 봄이 진료 리포트 · ${report.volume}` : "🌸 봄이의 임신 기록"));
-    setText("title", report.title || record.title, "봄이 진료기록");
-    setText("subtitle", report.subtitle || [
-      record.hospital,
-      formatDateKo(record.visit_date),
-      `${record.gestation_week}주 ${record.gestation_day || 0}일`
-    ].filter(Boolean).join(" · "));
-    setText("focus", report.overall_status || (record.status === "planned" ? "예정된 진료" : "진료기록"));
-    setText("signal", report.signal || (record.status === "planned" ? "📅 예정" : "● 진료기록"));
-    setText("summary", report.one_line || record.summary);
-    setText("gestation", `${record.gestation_week}주 ${record.gestation_day || 0}일`);
-    setText("hospital", record.hospital, "병원 미입력");
-    setText("status", record.status === "planned" ? "예정" : "진료 완료");
-
-    if (hasReport) {
-      if (report.executive_summary) {
-        const article = card("진료 핵심 요약", "executive-summary");
-        article.append(el("div", "summaryBlock", report.executive_summary));
-        content.append(article);
-      }
-      renderMetricCards(report.metrics);
-      const sections = Array.isArray(report.sections) ? report.sections : [];
-      sections.forEach(renderSection);
-      if (!sections.some((s) => s && s.type === "timeline") && record.next_schedule) {
-        const article = card("다음 일정", "schedule-auto");
-        article.append(el("div", "bodyText", record.next_schedule));
-        content.append(article);
-      }
-      if (!sections.some((s) => s && s.type === "checklist") &&
-          Array.isArray(record.checklist) && record.checklist.length) {
-        renderChecklistSection({
-          title: "체크리스트",
-          id: "checklist-auto",
-          items: record.checklist.map((item) => ({ text: item, done: false }))
-        }, 0);
-      }
-    } else {
-      renderLegacy(record);
-    }
+  function shouldPolishClass(className){return String(className||"").split(/\s+/).some(name=>POLITE_CLASSES.has(name))}
+  function setText(id,value,fallback="-"){const node=$(id),output=text(value,fallback);node.textContent=shouldPolishClass(node.className)?politeText(output):output}
+  function el(tag,className,value){const node=document.createElement(tag);if(className)node.className=className;if(value!==undefined){const output=text(value);node.textContent=shouldPolishClass(className)?politeText(output):output}return node}
+  function card(title,id){const article=el("article","card full");if(id)article.id=id;if(title)article.append(el("h2","",title));return article}
+  function renderMetricCards(metrics){if(!Array.isArray(metrics))return;metrics.slice(0,8).forEach(metric=>{const value=text(metric.value,"-"),longValue=value.length>15,article=el("article",longValue?"card metricCard full":"card metricCard"),iconNode=el("div","icon",iconText(metric.icon));iconNode.setAttribute("aria-hidden","true");article.append(iconNode,el("div","label",metric.label||"검사 항목"),el("div","value",value));if(metric.note)article.append(el("div","metricNote",metric.note));content.append(article)})}
+  function renderStatusSection(section,index){const article=card(section.title||"확인 사항",section.id||`status-${index}`),items=Array.isArray(section.items)?section.items:[];items.forEach(item=>{const row=el("div","statusRow");row.append(el("span","",item.label||"항목"));const tone=item.tone==="yellow"?"pill yellow":item.tone==="pink"?"pill pink":"pill";row.append(el("span",tone,item.value||"-"));article.append(row)});if(section.note)article.append(el("div","summaryBlock",section.note));content.append(article)}
+  function renderQaSection(section,index){const article=card(section.title||"상담 메모",section.id||`qa-${index}`),items=Array.isArray(section.items)?section.items:[];items.forEach(item=>{const qa=el("div","qa");qa.append(el("div","q",item.question||item.q||"질문"));qa.append(el("div","a",item.answer||item.a||""));article.append(qa)});content.append(article)}
+  function renderTextSection(section,index){const article=card(section.title||"상세 기록",section.id||`text-${index}`),paragraphs=Array.isArray(section.paragraphs)?section.paragraphs:section.text?[section.text]:[];paragraphs.forEach(paragraph=>{const p=el("div","bodyText",paragraph);p.style.marginTop="9px";article.append(p)});content.append(article)}
+  function renderTimelineSection(section,index){const article=card(section.title||"향후 일정",section.id||"schedule-auto"),timeline=el("div","timeline"),items=Array.isArray(section.items)?section.items:[];items.forEach(item=>{const step=el("div","step"),when=[item.date,item.when].filter(Boolean).join(" · ");step.append(el("div","stepDate",when));step.append(el("strong","",item.title||item.label||"일정"));if(item.note||item.description)step.append(el("div","note",item.note||item.description));timeline.append(step)});article.append(timeline);content.append(article)}
+  function renderChecklistSection(section,index){const article=card(section.title||"체크리스트",section.id||"checklist-auto"),items=Array.isArray(section.items)?section.items:[];items.forEach(item=>{const normalized=typeof item==="string"?{text:item}:item;if(!normalized)return;const row=el("div",normalized.done?"check done":"check"),box=el("div","box",normalized.done?"✓":""),body=el("div","");body.append(el("strong","",politeText(normalized.text||normalized.label||"확인")));if(normalized.note)body.append(el("div","metricNote",normalized.note));row.append(box,body);article.append(row)});content.append(article)}
+  function renderNoticeSection(section,index){const article=card(section.title||"주의사항",section.id||`notice-${index}`),tone=section.tone==="info"?"notice info":"notice",notice=el("div",tone);if(section.text||section.note)notice.append(el("div","",politeText(section.text||section.note)));const items=Array.isArray(section.items)?section.items:[];if(items.length){const list=el("ul","noticeList");items.forEach(item=>{const body=typeof item==="string"?item:(item&&(item.text||item.description||item.label||item.value));if(body)list.append(el("li","",politeText(body)))});notice.append(list)}article.append(notice);content.append(article)}
+  function renderSection(section,index){if(!section||typeof section!=="object")return;switch(section.type){case "status":renderStatusSection(section,index);break;case "qa":renderQaSection(section,index);break;case "timeline":renderTimelineSection(section,index);break;case "checklist":renderChecklistSection(section,index);break;case "notice":renderNoticeSection(section,index);break;case "text":default:renderTextSection(section,index);break}}
+  function renderLegacy(record){if(Array.isArray(record.metrics)&&record.metrics.length){const article=card("핵심 정보","legacy-metrics");record.metrics.forEach(metric=>{const row=el("div","metricRow"),left=el("div","");left.append(el("div","",metric.label||"항목"));if(metric.note)left.append(el("div","metricNote",metric.note));row.append(left,el("div","metricValue",metric.value||"-"));article.append(row)});content.append(article)}if(record.details){const article=card("상세 기록","legacy-details");article.append(el("div","bodyText",record.details));content.append(article)}if(record.next_schedule){const article=card("다음 일정","schedule-auto");article.append(el("div","bodyText",record.next_schedule));content.append(article)}if(Array.isArray(record.checklist)&&record.checklist.length)renderChecklistSection({title:"체크리스트",id:"checklist-auto",items:record.checklist.map(item=>({text:item,done:false}))},0)}
+  function renderVideo(record){const drive=ULTRASOUND_DRIVE[record.visit_date];if(drive){const article=card("봄이의 초음파 영상","video-auto");article.append(el("div","label",drive.title));const frame=document.createElement("iframe");frame.className="drivePreview";frame.src=`https://drive.google.com/file/d/${drive.id}/preview`;frame.title=`${drive.title} · Google Drive 영상 미리보기`;frame.loading="lazy";frame.allow="autoplay; fullscreen; encrypted-media";frame.allowFullscreen=true;frame.referrerPolicy="strict-origin-when-cross-origin";frame.style.marginTop="10px";article.append(frame);const original=document.createElement("a");original.className="linkBtn";original.href=`https://drive.google.com/file/d/${drive.id}/view?usp=drivesdk`;original.target="_blank";original.rel="noopener noreferrer";original.textContent="↗ Google Drive에서 원본 영상 열기";article.append(original);article.append(el("div","metricNote videoHint","미리보기가 열리지 않으면 원본 링크를 이용해 주세요. 영상 재생 여부는 Google Drive 공유 권한과 브라우저 설정에 따라 달라질 수 있습니다."));content.append(article)}if(!record.video_url||(drive&&record.video_url.includes(drive.id)))return;const article=card("관련 영상",drive?"video-existing":"video-auto"),video=document.createElement("video");video.className="video";video.controls=true;video.playsInline=true;video.preload="metadata";video.src=record.video_url;article.append(video);content.append(article)}
+  function render(record){
+    const report=record.report&&typeof record.report==="object"&&!Array.isArray(record.report)?record.report:{},hasReport=Object.keys(report).length>0;
+    document.title=`${record.visit_date||""} ${record.title||"봄이 진료기록"}`;
+    setText("badge",report.badge||(report.volume?`📖 봄이 진료 리포트 · ${report.volume}`:"🌸 봄이의 임신 기록"));
+    setText("title",report.title||record.title,"봄이 진료기록");
+    setText("subtitle",report.subtitle||[record.hospital,formatDateKo(record.visit_date),`${record.gestation_week}주 ${record.gestation_day||0}일`].filter(Boolean).join(" · "));
+    setText("focus",report.overall_status||(record.status==="planned"?"예정된 진료":"진료기록"));
+    setText("signal",report.signal||(record.status==="planned"?"📅 예정":"● 진료기록"));
+    setText("summary",report.one_line||record.summary);
+    setText("gestation",`${record.gestation_week}주 ${record.gestation_day||0}일`);
+    setText("hospital",record.hospital,"병원 미입력");
+    setText("status",record.status==="planned"?"예정":"진료 완료");
+    if(hasReport){if(report.executive_summary){const article=card("진료 핵심 요약","executive-summary");article.append(el("div","summaryBlock",report.executive_summary));content.append(article)}renderMetricCards(report.metrics);const sections=Array.isArray(report.sections)?report.sections:[];sections.forEach(renderSection);if(!sections.some(s=>s&&s.type==="timeline")&&record.next_schedule){const article=card("다음 일정","schedule-auto");article.append(el("div","bodyText",record.next_schedule));content.append(article)}if(!sections.some(s=>s&&s.type==="checklist")&&Array.isArray(record.checklist)&&record.checklist.length)renderChecklistSection({title:"체크리스트",id:"checklist-auto",items:record.checklist.map(item=>({text:item,done:false}))},0)}else renderLegacy(record);
     renderVideo(record);
+    const gallery=$("oct17-gallery");if(gallery&&record.visit_date==="2026-10-17")gallery.classList.remove("hidden");
   }
-
-  function showError(message) {
-    setText("title", "기록을 불러오지 못했습니다");
-    setText("subtitle", targetDate || "날짜 정보 없음");
-    setText("focus", "연결 확인 필요");
-    setText("signal", "⚠️ 확인");
-    setText("summary", "기존 홈 화면으로 돌아가 다시 시도해 주세요.");
-    const article = card("오류", "error-card");
-    article.append(el("div", "notice", message));
-    content.append(article);
-  }
-
-  async function load() {
-    if (!targetDate) throw new Error("진료일이 지정되지 않았습니다.");
-    const response = await fetch(`${API_URL}?t=${Date.now()}`, {
-      cache: "no-store", mode: "cors", headers: { Accept: "application/json" }
-    });
-    if (!response.ok) throw new Error(`진료기록 API 오류: ${response.status}`);
-    const state = await response.json();
-    const records = Array.isArray(state.records) ? state.records : [];
-    const record = records.find((item) => item.visit_date === targetDate);
-    if (!record) throw new Error(`${targetDate} 진료기록을 찾을 수 없습니다.`);
-    render(record);
-  }
-
-  load().catch((error) => {
-    console.error("[BOMI Live Report]", error);
-    showError(error.message || "알 수 없는 오류가 발생했습니다.");
-  });
+  function showError(message){setText("title","기록을 불러오지 못했습니다");setText("subtitle",targetDate||"날짜 정보 없음");setText("focus","연결 확인 필요");setText("signal","⚠️ 확인");setText("summary","기존 홈 화면으로 돌아가 다시 시도해 주세요.");const article=card("오류","error-card");article.append(el("div","notice",message));content.append(article)}
+  async function load(){if(!targetDate)throw new Error("진료일이 지정되지 않았습니다.");const response=await fetch(`${API_URL}?t=${Date.now()}`,{cache:"no-store",mode:"cors",headers:{Accept:"application/json"}});if(!response.ok)throw new Error(`진료기록 API 오류: ${response.status}`);const state=await response.json(),records=Array.isArray(state.records)?state.records:[],record=records.find(item=>item.visit_date===targetDate);if(!record)throw new Error(`${targetDate} 진료기록을 찾을 수 없습니다.`);render(record)}
+  load().catch(error=>{console.error("[BOMI Live Report]",error);showError(error.message||"알 수 없는 오류가 발생했습니다.")});
 })();
 </script>
 </body>
